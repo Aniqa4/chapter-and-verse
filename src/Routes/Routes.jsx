@@ -13,6 +13,7 @@ import History from "../CategoryOfBooks/History";
 import Biography from "../CategoryOfBooks/Biography";
 import ChildrensBooks from "../CategoryOfBooks/ChildrensBooks";
 import CookBooks from "../CategoryOfBooks/CookBooks";
+import AllBooks from "../AllBooks/AllBooks";
 
 const router=createBrowserRouter([
     {
@@ -22,6 +23,10 @@ const router=createBrowserRouter([
             {
                 path:'/',
                 element:<Home/>
+            },
+            {
+                path:'/all-books',
+                element:<AllBooks/>
             },
             {
                 path:'/category=islamic-books',

@@ -14,6 +14,8 @@ import Biography from "../CategoryOfBooks/Biography";
 import ChildrensBooks from "../CategoryOfBooks/ChildrensBooks";
 import CookBooks from "../CategoryOfBooks/CookBooks";
 import AllBooks from "../AllBooks/AllBooks";
+import Login from "../Authentication/Login";
+import Register from "../Authentication/Register";
 
 const router=createBrowserRouter([
     {
@@ -27,6 +29,14 @@ const router=createBrowserRouter([
             {
                 path:'/all-books',
                 element:<AllBooks/>
+            },
+            {
+                path:'/log-in',
+                element:<Login/>
+            },
+            {
+                path:'/register',
+                element:<Register/>
             },
             {
                 path:'/category=islamic-books',

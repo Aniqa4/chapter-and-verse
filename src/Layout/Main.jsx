@@ -6,9 +6,11 @@ import Footer from './Footer'
 function Main() {
   return (
     <>
-        <Navbar></Navbar>
+      <Navbar></Navbar>
+      <div className='mt-10'>
         <Outlet></Outlet>
-        <Footer></Footer>
+      </div>
+      <Footer></Footer>
     </>
   )
 }

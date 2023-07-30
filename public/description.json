@@ -1,0 +1,52 @@
+{
+  "categories": [
+    {
+      "name": "Fiction",
+      "description": "Imaginative stories with characters, settings, and events. Includes romance, mystery, fantasy, and more."
+    },
+    {
+      "name": "Non-Fiction",
+      "description": "Based on real events and facts. Covers history, science, self-help, politics, and more."
+    },
+    {
+      "name": "Science Fiction",
+      "description": "Speculative stories about science, technology, and the future. Explores futuristic settings and space travel."
+    },
+    {
+      "name": "Biography",
+      "description": "Life stories of real people. Provides insights into their achievements and contributions."
+    },
+    {
+      "name": "Children's Book",
+      "description": "For young readers, both fictional and educational. Fosters a love for reading and learning."
+    },
+    {
+      "name": "Cookbook",
+      "description": "Provides recipes and cooking instructions. Covers various cuisines and techniques."
+    },
+    {
+      "name": "History",
+      "description": "Explores past events and civilizations. Offers lessons from history and shared heritage."
+    },
+    {
+      "name": "Religion",
+      "description": "Sacred texts and philosophical writings. Provides guidance on spirituality and morality."
+    },
+    {
+      "name": "Comics",
+      "description": "Visual storytelling with illustrations and text. Includes superheroes, fantasy, and humor."
+    },
+    {
+      "name": "Psychology",
+      "description": "Studies human behavior, emotions, and mental processes. Explores cognitive and social psychology."
+    },
+    {
+      "name": "Science",
+      "description": "Explores various scientific disciplines such as physics, chemistry, biology, and astronomy."
+    },
+    {
+      "name": "Bangla Literature",
+      "description": "Books written in Bengali language from Bangladesh and West Bengal. Encompasses poetry, novels, and essays."
+    }
+  ]
+}

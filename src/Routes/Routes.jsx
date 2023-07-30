@@ -16,6 +16,7 @@ import CookBooks from "../CategoryOfBooks/CookBooks";
 import AllBooks from "../AllBooks/AllBooks";
 import Login from "../Authentication/Login";
 import Register from "../Authentication/Register";
+import CategoryOfBooks from "../CategoryOfBooks/CategoryOfBooks";
 
 const router=createBrowserRouter([
     {
@@ -29,6 +30,10 @@ const router=createBrowserRouter([
             {
                 path:'/all-books',
                 element:<AllBooks/>
+            },
+            {
+                path:'/category',
+                element:<CategoryOfBooks/>
             },
             {
                 path:'/log-in',

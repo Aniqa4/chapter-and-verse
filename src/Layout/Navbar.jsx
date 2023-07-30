@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import { RiShoppingCartLine } from 'react-icons/ri';
+import { CgShoppingBag } from 'react-icons/cg';
 
 function Navbar() {
   return (
@@ -11,14 +11,15 @@ function Navbar() {
           <ul className='flex gap-10'>
             <li><Link to='/'>Home</Link></li>
             <li><Link to='/all-books'>All Books</Link></li>
+            <li><Link to='/category'>Category</Link></li>
           </ul>
           <button>Sign In</button>
         </div>
       </div>
-      <div className=' fixed bottom-10 right-10 bg-slate-500 bg-opacity-60 p-5 rounded-full z-50'>
+      <div className=' fixed bottom-10 right-5 md:right-10 rounded-full z-50'>
         <div className=' relative'>
-          <h1 className=' text-black text-2xl'><RiShoppingCartLine /></h1>
-          <p className=' absolute top-1/2 left-1/3 px-2 py-1 bg-black text-white text-xs rounded-full'>11</p>
+          <h1 className=' text-black text-4xl'><CgShoppingBag /></h1>
+          <p className=' absolute top-1/2 -right-1 px-2 py-1 bg-black text-white text-xs rounded-full'>1</p>
         </div>
       </div>
     </>

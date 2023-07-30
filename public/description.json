@@ -2,51 +2,63 @@
   "categories": [
     {
       "name": "Fiction",
-      "description": "Imaginative stories with characters, settings, and events. Includes romance, mystery, fantasy, and more."
+      "description": "Imaginative stories with characters, settings, and events. Includes romance, mystery, fantasy, and more.",
+      "route":"/category=fiction"
     },
     {
       "name": "Non-Fiction",
-      "description": "Based on real events and facts. Covers history, science, self-help, politics, and more."
+      "description": "Based on real events and facts. Covers history, science, self-help, politics, and more.",
+      "route":"/category=non-fiction"
     },
     {
       "name": "Science Fiction",
-      "description": "Speculative stories about science, technology, and the future. Explores futuristic settings and space travel."
+      "description": "Speculative stories about science, technology, and the future. Explores futuristic settings and space travel.",
+      "route":"/category=science-fiction"
     },
     {
       "name": "Biography",
-      "description": "Life stories of real people. Provides insights into their achievements and contributions."
+      "description": "Life stories of real people. Provides insights into their achievements and contributions.",
+      "route":"/category=biography"
     },
     {
       "name": "Children's Book",
-      "description": "For young readers, both fictional and educational. Fosters a love for reading and learning."
+      "description": "For young readers, both fictional and educational. Fosters a love for reading and learning.",
+      "route":"/category=children's-books"
     },
     {
       "name": "Cookbook",
-      "description": "Provides recipes and cooking instructions. Covers various cuisines and techniques."
+      "description": "Provides recipes and cooking instructions. Covers various cuisines and techniques.",
+      "route":"/category=cook-books"
     },
     {
       "name": "History",
-      "description": "Explores past events and civilizations. Offers lessons from history and shared heritage."
+      "description": "Explores past events and civilizations. Offers lessons from history and shared heritage.",
+      "route":"/category=history"
     },
     {
       "name": "Religion",
-      "description": "Sacred texts and philosophical writings. Provides guidance on spirituality and morality."
+      "description": "Sacred texts and philosophical writings. Provides guidance on spirituality and morality.",
+      "route":"/category=religion"
     },
     {
       "name": "Comics",
-      "description": "Visual storytelling with illustrations and text. Includes superheroes, fantasy, and humor."
+      "description": "Visual storytelling with illustrations and text. Includes superheroes, fantasy, and humor.",
+      "route":"/category=comics"
     },
     {
       "name": "Psychology",
-      "description": "Studies human behavior, emotions, and mental processes. Explores cognitive and social psychology."
+      "description": "Studies human behavior, emotions, and mental processes. Explores cognitive and social psychology.",
+      "route":"/category=psychology"
     },
     {
       "name": "Science",
-      "description": "Explores various scientific disciplines such as physics, chemistry, biology, and astronomy."
+      "description": "Explores various scientific disciplines such as physics, chemistry, biology, and astronomy.",
+      "route":"/category=science"
     },
     {
       "name": "Bangla Literature",
-      "description": "Books written in Bengali language from Bangladesh and West Bengal. Encompasses poetry, novels, and essays."
+      "description": "Books written in Bengali language from Bangladesh and West Bengal. Encompasses poetry, novels, and essays.",
+      "route":"/category=bangla-literature"
     }
   ]
 }

@@ -15,16 +15,24 @@ function Gallery() {
   return (
     <div className=' container mx-auto'>
         <Title title={`Bookworm's Haven: A Visual Journey Through Our Library`}></Title>
-        <div className=' grid grid-cols-3 gap-2 md:gap-5 px-2 md:px-5'>
-            <img src={gallery} className=' rounded'/>
-            <img src={gallery3} className=' rounded'/>
-            <img src={gallery4} className=' rounded'/>
-            <img src={gallery5} className=' rounded'/>
-            <img src={gallery6} className=' rounded'/>
-            <img src={gallery7} className=' rounded'/>
-            <img src={gallery8} className=' rounded'/>
-            <img src={gallery9} className=' rounded'/>
-            <img src={gallery10} className=' rounded'/>
+        <div className=' grid grid-cols-6 px-2 md:px-5 lg:px-0'>
+            <img src={gallery} className=' rounded shadow-2xl'/>
+            <div className='flex justify-center items-center'></div>
+            <img src={gallery3} className='rounded shadow-2xl'/>
+            <div></div>
+            <img src={gallery4} className='rounded shadow-2xl'/>
+            <div></div>
+            <div></div>
+            <img src={gallery5} className='rounded shadow-2xl'/>
+            <div></div>
+            <img src={gallery6} className='rounded shadow-2xl'/>
+            <div></div>
+            <img src={gallery7} className='rounded shadow-2xl'/>
+            <img src={gallery8} className='rounded shadow-2xl'/>
+            <div></div>
+            <img src={gallery9} className='rounded shadow-2xl'/>
+            <div></div>
+            <img src={gallery10} className='rounded shadow-2xl'/>
         </div>
     </div>
   )

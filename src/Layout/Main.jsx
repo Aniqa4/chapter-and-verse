@@ -7,7 +7,7 @@ function Main() {
   return (
     <>
       <Navbar></Navbar>
-      <div className='mt-10'>
+      <div className='mt-16'>
         <Outlet></Outlet>
       </div>
       <Footer></Footer>

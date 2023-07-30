@@ -15,8 +15,11 @@ function Navbar() {
           <button>Sign In</button>
         </div>
       </div>
-      <div className=' fixed bottom-10 right-10 bg-slate-700 bg-opacity-60 p-5 rounded-full'>
-        <h1 className=' text-black text-2xl'><RiShoppingCartLine /></h1>
+      <div className=' fixed bottom-10 right-10 bg-slate-500 bg-opacity-60 p-5 rounded-full z-50'>
+        <div className=' relative'>
+          <h1 className=' text-black text-2xl'><RiShoppingCartLine /></h1>
+          <p className=' absolute top-1/2 left-1/3 px-2 py-1 bg-black text-white text-xs rounded-full'>11</p>
+        </div>
       </div>
     </>
   )

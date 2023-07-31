@@ -1,6 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { CgShoppingBag } from 'react-icons/cg';
+import { MdOutlineFavoriteBorder } from 'react-icons/md';
+import { AiOutlineUserAdd } from 'react-icons/ai';
+
 
 function Navbar() {
   return (
@@ -12,8 +15,12 @@ function Navbar() {
             <li><Link to='/'>Home</Link></li>
             <li><Link to='/all-books'>All Books</Link></li>
             <li><Link to='/category'>Category</Link></li>
+            <li className=' relative text-xl'><Link to='/wishlist'><MdOutlineFavoriteBorder/></Link>
+            <span className=' absolute -top-2 -right-2 text-xs'>10</span></li>
+            <li className=' relative text-xl'><Link to='/cart'><CgShoppingBag /></Link>
+            <span className=' absolute -top-2 -right-2 text-xs'>10</span></li>
           </ul>
-          <button>Sign In</button>
+          <button className=' text-2xl'><AiOutlineUserAdd/></button>
         </div>
       </div>
       <div className=' fixed bottom-10 right-5 md:right-10 rounded-full z-50'>

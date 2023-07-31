@@ -18,7 +18,7 @@ function BooksByCategory() {
   return (
     <div>
         <Title title={'Browse by Genre'}></Title>
-        <div className=' container px-2 md:px-5 lg:px-0 mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2 md:gap-5'>
+        <div className='container px-2 md:px-5 lg:px-0 mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2 md:gap-5'>
             <Card image={banglaLiterature} categoryName={'Bangla Literature'} route={'/category=bangla-literature'}></Card>
             <Card image={religion} categoryName={'Religion'} route={'/category=religion'}></Card>
             <Card image={fiction} categoryName={'Fiction'} route={'/category=fiction'}></Card>

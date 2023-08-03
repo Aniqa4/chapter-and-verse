@@ -1,21 +1,19 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom';
 import { CgShoppingBag } from 'react-icons/cg';
 import { MdOutlineFavoriteBorder } from 'react-icons/md';
 import { AiOutlineUserAdd } from 'react-icons/ai';
-import { CiMenuKebab } from 'react-icons/ci';
-import { MdOutlineClose } from 'react-icons/md';
-import { Box, Drawer, Typography } from '@mui/material';
+import NavbarMenu from './NavbarMenu';
 
 
 function Navbar() {
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
 
   return (
     <>
       <div className='hidden lg:block bg-white fixed top-0 left-0 right-0 z-50 shadow '>
         <div className='container mx-auto px-5 flex justify-between text-slate-700 py-5'>
+          <NavbarMenu/>
           <div className='flex items-center gap-20'>
             <h1 className=' font-bold text-sm uppercase'><Link to='/'>Chapter<span className=' text-black'>&</span>Verse</Link></h1>
           </div>
@@ -33,8 +31,7 @@ function Navbar() {
       </div>
       <div className=' lg:hidden bg-white fixed top-0 left-0 right-0 z-50 shadow '>
         <div className='container mx-auto px-5 flex justify-between text-slate-700 py-5'>
-          <button onClick={() => setIsDrawerOpen(true)} className=' text-xl flex gap-2 items-center'><CiMenuKebab />
-            <span className=' text-base'>Menu</span></button>
+          <NavbarMenu/>
           <h1 className=' font-bold text-sm uppercase'><Link to='/'>Chapter<span className=' text-black'>&</span>Verse</Link></h1>
           <ul className='flex gap-5'>
             <li className=' relative text-xl'><Link to='/wishlist'><MdOutlineFavoriteBorder /></Link>
@@ -47,18 +44,6 @@ function Navbar() {
           </ul>
         </div>
       </div>
-      <Drawer anchor='left' open={isDrawerOpen} onClose={() => setIsDrawerOpen(false)}>
-        <Box p={2} width={'150px'} role='presentation'>
-          <Typography component={'div'}>
-            <span onClick={()=>setIsDrawerOpen(false)} className=' text-2xl'><MdOutlineClose/></span>
-            <ul className=' py-5'>
-              <li onClick={()=>setIsDrawerOpen(false)}><Link to='/'>Home</Link></li>
-              <li onClick={()=>setIsDrawerOpen(false)}><Link to='/all-books'>Books</Link></li>
-              <li onClick={()=>setIsDrawerOpen(false)}><Link to='/category'>Category</Link></li>
-            </ul>
-          </Typography>
-        </Box>
-      </Drawer>
     </>
   )
 }

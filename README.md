@@ -1,2 +1,2 @@
 #Chapter&Verse
-live link:  https://chapter-and-verse404.web.app
+live site:  https://chapter-and-verse404.web.app

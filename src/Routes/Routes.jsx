@@ -19,6 +19,7 @@ import Register from "../Authentication/Register";
 import CategoryOfBooks from "../CategoryOfBooks/CategoryOfBooks";
 import Wishlist from "../Wishlist/Wishlist";
 import Cart from "../Cart/Cart";
+import AddBooks from "../AddBooks/AddBooks";
 
 const router=createBrowserRouter([
     {
@@ -32,6 +33,10 @@ const router=createBrowserRouter([
             {
                 path:'/all-books',
                 element:<AllBooks/>
+            },
+            {
+                path:'/add-books',
+                element:<AddBooks/>
             },
             {
                 path:'/category',

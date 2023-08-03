@@ -33,7 +33,7 @@ function CategoryOfBooks() {
             <Title title={'Category of Books'}></Title>
             <div className=' mb-5 grid grid-cols-4 lg:grid-cols-12 gap-2 p-2'>
                 {
-                    description.map((x,index)=>
+                    description?.map((x,index)=>
                         <button key={index} className=' border'><Link to={x.route}>{x.name}</Link></button>)
                 }
             </div>

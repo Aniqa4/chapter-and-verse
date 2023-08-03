@@ -20,6 +20,8 @@ import CategoryOfBooks from "../CategoryOfBooks/CategoryOfBooks";
 import Wishlist from "../Wishlist/Wishlist";
 import Cart from "../Cart/Cart";
 import AddBooks from "../AddBooks/AddBooks";
+import Authors from "../Authors/Authors";
+import Publishers from "../Publishers/Publishers";
 
 const router=createBrowserRouter([
     {
@@ -41,6 +43,14 @@ const router=createBrowserRouter([
             {
                 path:'/category',
                 element:<CategoryOfBooks/>
+            },
+            {
+                path:'/authors',
+                element:<Authors/>
+            },
+            {
+                path:'/publishers',
+                element:<Publishers/>
             },
             {
                 path:'/wishlist',

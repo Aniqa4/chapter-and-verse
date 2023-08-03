@@ -13,14 +13,16 @@ function Navbar() {
     <>
       <div className='hidden lg:block bg-white fixed top-0 left-0 right-0 z-50 shadow '>
         <div className='container mx-auto px-5 flex justify-between text-slate-700 py-5'>
-          <NavbarMenu/>
-          <div className='flex items-center gap-20'>
+          <NavbarMenu />
+          <div className='flex items-center'>
             <h1 className=' font-bold text-sm uppercase'><Link to='/'>Chapter<span className=' text-black'>&</span>Verse</Link></h1>
           </div>
-          <ul className='flex gap-10'>
+          <ul className='flex lg:gap-5 xl:gap-10'>
             <li><Link to='/'>Home</Link></li>
             <li><Link to='/all-books'>Books</Link></li>
-            <li><Link to='/category'>Category</Link></li>
+            <li><Link to='/category'>Categories</Link></li>
+            <li><Link to='/authors'>Authors</Link></li>
+            <li><Link to='/publishers'>Publishers</Link></li>
             <li className=' relative text-xl'><Link to='/wishlist'><MdOutlineFavoriteBorder /></Link>
               <span className=' absolute -top-2 -right-2 text-xs'>10</span></li>
             <li className=' relative text-xl'><Link to='/cart'><CgShoppingBag /></Link>
@@ -31,8 +33,10 @@ function Navbar() {
       </div>
       <div className=' lg:hidden bg-white fixed top-0 left-0 right-0 z-50 shadow '>
         <div className='container mx-auto px-5 flex justify-between text-slate-700 py-5'>
-          <NavbarMenu/>
-          <h1 className=' font-bold text-sm uppercase'><Link to='/'>Chapter<span className=' text-black'>&</span>Verse</Link></h1>
+          <NavbarMenu />
+          <div className=' flex items-center'>
+            <h1 className=' font-bold text-sm uppercase'><Link to='/'>Chapter<span className=' text-black'>&</span>Verse</Link></h1>
+          </div>
           <ul className='flex gap-5'>
             <li className=' relative text-xl'><Link to='/wishlist'><MdOutlineFavoriteBorder /></Link>
               <span className=' absolute -top-2 -right-2 text-xs'>10</span>

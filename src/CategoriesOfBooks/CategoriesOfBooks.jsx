@@ -3,7 +3,7 @@ import Title from '../Components/Title'
 import Card from '../Components/Card'
 import { Link } from 'react-router-dom'
 
-function CategoryOfBooks() {
+function CategoriesOfBooks() {
 
     const [description, setDescription] = useState([]);
 
@@ -28,7 +28,7 @@ function CategoryOfBooks() {
             <div className=' container px-2 md:px-5 lg:px-0 mx-auto grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-5'>
                 {
                     description?.map((x, index) =>
-                        <Card image={x.image} categoryName={x.name} route={`category=/${x.name}`}
+                        <Card key={index} image={x.image} categoryName={x.name} route={`category=/${x.name}`}
                             description={x.description}></Card>)
                 }
             </div>
@@ -36,4 +36,4 @@ function CategoryOfBooks() {
     )
 }
 
-export default CategoryOfBooks
+export default CategoriesOfBooks

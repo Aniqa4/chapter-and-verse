@@ -10,7 +10,7 @@ function NavbarMenu() {
     const [description, setDescription] = useState([]);
 
     useEffect(() => {
-        fetch('description.json')
+        fetch('/description.json')
             .then(res => res.json())
             .then(data => setDescription(data.categories))
     }, []);
@@ -26,7 +26,7 @@ function NavbarMenu() {
                         <span onClick={() => setIsDrawerOpen(false)} className=' text-2xl'><MdOutlineClose /></span>
                         <ul className=' py-5'>
                             <li onClick={() => setIsDrawerOpen(false)} className=' border-b py-2'><Link to='/'>Home</Link></li>
-                            <li onClick={() => setIsDrawerOpen(false)} className=' border-b py-2'><Link to='/all-books'>Books</Link></li>
+                            <li onClick={() => setIsDrawerOpen(false)} className=' border-b py-2'><Link to='/books'>Books</Link></li>
                             <li onClick={() => setIsDrawerOpen(false)} className=' border-b py-2'><Link to='/category'>Categories</Link></li>
                             <li onClick={() => setIsDrawerOpen(false)} className=' border-b py-2'><Link to='/authors'>Authors</Link></li>
                             <li onClick={() => setIsDrawerOpen(false)} className=' border-b py-2'><Link to='/publishers'>Publishers</Link></li>

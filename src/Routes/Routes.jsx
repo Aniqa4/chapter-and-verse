@@ -33,11 +33,11 @@ const router=createBrowserRouter([
                 element:<Home/>
             },
             {
-                path:'/all-books',
+                path:'/books',
                 element:<AllBooks/>
             },
             {
-                path:'/add-books',
+                path:'books/add-books',
                 element:<AddBooks/>
             },
             {

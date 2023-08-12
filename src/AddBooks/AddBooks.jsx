@@ -5,6 +5,7 @@ import { TbCurrencyTaka} from 'react-icons/tb'
 function AddBooks() {
   const [description, setDescription] = useState([]);
   const [namesOfAuthors, setNamesOfAuthors] = useState([]);
+  const [namesOfPublications, setNamesOfPublications] = useState([]);
 
   useEffect(() => {
     fetch('/description.json')
@@ -13,9 +14,15 @@ function AddBooks() {
   }, []);
 
   useEffect(() => {
-    fetch('http://localhost:5000/names-of-authors')
+    fetch('https://chapter-and-verse-server-side.vercel.app/names-of-authors')
       .then(res => res.json())
       .then(data => setNamesOfAuthors(data))
+  }, []);
+
+  useEffect(() => {
+    fetch('https://chapter-and-verse-server-side.vercel.app/names-of-publications')
+      .then(res => res.json())
+      .then(data => setNamesOfPublications(data))
   }, []);
 
 
@@ -27,7 +34,7 @@ function AddBooks() {
     console.log(date);
   }
 
-  console.log(namesOfAuthors);
+  //console.log(namesOfAuthors);
 
   return (
     <div className=' container mx-auto pt-1'>
@@ -36,7 +43,7 @@ function AddBooks() {
         <label>Book Name: </label>
         <input type="text" />
         <label>Author's Name: </label>
-        <select name="category">
+        <select name="authors">
           <option value="defaultValue" disabled selected>-----</option>
           {
             namesOfAuthors?.map((x) =>
@@ -44,7 +51,13 @@ function AddBooks() {
           }
         </select>
         <label>Publisher's Name: </label>
-        <input type="text" />
+        <select name="publishers">
+          <option value="defaultValue" disabled selected>-----</option>
+          {
+            namesOfPublications?.map((x) =>
+            <option key={x._id} value={x?.name}>{x?.name}</option>)
+          }
+        </select>
         <label className='flex'>Price<span><TbCurrencyTaka/></span> : </label>
         <input type="number" name="price"/>
         <label>Date of Arrival: </label>

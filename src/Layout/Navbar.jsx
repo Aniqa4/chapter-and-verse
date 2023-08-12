@@ -20,7 +20,7 @@ function Navbar() {
           <ul className='flex lg:gap-5 xl:gap-10'>
             <li className=' hover:text-gray-400'><Link to='/'>Home</Link></li>
             <li className=' hover:text-gray-400'><Link to='/books'>Books</Link></li>
-            <li className=' hover:text-gray-400'><Link to='/category'>Categories</Link></li>
+            <li className=' hover:text-gray-400'><Link to='/categories'>Categories</Link></li>
             <li className=' hover:text-gray-400'><Link to='/authors'>Authors</Link></li>
             <li className=' hover:text-gray-400'><Link to='/publishers'>Publishers</Link></li>
             <li className='  hover:text-gray-400 relative text-xl'><Link to='/wishlist'><MdOutlineFavoriteBorder /></Link>

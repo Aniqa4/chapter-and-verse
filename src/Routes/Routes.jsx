@@ -41,8 +41,12 @@ const router=createBrowserRouter([
                 element:<AddBooks/>
             },
             {
-                path:'/category',
+                path:'/categories',
                 element:<CategoryOfBooks/>
+            },
+            {
+                path:`/categories/category=/:name`,
+                element:<BanglaLiterature/>
             },
             {
                 path:'/authors',
@@ -71,10 +75,6 @@ const router=createBrowserRouter([
             {
                 path:'/category=religion',
                 element: <IslamicBooks/>
-            },
-            {
-                path:'/category=bangla-literature',
-                element:<BanglaLiterature/>
             },
             {
                 path:'/category=science',

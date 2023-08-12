@@ -27,7 +27,7 @@ function NavbarMenu() {
                         <ul className=' py-5'>
                             <li onClick={() => setIsDrawerOpen(false)} className=' border-b py-2'><Link to='/'>Home</Link></li>
                             <li onClick={() => setIsDrawerOpen(false)} className=' border-b py-2'><Link to='/books'>Books</Link></li>
-                            <li onClick={() => setIsDrawerOpen(false)} className=' border-b py-2'><Link to='/category'>Categories</Link></li>
+                            <li onClick={() => setIsDrawerOpen(false)} className=' border-b py-2'><Link to='/categories'>Categories</Link></li>
                             <li onClick={() => setIsDrawerOpen(false)} className=' border-b py-2'><Link to='/authors'>Authors</Link></li>
                             <li onClick={() => setIsDrawerOpen(false)} className=' border-b py-2'><Link to='/publishers'>Publishers</Link></li>
                         </ul>

@@ -34,7 +34,7 @@ const router=createBrowserRouter([
                 element:<CategoriesOfBooks/>
             },
             {
-                path:`/categories/category=/:name`,
+                path:`/categories/:name`,
                 element:<BooksByCategory/>
             },
             {

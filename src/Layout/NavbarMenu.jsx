@@ -7,12 +7,12 @@ import { Link } from 'react-router-dom';
 function NavbarMenu() {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-    const [description, setDescription] = useState([]);
+    const [categories, setCategories] = useState([]);
 
     useEffect(() => {
-        fetch('/description.json')
+        fetch('https://chapter-and-verse-server-side.vercel.app/names-of-categories')
             .then(res => res.json())
-            .then(data => setDescription(data.categories))
+            .then(data => setCategories(data))
     }, []);
 
     return (
@@ -35,8 +35,8 @@ function NavbarMenu() {
                             <h1 className=' text-2xl my-5 border-b'>Categories</h1>
                             <ul>
                                 {
-                                    description.map((x, index) =>
-                                        <li key={index} onClick={() => setIsDrawerOpen(false)} className=' border-b py-2'><Link to={x.route}>{x.name}</Link></li>)
+                                    categories?.map((x, index) =>
+                                        <li key={index} onClick={() => setIsDrawerOpen(false)} className=' border-b py-2'><Link to={`categories/${x.name}`}>{x.name}</Link></li>)
                                 }
                             </ul>
                         </div>

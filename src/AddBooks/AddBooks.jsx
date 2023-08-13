@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import Title from '../Components/Title'
-import { TbCurrencyTaka} from 'react-icons/tb'
+import { TbCurrencyTaka } from 'react-icons/tb'
+import Swal from 'sweetalert2';
 
 function AddBooks() {
-  const [description, setDescription] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [namesOfAuthors, setNamesOfAuthors] = useState([]);
   const [namesOfPublications, setNamesOfPublications] = useState([]);
 
   useEffect(() => {
-    fetch('/description.json')
+    fetch('https://chapter-and-verse-server-side.vercel.app/names-of-categories')
       .then(res => res.json())
-      .then(data => setDescription(data.categories))
+      .then(data => setCategories(data))
   }, []);
 
   useEffect(() => {
@@ -29,53 +30,88 @@ function AddBooks() {
   const handleForm = (e) => {
     e.preventDefault();
     const form = e.target;
-    const date = form.date.value;
+    const bookName = form.bookName.value;
+    const bookImage = form.bookImage.value;
+    const authorName = form.authorName.value;
+    const publisherName = form.publisherName.value;
+    const price = form.price.value;
+    const dateOfArrival = form.date.value;
+    const availableCopies = form.availableCopies.value;
+    const soldCopies = form.soldCopies.value;
+    const description= form.description.value;
+    const newBook = { bookName, bookImage, authorName, publisherName, price, dateOfArrival, availableCopies, soldCopies, description }
+
+    fetch('https://chapter-and-verse-server-side.vercel.app/add-books', {
+      method: 'POST',
+      headers:
+        { 'content-type': 'application/json' },
+      body: JSON.stringify(newBook)
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        if (data.acknowledged===true) {
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Book has been added',
+            showConfirmButton: false,
+            timer: 1500
+      
+          })
+        }
+
+      })
+    
+      
+    form.reset()
+
 
     console.log(date);
   }
-
-  //console.log(namesOfAuthors);
 
   return (
     <div className=' container mx-auto pt-1'>
       <Title title={'add a book'} />
       <form onSubmit={handleForm} className='grid px-10 md:shadow'>
-        <label>Book Name: </label>
-        <input type="text" />
+        <label>Book's Name: </label>
+        <input type="text" name='bookName'/>
+        <label>Book's PhotoURL: </label>
+        <input type="text" name='bookImage'/>
         <label>Author's Name: </label>
-        <select name="authors">
+        <select name="authorName">
           <option value="defaultValue" disabled selected>-----</option>
           {
             namesOfAuthors?.map((x) =>
-            <option key={x._id} value={x?.name}>{x?.name}</option>)
+              <option key={x._id} value={x?.name}>{x?.name}</option>)
           }
         </select>
         <label>Publisher's Name: </label>
-        <select name="publishers">
+        <select name="publisherName">
           <option value="defaultValue" disabled selected>-----</option>
           {
             namesOfPublications?.map((x) =>
-            <option key={x._id} value={x?.name}>{x?.name}</option>)
+              <option key={x._id} value={x?.name}>{x?.name}</option>)
           }
         </select>
-        <label className='flex'>Price<span><TbCurrencyTaka/></span> : </label>
-        <input type="number" name="price"/>
+        <label className='flex'>Price<span><TbCurrencyTaka /></span> : </label>
+        <input type="number" name="price" />
         <label>Date of Arrival: </label>
-        <input type="datetime-local" name="date" id="" />
+        <input type="datetime-local" name="date" />
         <label >Category: </label>
         <select name="category">
           <option value="default" disabled selected>-----</option>
           {
-            description?.map((x, index) =>
-            <option key={index} value={x?.name}>{x?.name}</option>)
+            categories?.map((x, index) =>
+              <option key={index} value={x?.name}>{x?.name}</option>)
           }
         </select>
         <label>Available Copies: </label>
-        <input type="number"/>
+        <input type="number" name='availableCopies' />
         <label>Copies sold: </label>
-        <input type="number" value={0} disabled/>
+        <input type="number" name='soldCopies' value={0} disabled />
         <label>Description: </label>
-        <input type="text" className='h-20' />
+        <input type="text" name='description' className='h-20' />
         <input type="submit" value="Add" className='mb-10 mt-5 p-2 bg-slate-500 text-white' />
       </form>
     </div>

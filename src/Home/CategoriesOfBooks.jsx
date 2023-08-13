@@ -3,22 +3,21 @@ import Title from '../Components/Title';
 import Card from '../Components/Card';
 
 function CategoriesOfBooks() {
-  const [description, setDescription] = useState([]);
+  const [categories, setCategories] = useState([]);
 
-  useEffect(() => {
-    fetch('/description.json')
-      .then(res => res.json())
-      .then(data => setDescription(data.categories))
-  }, []);
+    useEffect(() => {
+        fetch('https://chapter-and-verse-server-side.vercel.app/categories')
+            .then(res => res.json())
+            .then(data => setCategories(data))
+    }, []);
 
   return (
     <div>
       <Title title={'Browse by Genre'}></Title>
       <div className='container px-2 md:px-5 lg:px-0 mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2 md:gap-5'>
         {
-          description?.map((x, index) =>
-            <Card key={index} image={x.image} categoryName={x.name} route={`categories/category=/${x.name}`}
-              description={x.description}></Card>)
+          categories?.map((x, index) =>
+            <Card key={index} image={x.image} categoryName={x.name} route={`categories/${x.name}`}></Card>)
         }
 
       </div>

@@ -2,10 +2,10 @@ import React from 'react'
 import Title from '../Components/Title';
 import { CgAdd } from 'react-icons/cg';
 import { Link } from 'react-router-dom';
-;
 
 
 function AllBooks() {
+  
   return (
     <div className=' container mx-auto pt-1'>
       <Title title={'books'}></Title>

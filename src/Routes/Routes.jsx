@@ -7,7 +7,7 @@ import Register from "../Authentication/Register";
 import CategoriesOfBooks from "../CategoriesOfBooks/CategoriesOfBooks";
 import Wishlist from "../Wishlist/Wishlist";
 import Cart from "../Cart/Cart";
-import AddBooks from "../AddBooks/AddBooks";
+import AddBooks from "../AllBooks/AddBooks";
 import Authors from "../Authors/Authors";
 import Publishers from "../Publishers/Publishers";
 import BooksByCategory from "../CategoriesOfBooks/BooksByCategory";

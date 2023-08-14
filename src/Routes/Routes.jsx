@@ -14,6 +14,7 @@ import BooksByCategory from "../CategoriesOfBooks/BooksByCategory";
 import AddAuthors from "../Authors/AddAuthors";
 import AddPublishers from "../Publishers/AddPublishers";
 import AddNewCategory from "../CategoriesOfBooks/AddNewCategory";
+import BookDetails from "../CategoriesOfBooks/BookDetails";
 
 const router=createBrowserRouter([
     {
@@ -43,6 +44,10 @@ const router=createBrowserRouter([
             {
                 path:`/categories/:name`,
                 element:<BooksByCategory/>
+            },
+            {
+                path:`/categories/:name/:bookName`,
+                element:<BookDetails/>
             },
             {
                 path:'/authors',

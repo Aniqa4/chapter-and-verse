@@ -67,8 +67,6 @@ function AddBooks() {
       
     form.reset()
 
-
-    console.log(date);
   }
 
   return (

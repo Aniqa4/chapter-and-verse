@@ -17,7 +17,6 @@ function BookLayout({bookImage,bookName,price}) {
                     <span className='hover:text-gray-900'><MdOutlineFavoriteBorder /></span>
                     <span className='hover:text-gray-900'><CgShoppingBag /></span>
                 </span>
-                <button className='bg-green-100 text-green-700 border hover:border-black'>Update</button>
             </div>
         </div>
     )

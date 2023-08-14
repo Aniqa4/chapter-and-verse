@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Title from '../Components/Title';
 import AddItems from '../Components/AddItems';
 import BookLayout from '../Components/BookLayout';
+import { Link } from 'react-router-dom';
 
 
 function AllBooks() {
@@ -21,7 +22,7 @@ function AllBooks() {
       <AddItems text={'Add Books'} route={'/books/add-books'} />
       <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-5 justify-center mx-5'>
         {
-          books?.map(x =><BookLayout key={x._id} bookImage={x.bookImage} bookName={x.bookName} price={x.price}/>)
+          books?.map(x =><Link key={x._id} to={`/categories/${x.category}/${x.bookName}`}><BookLayout bookImage={x.bookImage} bookName={x.bookName} price={x.price}/></Link>)
         }
       </div>
     </div>

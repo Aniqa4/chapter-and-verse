@@ -35,11 +35,12 @@ function AddBooks() {
     const authorName = form.authorName.value;
     const publisherName = form.publisherName.value;
     const price = form.price.value;
+    const category=form.category.value;
     const dateOfArrival = form.date.value;
     const availableCopies = form.availableCopies.value;
     const soldCopies = form.soldCopies.value;
     const description= form.description.value;
-    const newBook = { bookName, bookImage, authorName, publisherName, price, dateOfArrival, availableCopies, soldCopies, description }
+    const newBook = { bookName, bookImage, authorName, publisherName, price, category, dateOfArrival, availableCopies, soldCopies, description }
 
     fetch('https://chapter-and-verse-server-side.vercel.app/add-books', {
       method: 'POST',

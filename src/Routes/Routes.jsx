@@ -11,6 +11,9 @@ import AddBooks from "../AllBooks/AddBooks";
 import Authors from "../Authors/Authors";
 import Publishers from "../Publishers/Publishers";
 import BooksByCategory from "../CategoriesOfBooks/BooksByCategory";
+import AddAuthors from "../Authors/AddAuthors";
+import AddPublishers from "../Publishers/AddPublishers";
+import AddNewCategory from "../CategoriesOfBooks/AddNewCategory";
 
 const router=createBrowserRouter([
     {
@@ -34,6 +37,10 @@ const router=createBrowserRouter([
                 element:<CategoriesOfBooks/>
             },
             {
+                path:'categories/add-new-category',
+                element:<AddNewCategory/>
+            },
+            {
                 path:`/categories/:name`,
                 element:<BooksByCategory/>
             },
@@ -42,8 +49,16 @@ const router=createBrowserRouter([
                 element:<Authors/>
             },
             {
+                path:'/authors/add-authors',
+                element:<AddAuthors/>
+            },
+            {
                 path:'/publishers',
                 element:<Publishers/>
+            },
+            {
+                path:'/publishers/add-publishers',
+                element:<AddPublishers/>
             },
             {
                 path:'/wishlist',

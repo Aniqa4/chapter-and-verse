@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Title from '../Components/Title';
+import { CgAdd } from 'react-icons/cg';
+import { Link } from 'react-router-dom';
+import AddItems from '../Components/AddItems';
 
 function Publishers() {
   const [namesOfPublications, setNamesOfPublications] = useState([]);
@@ -13,15 +16,16 @@ function Publishers() {
   //console.log(namesOfPublications);
   return (
     <div className=' lg:container lg:mx-auto py-5 mx-5'>
-      <Title title={'Publishers'}/>
+      <Title title={'Publishers'} />
       <p className='py-2 text-gray-400'>Search books by Publishers</p>
+      <AddItems text={'Add Publishers'} route={'/publishers/add-publishers'}/>
       <div className='grid xl:grid-cols-3 md:grid-cols-2 gap-2'>
         {
-          namesOfPublications?.map(x=>
-          <div key={x._id} className=' p-5 shadow my-2 flex justify-between items-center hover:bg-gray-100' >
-            <h1 className=' font-semibold text-sm text-green-600'>Name: {x.name}</h1>
-            <button className=' px-3 py-2 border rounded-sm'>About Publication</button>
-          </div>)
+          namesOfPublications?.map(x =>
+            <div key={x._id} className=' p-5 shadow my-2 flex justify-between items-center hover:bg-gray-100' >
+              <h1 className=' font-semibold text-sm text-green-600'>Name: {x.name}</h1>
+              <button className=' px-3 py-2 border rounded-sm'>About</button>
+            </div>)
         }
       </div>
     </div>

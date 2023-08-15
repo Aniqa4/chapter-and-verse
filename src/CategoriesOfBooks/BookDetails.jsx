@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom';
 import Title from '../Components/Title';
+import AddItems from '../Components/AddItems';
 
 function BookDetails() {
     const data = useParams();
@@ -14,8 +15,8 @@ function BookDetails() {
             .then(data => setBooks(data))
     }, []);
 
-    const myBook = books?.find(x => x.bookName === bookName && x.category === category)
-    console.log(myBook);
+    const myBook = books?.find(x => x?.bookName === bookName && x?.category === category)
+    //console.log(myBook);
 
     const date = myBook?.dateOfArrival
 
@@ -30,6 +31,7 @@ function BookDetails() {
     return (
         <div className=' container mx-auto pt-1'>
             <Title title={`${myBook?.bookName}`} />
+            <AddItems route={`/categories/${category}/${bookName}/update-book`} text={'Update book'}/>    
             <div className='grid md:grid-cols-2 px-5 lg:px-0 gap-5'>
                 <div className=''>
                     <img src={myBook?.bookImage} className=' w-96 mx-auto' />

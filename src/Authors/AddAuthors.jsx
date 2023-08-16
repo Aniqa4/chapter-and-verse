@@ -1,11 +1,9 @@
-import React, { useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import Title from '../Components/Title';
 import Swal from 'sweetalert2';
 
 function AddAuthors() {
-    const data = useParams();
-    const [author, setAuthor] = useState([]);
     const navigate = useNavigate();
     const from = `/authors`;
 

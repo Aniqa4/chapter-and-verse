@@ -14,8 +14,7 @@ function BooksByAuthor() {
             .then(data => setBooks(data))
     }, []);
 
-    console.log(books);
-
+    //console.log(books);
     return (
         <div className='container mx-auto pt-1'>
         <Title title={`Books of ${author}`} />

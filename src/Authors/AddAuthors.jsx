@@ -46,7 +46,7 @@ function AddAuthors() {
                 <label>Email: </label>
                 <input type="text" name='email' /> 
                 <label >Phone: </label>
-                <input type="number" name="phone" />
+                <input type="text" name="phone" />
                 <label>Description: </label>
                 <input type="text" name="description" />
                 <input type="submit" value="ADD" className='mb-10 mt-5 p-2 bg-slate-500 text-white' />

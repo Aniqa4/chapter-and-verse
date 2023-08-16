@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Title from '../Components/Title';
 import { TbCurrencyTaka } from 'react-icons/tb'
-import { useParams } from 'react-router-dom';
+import {  useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 function UpdateBooks() {
@@ -12,6 +12,9 @@ function UpdateBooks() {
     const bookName = data?.bookName;
     const category = data?.name;
     const [books, setBooks] = useState([]);
+    const navigate = useNavigate();
+    const from = `/categories/${category}/${bookName}`;
+
 
     useEffect(() => {
         fetch('https://chapter-and-verse-server-side.vercel.app/books')
@@ -64,20 +67,20 @@ function UpdateBooks() {
         })
             .then(res => res.json())
             .then(data => {
-                if (data.modifiedCount===1) {
+                if (data.modifiedCount === 1) {
                     Swal.fire({
                         position: 'center',
                         icon: 'success',
                         title: 'Book has been updated',
                         showConfirmButton: false,
                         timer: 1500
-                  
-                      })
+                    })
+                    navigate(from, { replace: true })
                 }
             })
 
         form.reset()
-        console.log(myBook._id,newBook);
+        console.log(myBook._id, newBook);
 
     }
     return (
@@ -89,8 +92,8 @@ function UpdateBooks() {
                 <label>Book's PhotoURL: </label>
                 <input type="text" name='bookImage' defaultValue={myBook?.bookImage} />
                 <label>Author's Name: </label>
-                <select name="authorName" defaultValue={myBook?.authorName}>
-
+                <select name="authorName">
+                    <option defaultValue={myBook?.authorName}>{myBook?.authorName}</option>
                     {
                         namesOfAuthors?.map((x) =>
                             <option key={x._id} value={x?.name}>{x?.name}</option>)
@@ -98,6 +101,7 @@ function UpdateBooks() {
                 </select>
                 <label>Publisher's Name: </label>
                 <select name="publisherName" defaultValue={myBook?.publisherName}>
+                    <option defaultValue={myBook?.publisherName}>{myBook?.publisherName}</option>
                     {
                         namesOfPublications?.map((x) =>
                             <option key={x._id} value={x?.name}>{x?.name}</option>)
@@ -106,9 +110,10 @@ function UpdateBooks() {
                 <label className='flex'>Price<span><TbCurrencyTaka /></span> : </label>
                 <input type="number" name="price" defaultValue={myBook?.price} />
                 <label>Date of Arrival: </label>
-                <input type="datetime-local" name="date" defaultValue={myBook?.dateOfArrival} disabled />
+                <input type="datetime-local" name="date" defaultValue={myBook?.dateOfArrival} disabled className='bg-gray-100 border-0'/>
                 <label >Category: </label>
-                <select name="category" defaultValue={myBook?.category}>
+                <select name="category">
+                    <option defaultValue={myBook?.category}>{myBook?.category}</option>
                     {
                         categories?.map((x, index) =>
                             <option key={index} value={x?.name}>{x?.name}</option>)
@@ -117,7 +122,7 @@ function UpdateBooks() {
                 <label>Available Copies: </label>
                 <input type="number" name='availableCopies' defaultValue={myBook?.availableCopies} />
                 <label>Copies sold: </label>
-                <input type="number" name='soldCopies' defaultValue={myBook?.soldCopies} disabled />
+                <input type="number" name='soldCopies' defaultValue={myBook?.soldCopies} disabled  className='bg-gray-100 border-0'/>
                 <label>Description: </label>
                 <input type="text" name='description' defaultValue={myBook?.description} className='h-20' />
                 <input type="submit" value="Add" className='mb-10 mt-5 p-2 bg-slate-500 text-white' />

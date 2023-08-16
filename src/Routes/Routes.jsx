@@ -16,6 +16,8 @@ import AddPublishers from "../Publishers/AddPublishers";
 import AddNewCategory from "../CategoriesOfBooks/AddNewCategory";
 import BookDetails from "../CategoriesOfBooks/BookDetails";
 import UpdateBooks from "../AllBooks/UpdateBooks";
+import UpdateAuthor from "../Authors/UpdateAuthor";
+import BooksByAuthor from "../Authors/BooksByAuthor";
 
 const router=createBrowserRouter([
     {
@@ -59,8 +61,16 @@ const router=createBrowserRouter([
                 element:<Authors/>
             },
             {
+                path:'/authors/:name',
+                element:<BooksByAuthor/>
+            },
+            {
                 path:'/authors/add-authors',
                 element:<AddAuthors/>
+            },
+            {
+                path:'/authors/:id/update-authors',
+                element:<UpdateAuthor/>
             },
             {
                 path:'/publishers',

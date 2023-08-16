@@ -26,7 +26,6 @@ function AddBooks() {
       .then(data => setNamesOfPublications(data))
   }, []);
 
-
   const handleForm = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -35,11 +34,11 @@ function AddBooks() {
     const authorName = form.authorName.value;
     const publisherName = form.publisherName.value;
     const price = form.price.value;
-    const category=form.category.value;
+    const category = form.category.value;
     const dateOfArrival = form.date.value;
     const availableCopies = form.availableCopies.value;
     const soldCopies = form.soldCopies.value;
-    const description= form.description.value;
+    const description = form.description.value;
     const newBook = { bookName, bookImage, authorName, publisherName, price, category, dateOfArrival, availableCopies, soldCopies, description }
 
     fetch('https://chapter-and-verse-server-side.vercel.app/add-books', {
@@ -51,22 +50,17 @@ function AddBooks() {
       .then(res => res.json())
       .then(data => {
         console.log(data);
-        if (data.acknowledged===true) {
+        if (data.acknowledged === true) {
           Swal.fire({
             position: 'center',
             icon: 'success',
             title: 'Book has been added',
             showConfirmButton: false,
             timer: 1500
-      
           })
         }
-
       })
-    
-      
     form.reset()
-
   }
 
   return (
@@ -74,12 +68,12 @@ function AddBooks() {
       <Title title={'add a book'} />
       <form onSubmit={handleForm} className='grid px-10 md:shadow'>
         <label>Book's Name: </label>
-        <input type="text" name='bookName'/>
+        <input type="text" name='bookName' />
         <label>Book's PhotoURL: </label>
-        <input type="text" name='bookImage'/>
+        <input type="text" name='bookImage' />
         <label>Author's Name: </label>
         <select name="authorName">
-          <option value="defaultValue" disabled selected>-----</option>
+          <option disabled selected>Choose an option</option>
           {
             namesOfAuthors?.map((x) =>
               <option key={x._id} value={x?.name}>{x?.name}</option>)
@@ -87,7 +81,7 @@ function AddBooks() {
         </select>
         <label>Publisher's Name: </label>
         <select name="publisherName">
-          <option value="defaultValue" disabled selected>-----</option>
+          <option disabled selected>Choose an option</option>
           {
             namesOfPublications?.map((x) =>
               <option key={x._id} value={x?.name}>{x?.name}</option>)
@@ -99,7 +93,7 @@ function AddBooks() {
         <input type="datetime-local" name="date" />
         <label >Category: </label>
         <select name="category">
-          <option value="default" disabled selected>-----</option>
+          <option disabled selected>Choose an option</option>
           {
             categories?.map((x, index) =>
               <option key={index} value={x?.name}>{x?.name}</option>)

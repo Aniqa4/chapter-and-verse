@@ -23,9 +23,7 @@ function BooksByCategory() {
       <Title title={category} />
       <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-5 justify-center mx-5'>
         {
-          myBooks?.map(x => <Link key={x._id} to={`/categories/${category}/${x.bookName}`}>
-            <BookLayout bookImage={x.bookImage} bookName={x.bookName} price={x.price} />
-          </Link>)
+          myBooks?.map(x => <BookLayout bookImage={x.bookImage} bookName={x.bookName} price={x.price} route={`/categories/${category}/${x.bookName}`}/>)
         }
       </div>
     </div>

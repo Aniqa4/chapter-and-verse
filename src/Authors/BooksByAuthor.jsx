@@ -21,9 +21,7 @@ function BooksByAuthor() {
         <Title title={`Books of ${author}`} />
         <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-5 justify-center mx-5'>
           {
-            books?.map(x => <Link key={x?._id} to={`/categories/${x?.category}/${x?.bookName}`}>
-              <BookLayout bookImage={x?.bookImage} bookName={x?.bookName} price={x?.price} />
-            </Link>)
+            books?.map(x => <BookLayout key={x._id} bookImage={x.bookImage} bookName={x.bookName} price={x.price} route={`/categories/${x.category}/${x.bookName}`}/>)
           }
         </div>
       </div>

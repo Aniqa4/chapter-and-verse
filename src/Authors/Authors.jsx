@@ -23,15 +23,13 @@ function Authors() {
       <div className='grid xl:grid-cols-3 md:grid-cols-2 gap-5'>
         {
           authors?.map(x =>
-            <Link to={`${x?.name}`}>
-              <div key={x._id} className=' p-5 shadow my-2 flex justify-between items-center hover:bg-gray-100 ' >
-                <h1 className=' font-semibold text-sm text-red-700'>{x.name}</h1>
+              <div key={x._id} className=' p-5 shadow my-2 flex justify-between items-center' >
+                <Link to={`${x?.name}`}><h1 className=' font-semibold text-sm text-red-700 hover:text-red-400'>{x.name}</h1></Link>
                 <div className='grid grid-cols-2 gap-2'>
                   <button className=' border px-3 py-1 hover:bg-white'>Delete</button>
                   <Modal name={x.name} email={x.email} phone={x.phone} description={x.description} route={`${x._id}/update-authors`} />
                 </div>
-              </div>
-            </Link>)
+              </div>)
         }
       </div>
     </div>

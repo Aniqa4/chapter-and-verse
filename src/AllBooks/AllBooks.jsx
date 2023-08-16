@@ -22,7 +22,7 @@ function AllBooks() {
       <AddItems text={'Add Books'} route={'/books/add-books'} />
       <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-5 justify-center mx-5'>
         {
-          books?.map(x =><BookLayout bookImage={x.bookImage} bookName={x.bookName} price={x.price} route={`/categories/${x?.category}/${x.bookName}`}/>)
+          books?.map(x =><BookLayout key={x?._id} bookImage={x.bookImage} bookName={x.bookName} price={x.price} route={`/categories/${x?.category}/${x.bookName}`}/>)
         }
       </div>
     </div>

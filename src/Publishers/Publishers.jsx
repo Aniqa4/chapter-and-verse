@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import Title from '../Components/Title';
-import { CgAdd } from 'react-icons/cg';
-import { Link } from 'react-router-dom';
 import AddItems from '../Components/AddItems';
 
 function Publishers() {
@@ -23,7 +21,7 @@ function Publishers() {
         {
           namesOfPublications?.map(x =>
             <div key={x._id} className=' p-5 shadow my-2 flex justify-between items-center hover:bg-gray-100' >
-              <h1 className=' font-semibold text-sm text-green-600'>Name: {x.name}</h1>
+              <h1 className=' font-semibold text-sm text-green-600'>{x.name}</h1>
               <button className=' px-3 py-2 border rounded-sm'>About</button>
             </div>)
         }

@@ -1,11 +1,9 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
 import Title from '../Components/Title';
 import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
 
 function AddAuthors() {
-    const navigate = useNavigate();
-    const from = `/authors`;
 
     const handleForm = (e) => {
         e.preventDefault();
@@ -33,7 +31,6 @@ function AddAuthors() {
                         showConfirmButton: false,
                         timer: 1500
                     })
-                    navigate(from, { replace: true })
                 }
             })
         form.reset()
@@ -45,15 +42,16 @@ function AddAuthors() {
             <Title title={'Add Author'} />
             <form onSubmit={handleForm} className='grid px-10 md:shadow'>
                 <label>Author's Name: </label>
-                <input type="text" name='name' defaultValue={author?.name} />
+                <input type="text" name='name' />
                 <label>Email: </label>
-                <input type="text" name='email' defaultValue={author?.email} /> 
+                <input type="text" name='email' /> 
                 <label >Phone: </label>
-                <input type="number" name="phone" defaultValue={author?.phone} />
+                <input type="number" name="phone" />
                 <label>Description: </label>
-                <input type="text" name="description" defaultValue={author?.description}/>
+                <input type="text" name="description" />
                 <input type="submit" value="ADD" className='mb-10 mt-5 p-2 bg-slate-500 text-white' />
             </form>
+            <p className=' text-center underline text-blue-400 py-10'><Link to={'/authors'}>Return to Previous Page</Link></p>
         </div>
     )
 }

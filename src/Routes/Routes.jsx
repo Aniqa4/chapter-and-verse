@@ -91,14 +91,6 @@ const router=createBrowserRouter([
                 element:<AddPublishers/>
             },
             {
-                path:'/wishlist',
-                element:<Wishlist/>
-            },
-            {
-                path:'/cart',
-                element:<Cart/>
-            },
-            {
                 path:'/log-in',
                 element:<Login/>
             },

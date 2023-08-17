@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import { CgShoppingBag } from 'react-icons/cg';
-import { MdOutlineFavoriteBorder } from 'react-icons/md';
 import { AiOutlineUserAdd } from 'react-icons/ai';
 import NavbarMenu from './NavbarMenu';
+import Cart from '../Cart/Cart';
+import Wishlist from '../Wishlist/Wishlist';
 
 
 function Navbar() {
@@ -23,9 +23,9 @@ function Navbar() {
             <li className=' hover:text-gray-400'><Link to='/categories'>Categories</Link></li>
             <li className=' hover:text-gray-400'><Link to='/authors'>Authors</Link></li>
             <li className=' hover:text-gray-400'><Link to='/publishers'>Publishers</Link></li>
-            <li className='  hover:text-gray-400 relative text-xl'><Link to='/wishlist'><MdOutlineFavoriteBorder /></Link>
+            <li className='  hover:text-gray-400 relative text-xl'><Wishlist/>
               <span className=' absolute -top-2 -right-2 text-xs'>10</span></li>
-            <li className=' hover:text-gray-400 relative text-xl'><Link to='/cart'><CgShoppingBag /></Link>
+            <li className=' hover:text-gray-400 relative text-xl'><Cart/>
               <span className=' absolute -top-2 -right-2 text-xs'>10</span></li>
           </ul>
           <button className='  hover:text-gray-400 text-2xl'><Link to='/log-in'><AiOutlineUserAdd /></Link></button>
@@ -38,10 +38,10 @@ function Navbar() {
             <h1 className=' font-bold text-sm uppercase'><Link to='/'>Chapter<span className=' text-black'>&</span>Verse</Link></h1>
           </div>
           <ul className='flex gap-5'>
-            <li className=' relative text-xl'><Link to='/wishlist'><MdOutlineFavoriteBorder /></Link>
+            <li className=' relative text-xl'><Wishlist/>
               <span className=' absolute -top-2 -right-2 text-xs'>10</span>
             </li>
-            <li className=' relative text-xl'><Link to='/cart'><CgShoppingBag /></Link>
+            <li className=' relative text-xl'><Cart/>
               <span className=' absolute -top-2 -right-2 text-xs'>10</span>
             </li>
             <li><button className=' text-xl'><Link to='/log-in'><AiOutlineUserAdd /></Link></button></li>

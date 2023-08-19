@@ -5,8 +5,6 @@ import AllBooks from "../AllBooks/AllBooks";
 import Login from "../Authentication/Login";
 import Register from "../Authentication/Register";
 import CategoriesOfBooks from "../CategoriesOfBooks/CategoriesOfBooks";
-import Wishlist from "../Wishlist/Wishlist";
-import Cart from "../Cart/Cart";
 import AddBooks from "../AllBooks/AddBooks";
 import Authors from "../Authors/Authors";
 import Publishers from "../Publishers/Publishers";
@@ -20,6 +18,7 @@ import UpdateAuthor from "../Authors/UpdateAuthor";
 import BooksByAuthor from "../Authors/BooksByAuthor";
 import UpdatePublisher from "../Publishers/UpdatePublisher";
 import BooksByPublisher from "../Publishers/BooksByPublisher";
+import DeleteBooks from "../AllBooks/DeleteBooks";
 
 const router=createBrowserRouter([
     {
@@ -35,8 +34,12 @@ const router=createBrowserRouter([
                 element:<AllBooks/>
             },
             {
-                path:'books/add-books',
+                path:'books/manage-books/add-books',
                 element:<AddBooks/>
+            },
+            {
+                path:'books/manage-books',
+                element:<DeleteBooks/>
             },
             {
                 path:'/categories',

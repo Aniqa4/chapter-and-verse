@@ -7,7 +7,7 @@ function Modal({ name, email, phone, description, route }) {
 
     return (
         <div>
-            <button onClick={() => setOpen(true)} className=' border px-3 py-1 hover:bg-white'>About</button>
+            <button onClick={() => setOpen(true)} className=' border px-3 py-1 hover:bg-gray-100'>About</button>
             <Dialog open={open} onClose={() => setOpen(false)}
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description">

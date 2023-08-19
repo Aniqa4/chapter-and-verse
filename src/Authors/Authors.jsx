@@ -3,6 +3,7 @@ import Title from '../Components/Title';
 import AddItems from '../Components/AddItems';
 import Modal from '../Components/Modal';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 function Authors() {
   const [authors, setAuthors] = useState([]);
@@ -14,6 +15,40 @@ function Authors() {
   }, []);
 
 
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You won\'t be able to revert this!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // User confirmed, proceed with the deletion
+        fetch(`https://chapter-and-verse-server-side.vercel.app/delete-author/${id}`, {
+          method: 'DELETE'
+        })
+          .then(res => res.json())
+          .then(data => {
+            if (data.deletedCount > 0) {
+              Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Deleted',
+                showConfirmButton: false,
+                timer: 1500
+              });
+
+              const remainingAuthors = authors.filter(x => x._id !== id);
+              setAuthors(remainingAuthors);
+            }
+          });
+      }
+    });
+  }
+
   //console.log(authors);
   return (
     <div className=' lg:container lg:mx-auto py-5 mx-5'>
@@ -23,13 +58,13 @@ function Authors() {
       <div className='grid xl:grid-cols-3 md:grid-cols-2 gap-5'>
         {
           authors?.map(x =>
-              <div key={x._id} className=' p-5 shadow my-2 flex justify-between items-center' >
-                <Link to={`${x?.name}`}><h1 className=' font-semibold text-sm text-red-700 hover:text-red-400'>{x.name}</h1></Link>
-                <div className='grid grid-cols-2 gap-2'>
-                  <button className=' border px-3 py-1 hover:bg-white'>Delete</button>
-                  <Modal name={x.name} email={x.email} phone={x.phone} description={x.description} route={`${x._id}/update-authors`} />
-                </div>
-              </div>)
+            <div key={x._id} className=' p-5 shadow my-2 flex justify-between items-center' >
+              <Link to={`${x?.name}`}><h1 className=' font-semibold text text-red-700 hover:text-gray-700'>{x.name}</h1></Link>
+              <div className='grid grid-cols-2 gap-2'>
+                <button onClick={() => handleDelete(x._id)} className=' border px-3 py-1 hover:bg-gray-100'>Delete</button>
+                <Modal name={x.name} email={x.email} phone={x.phone} description={x.description} route={`${x._id}/update-authors`} />
+              </div>
+            </div>)
         }
       </div>
     </div>

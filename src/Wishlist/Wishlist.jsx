@@ -12,7 +12,7 @@ function Wishlist() {
         <Box p={2} width={'250px'} role='presentation'>
           <Typography component={'div'}>
             <span onClick={() => setIsDrawerOpen(false)} className=' text-2xl'><MdOutlineClose /></span>
-            hi
+            <h1 className='text-bold py-5 uppercase text-xl'>Wishlist</h1>
           </Typography>
         </Box>
       </Drawer>

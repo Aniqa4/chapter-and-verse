@@ -1,12 +1,30 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AiOutlineUserAdd } from 'react-icons/ai';
 import NavbarMenu from './NavbarMenu';
 import Cart from '../Cart/Cart';
 import Wishlist from '../Wishlist/Wishlist';
+import { AuthContext } from '../Authentication/AuthProvider/AuthProvider';
 
 
 function Navbar() {
+  const { user, logOut } = useContext(AuthContext)
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
+  const handleSignOut = () => {
+    logOut()
+      .then(() => {
+        navigate(from, { replace: true })
+      })
+      .catch(error => {
+        console.log(error);
+
+      })
+  }
+
+  //console.log(user.email);
   return (
     <>
       <div className='hidden lg:block bg-white fixed top-0 left-0 right-0 z-50 shadow '>
@@ -21,12 +39,15 @@ function Navbar() {
             <li className=' hover:text-gray-400'><Link to='/categories'>Categories</Link></li>
             <li className=' hover:text-gray-400'><Link to='/authors'>Authors</Link></li>
             <li className=' hover:text-gray-400'><Link to='/publishers'>Publishers</Link></li>
-            <li className='  hover:text-gray-400 relative text-xl'><Wishlist/>
+            <li className='  hover:text-gray-400 relative text-xl'><Wishlist />
               <span className=' absolute -top-2 -right-2 text-xs'>10</span></li>
-            <li className=' hover:text-gray-400 relative text-xl'><Cart/>
+            <li className=' hover:text-gray-400 relative text-xl'><Cart />
               <span className=' absolute -top-2 -right-2 text-xs'>10</span></li>
           </ul>
-          <button className='  hover:text-gray-400 text-2xl'><Link to='/log-in'><AiOutlineUserAdd /></Link></button>
+          {
+            user ? <button onClick={handleSignOut} className='  hover:text-gray-400 text-2xl'>Log Out</button> :
+              <button className='  hover:text-gray-400 text-2xl'><Link to='/log-in'><AiOutlineUserAdd /></Link></button>
+          }
         </div>
       </div>
       <div className=' lg:hidden bg-white fixed top-0 left-0 right-0 z-50 shadow '>
@@ -36,10 +57,10 @@ function Navbar() {
             <h1 className=' font-bold text-sm uppercase'><Link to='/'>Chapter<span className=' text-black'>&</span>Verse</Link></h1>
           </div>
           <ul className='flex gap-5'>
-            <li className=' relative text-xl'><Wishlist/>
+            <li className=' relative text-xl'><Wishlist />
               <span className=' absolute -top-2 -right-2 text-xs'>10</span>
             </li>
-            <li className=' relative text-xl'><Cart/>
+            <li className=' relative text-xl'><Cart />
               <span className=' absolute -top-2 -right-2 text-xs'>10</span>
             </li>
             <li><button className=' text-xl'><Link to='/log-in'><AiOutlineUserAdd /></Link></button></li>

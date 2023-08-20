@@ -19,6 +19,7 @@ import BooksByAuthor from "../Authors/BooksByAuthor";
 import UpdatePublisher from "../Publishers/UpdatePublisher";
 import BooksByPublisher from "../Publishers/BooksByPublisher";
 import DeleteBooks from "../AllBooks/DeleteBooks";
+import Dashboard from "../Dashboard/Dashboard";
 
 const router=createBrowserRouter([
     {
@@ -100,6 +101,10 @@ const router=createBrowserRouter([
             {
                 path:'/register',
                 element:<Register/>
+            },
+            {
+                path:'/dashboard',
+                element:<Dashboard/>
             },
         ]
     }

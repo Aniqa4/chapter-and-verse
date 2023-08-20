@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AiOutlineUserAdd } from 'react-icons/ai';
+import { MdOutlineDashboardCustomize } from 'react-icons/md';
 import NavbarMenu from './NavbarMenu';
 import Cart from '../Cart/Cart';
 import Wishlist from '../Wishlist/Wishlist';
@@ -53,7 +54,12 @@ function Navbar() {
               <span className=' absolute -top-2 -right-2 text-xs'>10</span></li>
           </ul>
           {
-            user ? <button onClick={handleSignOut} className='  hover:text-gray-400 text-2xl'>Log Out</button> :
+            user ?
+              <div className='flex gap-5'>
+                <button onClick={handleSignOut} className='  hover:text-gray-400'>Log Out</button>
+                <Link to='dashboard' className='  hover:text-gray-400 text-2xl'><MdOutlineDashboardCustomize /></Link>
+              </div>
+              :
               <button className='  hover:text-gray-400 text-2xl'><Link to='/log-in'><AiOutlineUserAdd /></Link></button>
           }
         </div>
@@ -71,7 +77,13 @@ function Navbar() {
             <li className=' relative text-xl'><Cart />
               <span className=' absolute -top-2 -right-2 text-xs'>10</span>
             </li>
-            <li><button className=' text-xl'><Link to='/log-in'><AiOutlineUserAdd /></Link></button></li>
+            <li>
+              {
+                user ?
+                  <Link to='dashboard' className='  hover:text-gray-400 text-2xl'><MdOutlineDashboardCustomize /></Link>
+                  : <button className=' text-xl'><Link to='/log-in'><AiOutlineUserAdd /></Link></button>
+              }
+            </li>
           </ul>
         </div>
       </div>

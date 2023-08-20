@@ -5,6 +5,7 @@ import NavbarMenu from './NavbarMenu';
 import Cart from '../Cart/Cart';
 import Wishlist from '../Wishlist/Wishlist';
 import { AuthContext } from '../Authentication/AuthProvider/AuthProvider';
+import Swal from 'sweetalert2';
 
 
 function Navbar() {
@@ -16,6 +17,13 @@ function Navbar() {
   const handleSignOut = () => {
     logOut()
       .then(() => {
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Successfully Logged in',
+          showConfirmButton: false,
+          timer: 1500
+        })
         navigate(from, { replace: true })
       })
       .catch(error => {

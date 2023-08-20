@@ -25,13 +25,11 @@ function Login() {
       .then(data => setUsers(data))
   }, []);
 
- console.log(users);
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    //console.log(email, password);
 
 
     //---------login with email and password-------
@@ -39,6 +37,13 @@ function Login() {
       .then(result => {
         const loggedUser = result.user;
         //console.log(loggedUser);
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Logged Out',
+          showConfirmButton: false,
+          timer: 1500
+        })
         form.reset();
         navigate(from, { replace: true })
       })
@@ -55,34 +60,34 @@ function Login() {
       .then(result => {
         const loggedUser = result.user;
         //console.log(loggedUser);
-        const currentUser=loggedUser.email;
-        const existingUser= users.find(x=>x.email===currentUser)
+        const currentUser = loggedUser.email;
+        const existingUser = users.find(x => x.email === currentUser)
         if (!existingUser) {
-          const name= loggedUser.displayName;
-        const email= loggedUser.email;
-        const phoneNumber= loggedUser.phoneNumber;
-        const address= '';
-        const role='user'
-        const newUser= {name,email,phoneNumber,address,role}
-        fetch('https://chapter-and-verse-server-side.vercel.app/add-users', {
-          method: 'POST',
-          headers:
-            { 'content-type': 'application/json' },
-          body: JSON.stringify(newUser)
-        })
-          .then(res => res.json())
-          .then(data => {
-            console.log(data);
-            if (data.acknowledged === true) {
-              Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'Successfully Logged in',
-                showConfirmButton: false,
-                timer: 1500
-              })
-            }
+          const name = loggedUser.displayName;
+          const email = loggedUser.email;
+          const phoneNumber = '';
+          const address = '';
+          const role = 'user'
+          const newUser = { name, email, phoneNumber, address, role }
+          fetch('https://chapter-and-verse-server-side.vercel.app/add-users', {
+            method: 'POST',
+            headers:
+              { 'content-type': 'application/json' },
+            body: JSON.stringify(newUser)
           })
+            .then(res => res.json())
+            .then(data => {
+              console.log(data);
+              if (data.acknowledged === true) {
+                Swal.fire({
+                  position: 'center',
+                  icon: 'success',
+                  title: 'Successfully Logged in',
+                  showConfirmButton: false,
+                  timer: 1500
+                })
+              }
+            })
         }
         Swal.fire({
           position: 'center',
@@ -106,7 +111,7 @@ function Login() {
       <form onSubmit={handleLogin} className='grid p-5 md:p-0 md:w-1/2 lg:w-1/4 mx-auto gap-5 mb-10'>
         <div className='grid'>
           <label>Email:</label>
-          <input type="email" name="password" />
+          <input type="email" name="email" />
         </div>
         <div className='grid'>
           <label>Password:</label>

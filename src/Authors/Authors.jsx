@@ -63,8 +63,10 @@ function Authors() {
           authors?.map(x =>
             <div key={x._id} className=' p-5 shadow my-2 flex justify-between items-center' >
               <Link to={`${x?.name}`}><h1 className=' font-semibold text text-red-700 hover:text-gray-700'>{x.name}</h1></Link>
-              <div className='grid grid-cols-2 gap-2'>
-                <button onClick={() => handleDelete(x._id)} className=' border px-3 py-1 hover:bg-gray-100'>Delete</button>
+              <div className={role==='admin'?'grid grid-cols-2 gap-2':''}>
+                {
+                  role==='admin' && <button onClick={() => handleDelete(x._id)} className=' border px-3 py-1 hover:bg-gray-100'>Delete</button>
+                }
                 <Modal name={x.name} email={x.email} phone={x.phone} description={x.description} route={`${x._id}/update-authors`} />
               </div>
             </div>)

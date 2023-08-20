@@ -3,9 +3,11 @@ import Title from '../Components/Title'
 import Card from '../Components/Card'
 import { Link } from 'react-router-dom';
 import AddItems from '../Components/AddItems';
+import Role from '../Hooks/Role';
 
 function CategoriesOfBooks() {
     const [categories, setCategories] = useState([]);
+    const role=Role();
 
     useEffect(() => {
         fetch('https://chapter-and-verse-server-side.vercel.app/categories')
@@ -17,7 +19,9 @@ function CategoriesOfBooks() {
         <div className=' container md:mx-auto pt-1'>
             <Title title={'Category of Books'}></Title>
             <p className='py-2 px-2 text-gray-400'>Search books by Category</p>
-            <AddItems text={'Add New Category'} route={'/categories/add-new-category'}/>
+            {
+                role==='admin' && <AddItems text={'Add New Category'} route={'/categories/add-new-category'}/>
+            }
             <div className=' mb-5 grid grid-cols-4 lg:grid-cols-12 gap-2 p-2'>
                 {
                     categories?.map((x, index) =>

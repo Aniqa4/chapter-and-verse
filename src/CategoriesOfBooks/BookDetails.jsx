@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom';
 import Title from '../Components/Title';
 import AddItems from '../Components/AddItems';
+import Role from '../Hooks/Role';
 
 function BookDetails() {
     const data = useParams();
     const bookName = data?.bookName;
     const category = data?.name;
     const [bookData, setBookData] = useState([]);
+    const role=Role()
 
     useEffect(() => {
         fetch(`https://chapter-and-verse-server-side.vercel.app/books/${bookName}`)
@@ -31,7 +33,9 @@ function BookDetails() {
     return (
         <div className=' container mx-auto pt-1'>
             <Title title={`${bookData?.bookName}`} />
-            <AddItems route={`/categories/${category}/${bookName}/update-book`} text={'Update book'}/>    
+            {
+                role==='admin' && <AddItems route={`/categories/${category}/${bookName}/update-book`} text={'Update book'}/>  
+            }  
             <div className='grid md:grid-cols-2 px-5 lg:px-0 gap-5'>
                 <div className=''>
                     <img src={bookData?.bookImage} className=' w-96 mx-auto' />

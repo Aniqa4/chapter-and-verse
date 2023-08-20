@@ -1,9 +1,11 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import Role from '../Hooks/Role';
 
 function Modal({ name, email, phone, description, route }) {
-    const [open, setOpen] = useState(false)
+    const [open, setOpen] = useState(false);
+    const role=Role()
 
     return (
         <div>
@@ -27,7 +29,9 @@ function Modal({ name, email, phone, description, route }) {
                 </DialogContent>
                 <DialogActions  >
                     <Button variant="outlined" onClick={() => setOpen(false)}>Close</Button>
-                    <Button variant="outlined"><Link to={route}>Update</Link></Button>
+                    {
+                        role==='admin' && <Button variant="outlined"><Link to={route}>Update</Link></Button>
+                    }
                 </DialogActions>
             </Dialog>
         </div>

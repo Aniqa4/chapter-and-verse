@@ -3,7 +3,9 @@ function UserDashboard() {
 
     
     return (
-        <div>UserDashboard</div>
+        <div>
+            <h1 className=" px-10">My Orders:</h1>
+        </div>
     )
 }
 

@@ -10,9 +10,9 @@ function UserInfo() {
         .then(res => res.json())
         .then(data => setUsers(data))
     }, []);
-    const userInfo=users.find(x=>x?.email===user?.email)
+    const userInfo=users?.find(x=>x?.email===user?.email)
     const role=userInfo?.role
-  return [userInfo,role]
+  return [role,userInfo]
 }
 
 export default UserInfo

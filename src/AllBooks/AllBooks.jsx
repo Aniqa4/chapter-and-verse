@@ -6,10 +6,12 @@ import { AuthContext } from '../Authentication/AuthProvider/AuthProvider';
 import UserInfo from '../Hooks/UserInfo';
 
 
+
 function AllBooks() {
   const [books, setBooks] = useState([]);
   const { loading}=useContext(AuthContext);
-  const role=UserInfo()
+  const [role]=UserInfo()
+  console.log(role);
 
   useEffect(() => {
     fetch('https://chapter-and-verse-server-side.vercel.app/books-with-less-info')

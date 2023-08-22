@@ -7,7 +7,7 @@ function FeaturedBooks() {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    fetch('https://chapter-and-verse-server-side.vercel.app/six-books-with-less-info')
+    fetch('https://chapter-and-verse-server-side.vercel.app/featured-books')
       .then(res => res.json())
       .then(data => setBooks(data))
   }, []);
@@ -16,7 +16,7 @@ function FeaturedBooks() {
   return (
     <div className=' container mx-auto'>
       <Title title={'Featured books'}></Title>
-      <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-5 justify-center mx-5 md:mx-0'>
+      <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-5 justify-center mx-5 md:mx-0'>
         {
           books?.map(x => <BookLayout key={x?._id} product_id={x._id} bookImage={x.bookImage} bookName={x.bookName} price={x.price} route={`/categories/${x?.category}/${x.bookName}`} />)
         }

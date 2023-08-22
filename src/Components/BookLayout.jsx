@@ -40,7 +40,7 @@ function BookLayout({ product_id, bookImage, bookName, price, route }) {
     }
 
     return (
-        <div className='grid gap-2 md:gap-5 shadow border py-5 hover:border-gray-300 relative'>
+        <div className='book grid gap-2 md:gap-5 shadow border py-5 hover:border-gray-300 relative'>
             <Link to={route}><img src={bookImage} className=' xl:h-72 xl:w-44 h-40 w-28 mx-auto hover:opacity-80' /></Link>
             <div className='text-center grid gap-2 md:gap-5'>
                 <h1 className=' font-semibold text-red-700'> {bookName}</h1>

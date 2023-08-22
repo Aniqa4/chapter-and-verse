@@ -20,6 +20,8 @@ import UpdatePublisher from "../Publishers/UpdatePublisher";
 import BooksByPublisher from "../Publishers/BooksByPublisher";
 import DeleteBooks from "../AllBooks/DeleteBooks";
 import Dashboard from "../Dashboard/Dashboard";
+import Cart from "../Cart/Cart";
+import Wishlist from "../Wishlist/Wishlist";
 
 const router=createBrowserRouter([
     {
@@ -105,6 +107,14 @@ const router=createBrowserRouter([
             {
                 path:'/dashboard',
                 element:<Dashboard/>
+            },
+            {
+                path:'/wishlist',
+                element:<Wishlist/>
+            },
+            {
+                path:'/cart',
+                element:<Cart/>
             },
         ]
     }

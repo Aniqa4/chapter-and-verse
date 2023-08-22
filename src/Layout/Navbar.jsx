@@ -1,12 +1,12 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AiOutlineUserAdd } from 'react-icons/ai';
 import { MdOutlineDashboardCustomize } from 'react-icons/md';
 import NavbarMenu from './NavbarMenu';
-import Cart from '../Cart/Cart';
-import Wishlist from '../Wishlist/Wishlist';
+import { MdOutlineFavoriteBorder } from 'react-icons/md';
 import { AuthContext } from '../Authentication/AuthProvider/AuthProvider';
 import Swal from 'sweetalert2';
+import { CgShoppingBag } from 'react-icons/cg';
 
 
 function Navbar() {
@@ -14,6 +14,12 @@ function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
+
+  const fovariteItemsString=localStorage.getItem('favorites');
+  const favoriteItems=JSON.parse(fovariteItemsString);
+  const totalItems=favoriteItems?.length
+ 
+
 
   const handleSignOut = () => {
     logOut()
@@ -48,9 +54,9 @@ function Navbar() {
             <li className=' hover:text-gray-400'><Link to='/categories'>Categories</Link></li>
             <li className=' hover:text-gray-400'><Link to='/authors'>Authors</Link></li>
             <li className=' hover:text-gray-400'><Link to='/publishers'>Publishers</Link></li>
-            <li className='  hover:text-gray-400 relative text-xl'><Wishlist />
-              <span className=' absolute -top-2 -right-2 text-xs'>10</span></li>
-            <li className=' hover:text-gray-400 relative text-xl'><Cart />
+            <li className='  hover:text-gray-400 relative text-xl'><Link to='/wishlist'><MdOutlineFavoriteBorder /></Link>
+              <span className=' absolute -top-2 -right-2 text-xs'>{totalItems}</span></li>
+            <li className=' hover:text-gray-400 relative text-xl'><Link to='/cart'><CgShoppingBag /></Link>
               <span className=' absolute -top-2 -right-2 text-xs'>10</span></li>
           </ul>
           {
@@ -71,10 +77,10 @@ function Navbar() {
             <h1 className=' font-bold text-sm uppercase'><Link to='/'>Chapter<span className=' text-black'>&</span>Verse</Link></h1>
           </div>
           <ul className='flex gap-5'>
-            <li className=' relative text-xl'><Wishlist />
+            <li className=' relative text-xl'><Link to='/wishlist'><MdOutlineFavoriteBorder/></Link>
               <span className=' absolute -top-2 -right-2 text-xs'>10</span>
             </li>
-            <li className=' relative text-xl'><Cart />
+            <li className=' relative text-xl'><Link to='/cart'><CgShoppingBag /></Link>
               <span className=' absolute -top-2 -right-2 text-xs'>10</span>
             </li>
             <li>

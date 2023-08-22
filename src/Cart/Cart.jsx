@@ -1,21 +1,12 @@
-import { Box, Drawer, Typography } from '@mui/material';
-import React, { useState } from 'react';
-import { CgShoppingBag } from 'react-icons/cg';
-import { MdOutlineClose } from 'react-icons/md';
+import React from 'react';
+import Title from '../Components/Title';
 
 function Cart() {
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
   return (
-    <div>
-      <button onClick={() => setIsDrawerOpen(true)} className=' text-xl flex gap-2 items-center'><CgShoppingBag /></button>
-      <Drawer anchor='right' open={isDrawerOpen} onClose={() => setIsDrawerOpen(false)}>
-        <Box p={2} width={'250px'} role='presentation'>
-          <Typography component={'div'}>
-            <span onClick={() => setIsDrawerOpen(false)} className=' text-2xl'><MdOutlineClose /></span>
-            <h1 className='text-bold py-5 uppercase text-xl'>Cart</h1>
-          </Typography>
-        </Box>
-      </Drawer>
+    <div className='pt-1'>
+      <Title title={'cart'}/>
+      
     </div>
   )
 }

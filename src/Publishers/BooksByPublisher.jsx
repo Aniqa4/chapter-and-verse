@@ -19,7 +19,7 @@ function BooksByPublisher() {
             <Title title={`Books of ${publisher}`} />
             <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-5 justify-center mx-5'>
                 {
-                    books?.map(x => <BookLayout key={x._id} bookImage={x.bookImage} bookName={x.bookName} price={x.price} route={`/categories/${x.category}/${x.bookName}`} />)
+                    books?.map(x => <BookLayout key={x._id} product_id={x._id} bookImage={x.bookImage} bookName={x.bookName} price={x.price} route={`/categories/${x.category}/${x.bookName}`} />)
                 }
             </div>
         </div>

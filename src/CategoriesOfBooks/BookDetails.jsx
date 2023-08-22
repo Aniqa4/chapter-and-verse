@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom';
 import Title from '../Components/Title';
 import AddItems from '../Components/AddItems';
-import Role from '../Hooks/Role';
+import UserInfo from '../Hooks/UserInfo';
 
 function BookDetails() {
     const data = useParams();
     const bookName = data?.bookName;
     const category = data?.name;
     const [bookData, setBookData] = useState([]);
-    const role=Role()
+    const role=UserInfo()
 
     useEffect(() => {
         fetch(`https://chapter-and-verse-server-side.vercel.app/books/${bookName}`)

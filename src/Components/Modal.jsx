@@ -1,11 +1,11 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import Role from '../Hooks/Role';
+import UserInfo from '../Hooks/UserInfo';
 
 function Modal({ name, email, phone, description, route }) {
     const [open, setOpen] = useState(false);
-    const role=Role()
+    const role=UserInfo()
 
     return (
         <div>

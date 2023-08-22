@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../Authentication/AuthProvider/AuthProvider';
 
-function Role() {
+function UserInfo() {
     const {user}=useContext(AuthContext);
     const [users, setUsers] = useState([]);
 
@@ -12,7 +12,7 @@ function Role() {
     }, []);
     const userInfo=users.find(x=>x?.email===user?.email)
     const role=userInfo?.role
-  return role
+  return [userInfo,role]
 }
 
-export default Role
+export default UserInfo

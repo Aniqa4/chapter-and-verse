@@ -3,13 +3,13 @@ import Title from '../Components/Title';
 import AddItems from '../Components/AddItems';
 import BookLayout from '../Components/BookLayout';
 import { AuthContext } from '../Authentication/AuthProvider/AuthProvider';
-import Role from '../Hooks/Role';
+import UserInfo from '../Hooks/UserInfo';
 
 
 function AllBooks() {
   const [books, setBooks] = useState([]);
   const { loading}=useContext(AuthContext);
-  const role=Role()
+  const role=UserInfo()
 
   useEffect(() => {
     fetch('https://chapter-and-verse-server-side.vercel.app/books-with-less-info')

@@ -62,7 +62,7 @@ function Navbar() {
           {
             user ?
               <div className='flex gap-5'>
-                <button onClick={handleSignOut} className='  hover:text-gray-400'>Log Out</button>
+                <button onClick={handleSignOut} className=' text-xs px-3 py-1 border border-gray-500 font-bold  hover:bg-gray-200'>Log Out</button>
                 <Link to='dashboard' className='  hover:text-gray-400 text-2xl'><MdOutlineDashboardCustomize /></Link>
               </div>
               :

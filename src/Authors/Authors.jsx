@@ -4,11 +4,11 @@ import AddItems from '../Components/AddItems';
 import Modal from '../Components/Modal';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import Role from '../Hooks/Role';
+import UserInfo from '../Hooks/UserInfo';
 
 function Authors() {
   const [authors, setAuthors] = useState([]);
-  const role=Role()
+  const role=UserInfo()
 
   useEffect(() => {
     fetch('https://chapter-and-verse-server-side.vercel.app/authors')

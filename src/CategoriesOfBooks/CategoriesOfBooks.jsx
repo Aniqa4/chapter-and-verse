@@ -3,11 +3,11 @@ import Title from '../Components/Title'
 import Card from '../Components/Card'
 import { Link } from 'react-router-dom';
 import AddItems from '../Components/AddItems';
-import Role from '../Hooks/Role';
+import UserInfo from '../Hooks/UserInfo';
 
 function CategoriesOfBooks() {
     const [categories, setCategories] = useState([]);
-    const role=Role();
+    const role=UserInfo();
 
     useEffect(() => {
         fetch('https://chapter-and-verse-server-side.vercel.app/categories')

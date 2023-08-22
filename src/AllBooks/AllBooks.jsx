@@ -8,7 +8,7 @@ import Role from '../Hooks/Role';
 
 function AllBooks() {
   const [books, setBooks] = useState([]);
-  const {user, loading}=useContext(AuthContext);
+  const { loading}=useContext(AuthContext);
   const role=Role()
 
   useEffect(() => {

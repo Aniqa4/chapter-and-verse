@@ -7,7 +7,7 @@ import UserInfo from '../Hooks/UserInfo';
 
 function CategoriesOfBooks() {
     const [categories, setCategories] = useState([]);
-    const role=UserInfo();
+    const [role]=UserInfo();
 
     useEffect(() => {
         fetch('https://chapter-and-verse-server-side.vercel.app/categories')

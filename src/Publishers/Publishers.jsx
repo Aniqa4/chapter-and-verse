@@ -8,7 +8,7 @@ import UserInfo from '../Hooks/UserInfo';
 
 function Publishers() {
   const [publications, setPublications] = useState([]);
-  const role=UserInfo()
+  const [role]=UserInfo()
 
   useEffect(() => {
     fetch('https://chapter-and-verse-server-side.vercel.app/publishers')

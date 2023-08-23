@@ -9,7 +9,7 @@ function BookDetails() {
     const bookName = data?.bookName;
     const category = data?.name;
     const [bookData, setBookData] = useState([]);
-    const role=UserInfo()
+    const [role]=UserInfo()
 
     useEffect(() => {
         fetch(`https://chapter-and-verse-server-side.vercel.app/books/${bookName}`)

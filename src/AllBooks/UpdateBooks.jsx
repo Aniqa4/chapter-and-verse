@@ -1,47 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import Title from '../Components/Title';
 import { TbCurrencyTaka } from 'react-icons/tb'
-import {  useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import Books from '../Hooks/Books';
+import BookCategories from '../Hooks/BookCategories';
+import Publications from '../Hooks/Publications';
+import AllAuthors from '../Hooks/AllAuthors';
 
 function UpdateBooks() {
-    const [categories, setCategories] = useState([]);
-    const [namesOfAuthors, setNamesOfAuthors] = useState([]);
-    const [namesOfPublications, setNamesOfPublications] = useState([]);
+    const books = Books()
+    const categories = BookCategories();
+    const namesOfPublications = Publications()
+    const namesOfAuthors = AllAuthors()
     const data = useParams();
     const bookName = data?.bookName;
     const category = data?.name;
-    const [books, setBooks] = useState([]);
     const navigate = useNavigate();
     const from = `/categories/${category}/${bookName}`;
 
-
-    useEffect(() => {
-        fetch('https://chapter-and-verse-server-side.vercel.app/books')
-            .then(res => res.json())
-            .then(data => setBooks(data))
-    }, []);
-
     const myBook = books?.find(x => x?.bookName === bookName && x?.category === category)
     //console.log(myBook);
-
-    useEffect(() => {
-        fetch('https://chapter-and-verse-server-side.vercel.app/names-of-categories')
-            .then(res => res.json())
-            .then(data => setCategories(data))
-    }, []);
-
-    useEffect(() => {
-        fetch('https://chapter-and-verse-server-side.vercel.app/names-of-authors')
-            .then(res => res.json())
-            .then(data => setNamesOfAuthors(data))
-    }, []);
-
-    useEffect(() => {
-        fetch('https://chapter-and-verse-server-side.vercel.app/names-of-publications')
-            .then(res => res.json())
-            .then(data => setNamesOfPublications(data))
-    }, []);
 
     const handleForm = (e) => {
         e.preventDefault();
@@ -95,7 +74,7 @@ function UpdateBooks() {
                 <select name="authorName">
                     <option defaultValue={myBook?.authorName}>{myBook?.authorName}</option>
                     {
-                        namesOfAuthors?.map((x) =>
+                        namesOfAuthors?.map(x =>
                             <option key={x._id} value={x?.name}>{x?.name}</option>)
                     }
                 </select>
@@ -110,7 +89,7 @@ function UpdateBooks() {
                 <label className='flex'>Price<span><TbCurrencyTaka /></span> : </label>
                 <input type="number" name="price" defaultValue={myBook?.price} />
                 <label>Date of Arrival: </label>
-                <input type="datetime-local" name="date" defaultValue={myBook?.dateOfArrival} disabled className='bg-gray-100 border-0'/>
+                <input type="datetime-local" name="date" defaultValue={myBook?.dateOfArrival} disabled className='bg-gray-100 border-0' />
                 <label >Category: </label>
                 <select name="category">
                     <option defaultValue={myBook?.category}>{myBook?.category}</option>
@@ -122,7 +101,7 @@ function UpdateBooks() {
                 <label>Available Copies: </label>
                 <input type="number" name='availableCopies' defaultValue={myBook?.availableCopies} />
                 <label>Copies sold: </label>
-                <input type="number" name='soldCopies' defaultValue={myBook?.soldCopies} disabled  className='bg-gray-100 border-0'/>
+                <input type="number" name='soldCopies' defaultValue={myBook?.soldCopies} disabled className='bg-gray-100 border-0' />
                 <label>Description: </label>
                 <input type="text" name='description' defaultValue={myBook?.description} className='h-20' />
                 <input type="submit" value="Add" className='mb-10 mt-5 p-2 bg-slate-500 text-white' />

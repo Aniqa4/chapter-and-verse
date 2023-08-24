@@ -1,20 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Title from '../Components/Title';
 import AddItems from '../Components/AddItems';
 import Modal from '../Components/Modal';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import UserInfo from '../Hooks/UserInfo';
+import Publications from '../Hooks/Publications';
 
 function Publishers() {
-  const [publications, setPublications] = useState([]);
+  const publications=Publications()
   const [role]=UserInfo()
-
-  useEffect(() => {
-    fetch('https://chapter-and-verse-server-side.vercel.app/publishers')
-      .then(res => res.json())
-      .then(data => setPublications(data))
-  }, []);
 
   const handleDelete = (id) => {
     Swal.fire({

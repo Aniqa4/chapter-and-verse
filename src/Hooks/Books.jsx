@@ -4,7 +4,7 @@ function Books() {
     const [books, setBooks] = useState([]);
 
     useEffect(() => {
-        fetch('https://chapter-and-verse-server-side.vercel.app/books-with-less-info')
+        fetch('https://chapter-and-verse-server-side.vercel.app/books')
           .then(res => res.json())
           .then(data => setBooks(data))
       }, []);

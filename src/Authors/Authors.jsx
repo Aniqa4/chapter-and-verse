@@ -5,16 +5,11 @@ import Modal from '../Components/Modal';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import UserInfo from '../Hooks/UserInfo';
+import AllAuthors from '../Hooks/AllAuthors';
 
 function Authors() {
-  const [authors, setAuthors] = useState([]);
+  const authors = AllAuthors()
   const [role]=UserInfo()
-
-  useEffect(() => {
-    fetch('https://chapter-and-verse-server-side.vercel.app/authors')
-      .then(res => res.json())
-      .then(data => setAuthors(data))
-  }, []);
 
   const handleDelete = (id) => {
     Swal.fire({

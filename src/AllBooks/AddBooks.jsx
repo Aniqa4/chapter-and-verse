@@ -1,31 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Title from '../Components/Title'
 import { TbCurrencyTaka } from 'react-icons/tb'
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
+import BookCategories from '../Hooks/BookCategories';
+import AllAuthors from '../Hooks/AllAuthors';
+import Publications from '../Hooks/Publications';
 
 function AddBooks() {
-  const [categories, setCategories] = useState([]);
-  const [namesOfAuthors, setNamesOfAuthors] = useState([]);
-  const [namesOfPublications, setNamesOfPublications] = useState([]);
-
-  useEffect(() => {
-    fetch('https://chapter-and-verse-server-side.vercel.app/names-of-categories')
-      .then(res => res.json())
-      .then(data => setCategories(data))
-  }, []);
-
-  useEffect(() => {
-    fetch('https://chapter-and-verse-server-side.vercel.app/names-of-authors')
-      .then(res => res.json())
-      .then(data => setNamesOfAuthors(data))
-  }, []);
-
-  useEffect(() => {
-    fetch('https://chapter-and-verse-server-side.vercel.app/names-of-publications')
-      .then(res => res.json())
-      .then(data => setNamesOfPublications(data))
-  }, []);
+  const categories=BookCategories();
+  const namesOfPublications=Publications()
+  const namesOfAuthors = AllAuthors()
 
   const handleForm = (e) => {
     e.preventDefault();

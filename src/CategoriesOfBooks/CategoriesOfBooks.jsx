@@ -4,16 +4,11 @@ import Card from '../Components/Card'
 import { Link } from 'react-router-dom';
 import AddItems from '../Components/AddItems';
 import UserInfo from '../Hooks/UserInfo';
+import BookCategories from '../Hooks/BookCategories';
 
 function CategoriesOfBooks() {
-    const [categories, setCategories] = useState([]);
+    const categories=BookCategories();
     const [role]=UserInfo();
-
-    useEffect(() => {
-        fetch('https://chapter-and-verse-server-side.vercel.app/categories')
-            .then(res => res.json())
-            .then(data => setCategories(data))
-    }, []);
 
     return (
         <div className=' container md:mx-auto pt-1'>

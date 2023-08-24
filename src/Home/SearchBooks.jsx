@@ -1,13 +1,17 @@
 import React from 'react';
 import { BiSearchAlt2 } from 'react-icons/bi';
+import Books from '../Hooks/Books';
 
 function SearchBooks() {
+    const books=Books();
+
     const handleSearch=(event)=>{
         event.preventDefault();
         const form=event.target;
         const searchedItem=form.search.value;
         console.log(searchedItem);
     }
+    
     return (
         <div className=' container mx-auto'>
             <form onSubmit={handleSearch} className='flex justify-center my-10'>

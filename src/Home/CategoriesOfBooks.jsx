@@ -1,15 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import Title from '../Components/Title';
 import Card from '../Components/Card';
+import BookCategories from '../Hooks/BookCategories';
 
 function CategoriesOfBooks() {
-  const [categories, setCategories] = useState([]);
-
-    useEffect(() => {
-        fetch('https://chapter-and-verse-server-side.vercel.app/categories')
-            .then(res => res.json())
-            .then(data => setCategories(data))
-    }, []);
+  const categories=BookCategories();
 
   return (
     <div>

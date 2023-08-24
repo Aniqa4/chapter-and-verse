@@ -12,7 +12,7 @@ function FeaturedBooks() {
       .then(data => setBooks(data))
   }, []);
 
-  console.log(books);
+  //console.log(books);
   return (
     <div className=' container mx-auto'>
       <Title title={'Featured books'}></Title>

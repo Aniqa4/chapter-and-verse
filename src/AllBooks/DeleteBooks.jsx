@@ -1,18 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Swal from 'sweetalert2';
 import Title from '../Components/Title';
 import AddItems from '../Components/AddItems';
 import { Link } from 'react-router-dom';
+import Books from '../Hooks/Books';
 
 function DeleteBooks() {
-    const [books, setBooks] = useState([]);
-
-    useEffect(() => {
-        fetch('https://chapter-and-verse-server-side.vercel.app/books-with-less-info')
-            .then(res => res.json())
-            .then(data => setBooks(data))
-    }, []);
-
+    const books=Books();
 
     const handleDelete = (id) => {
         Swal.fire({

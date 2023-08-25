@@ -48,7 +48,7 @@ function SearchBooks() {
 
     return (
         <div className=' container mx-auto'>
-            <form onSubmit={handleSearch} className='flex justify-center mt-10'>
+            <form onSubmit={handleSearch} className='flex justify-center'>
                 <div className=' relative  w-1/2'>
                     <input type="text" name="search" className=' absolute top-0 left-5 right-0 bottom-0' />
                 </div>
@@ -57,7 +57,7 @@ function SearchBooks() {
             <div className=' relative' >
                 {showResults && (
                     <div className="absolute top-0 left-0 right-0 bg-opacity-75 flex items-center justify-center z-50">
-                        <div ref={searchResultsRef} className="bg-gray-50 p-4 w-1/2 overflow-y-auto h-60">
+                        <div ref={searchResultsRef} className="bg-gray-50 p-4 w-1/2 overflow-y-auto max-h-96">
                             {searchResult.length === 0 ? (
                                 <p className="text-gray-800">No results found.</p>
                             ) : (

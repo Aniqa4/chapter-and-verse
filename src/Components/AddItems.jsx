@@ -6,7 +6,7 @@ function AddItems({text,route}) {
     return (
         <div className='relative text-green-500 pt-5'>
             <p className=' absolute bottom-2 right-5'><Link to={route}
-                className='flex items-center shadow px-2 py-1 rounded-md border'>{text}&nbsp;<CgAdd /></Link></p>
+                className='flex items-center shadow px-2 py-1 border'>{text}&nbsp;<CgAdd /></Link></p>
         </div>
     )
 }

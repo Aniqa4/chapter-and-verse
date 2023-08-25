@@ -48,7 +48,7 @@ function BookDetails() {
                     <h1 className=' font-semibold'>Price: {bookData?.price} taka</h1>
                     <h1 className=' font-semibold'>Pages: 300</h1>
                     <h1 className=' font-semibold'> 1st Published: {formattedDate}</h1>
-                    <p className=' underline'><Link to={`/categories/${category}`}>Explore similar books</Link></p>
+                    <p className=' underline'><Link to={`/categories/${bookData?.category}`}>Explore similar books</Link></p>
                     <button
                         className='bg-green-500 md:w-1/2 text-white border shadow hover:text-black hover:bg-white hover:border-black'>Add To Favorite
                     </button>

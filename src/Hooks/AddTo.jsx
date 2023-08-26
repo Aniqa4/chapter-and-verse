@@ -1,7 +1,6 @@
 import Swal from 'sweetalert2';
 
 function AddTo() {
-
     const handleWishlist = (product_id, bookName, bookImage, price, email) => {
         let selectedFavorites = localStorage.getItem(email ? email + 'favorites' : 'favorites') ?
             JSON.parse(localStorage.getItem(email ? email + 'favorites' : 'favorites')) : [];
@@ -25,7 +24,6 @@ function AddTo() {
             JSON.parse(localStorage.getItem(email ? email + 'cart' : 'cart')) : [];
         const myCart = { product_id, bookName, bookImage, price };
         selectedCart.push(myCart)
-
         localStorage.setItem(email ? email + 'cart' : 'cart', JSON.stringify(selectedCart));
 
         Swal.fire({
@@ -37,7 +35,7 @@ function AddTo() {
 
         })
     }
-    return {handleCart, handleWishlist}
+    return { handleCart, handleWishlist}
 }
 
 export default AddTo

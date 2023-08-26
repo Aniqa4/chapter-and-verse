@@ -6,7 +6,7 @@ import { AuthContext } from '../Authentication/AuthProvider/AuthProvider';
 function Cart() {
   const [cartItems, setCartItems] = useState([])
   const {user}=useContext(AuthContext)
-  const email = user?.email
+  const email = user?.email;
 
   //get items from local storage
   useEffect(() => {
@@ -24,6 +24,7 @@ function Cart() {
     setCartItems(arrayOfObjects);
     //console.log(arrayOfObjects);
   }
+   
 
   return (
     <div className='pt-1'>

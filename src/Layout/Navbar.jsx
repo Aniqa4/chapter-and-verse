@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AiOutlineUserAdd } from 'react-icons/ai';
 import { MdOutlineDashboardCustomize } from 'react-icons/md';
@@ -82,10 +82,10 @@ function Navbar() {
           </div>
           <ul className='flex gap-5'>
             <li className=' relative text-xl'><Link to='/wishlist'><MdOutlineFavoriteBorder/></Link>
-              <span className=' absolute -top-2 -right-2 text-xs'>10</span>
+              <span className=' absolute -top-2 -right-2 text-xs'>{totalItems}</span>
             </li>
             <li className=' relative text-xl'><Link to='/cart'><CgShoppingBag /></Link>
-              <span className=' absolute -top-2 -right-2 text-xs'>10</span>
+              <span className=' absolute -top-2 -right-2 text-xs'>{totalItemsInCart}</span>
             </li>
             <li>
               {

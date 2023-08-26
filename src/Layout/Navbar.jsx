@@ -15,7 +15,7 @@ function Navbar() {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
-  const fovariteItemsString=localStorage.getItem('favorites');
+  const fovariteItemsString=localStorage.getItem(user?user.email+'favorites':'favorites');
   const favoriteItems=JSON.parse(fovariteItemsString);
   const totalItems=favoriteItems?.length
  

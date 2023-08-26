@@ -44,7 +44,7 @@ function SearchBooks() {
         };
     }, []);
 
-    console.log(searchResult);
+    //console.log(searchResult);
 
     return (
         <div className=' container mx-auto'>

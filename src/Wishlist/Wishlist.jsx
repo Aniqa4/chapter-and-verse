@@ -25,11 +25,10 @@ function Wishlist() {
     //console.log(arrayOfObjects);
   }
 
-  console.log(favoriteItems)
   return (
     <div className='pt-1'>
       <Title title={'Favorite Books'} />
-      <table className='container mx-auto lg:w-1/3'>
+      <table className='container mx-auto'>
         <tbody>
           {
             favoriteItems && favoriteItems[0] !== undefined ? favoriteItems.map((x, index) =>

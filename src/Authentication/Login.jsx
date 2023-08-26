@@ -40,7 +40,7 @@ function Login() {
         Swal.fire({
           position: 'center',
           icon: 'success',
-          title: 'Logged Out',
+          title: 'Successfully Logged In',
           showConfirmButton: false,
           timer: 1500
         })
@@ -82,7 +82,7 @@ function Login() {
                 Swal.fire({
                   position: 'center',
                   icon: 'success',
-                  title: 'Successfully Logged in',
+                  title: 'Successfully Logged In',
                   showConfirmButton: false,
                   timer: 1500
                 })

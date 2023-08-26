@@ -15,9 +15,13 @@ function Navbar() {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
-  const fovariteItemsString=localStorage.getItem(user?user.email+'favorites':'favorites');
-  const favoriteItems=JSON.parse(fovariteItemsString);
+  const favoriteItemsString=localStorage.getItem(user?user.email+'favorites':'favorites');
+  const favoriteItems=JSON.parse(favoriteItemsString);
   const totalItems=favoriteItems?.length
+
+  const cartItemsString=localStorage.getItem(user?user.email+'cart':'cart');
+  const cartItems=JSON.parse(cartItemsString);
+  const totalItemsInCart=cartItems?.length
  
 
 
@@ -27,7 +31,7 @@ function Navbar() {
         Swal.fire({
           position: 'center',
           icon: 'success',
-          title: 'Successfully Logged in',
+          title: 'Successfully Logged Out',
           showConfirmButton: false,
           timer: 1500
         })
@@ -57,7 +61,7 @@ function Navbar() {
             <li className='  hover:text-gray-400 relative text-xl'><Link to='/wishlist'><MdOutlineFavoriteBorder /></Link>
               <span className=' absolute -top-2 -right-2 text-xs'>{totalItems}</span></li>
             <li className=' hover:text-gray-400 relative text-xl'><Link to='/cart'><CgShoppingBag /></Link>
-              <span className=' absolute -top-2 -right-2 text-xs'>10</span></li>
+              <span className=' absolute -top-2 -right-2 text-xs'>{totalItemsInCart}</span></li>
           </ul>
           {
             user ?

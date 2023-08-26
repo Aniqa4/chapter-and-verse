@@ -29,23 +29,18 @@ function BookLayout({ product_id, bookImage, bookName, price, route }) {
         })
     }
 
-    const handleCart = (product_id, bookName, bookImage, price) => {
-        if (!email) {
-            let selectedItems = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
-            const myCart = { product_id, bookName, bookImage, price };
-            selectedItems.push(myCart)
-
-            localStorage.setItem('cart', JSON.stringify(selectedItems));
-        }
-        let selectedItems = localStorage.getItem(email) ? JSON.parse(localStorage.getItem(email)) : [];
+    const handleCart = (product_id, bookName, bookImage, price,email) => {
+        let selectedCart = localStorage.getItem(email?email + 'cart':'cart') ? 
+        JSON.parse(localStorage.getItem(email? email + 'cart':'cart')) : [];
         const myCart = { product_id, bookName, bookImage, price };
-        selectedItems.push(myCart)
+        selectedCart.push(myCart)
 
-        localStorage.setItem(email, JSON.stringify(selectedItems));
+        localStorage.setItem(email? email + 'cart':'cart', JSON.stringify(selectedCart));
+
         Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Added toCart!',
+            title: 'Added to Cart!',
             showConfirmButton: false,
             timer: 500
 
@@ -60,7 +55,7 @@ function BookLayout({ product_id, bookImage, bookName, price, route }) {
                 <p className=' text-gray-400'>Price: {price}</p>
                 <span className='flex justify-center gap-5 text-gray-500 text-xl'>
                     <span onClick={() => handleWishlist(product_id, bookName, bookImage, price, email)} className='hover:text-gray-900'><MdOutlineFavoriteBorder /></span>
-                    <span onClick={() => handleCart(product_id, bookName, bookImage, price)} className='hover:text-gray-900'><CgShoppingBag /></span>
+                    <span onClick={() => handleCart(product_id, bookName, bookImage, price,email)} className='hover:text-gray-900'><CgShoppingBag /></span>
                 </span>
             </div>
         </div>

@@ -1,24 +1,26 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom';
 import Title from '../Components/Title';
 import AddItems from '../Components/AddItems';
 import UserInfo from '../Hooks/UserInfo';
+import AddTo from '../Hooks/AddTo';
+import { AuthContext } from '../Authentication/AuthProvider/AuthProvider';
 
 function BookDetails() {
     const data = useParams();
     const bookName = data?.bookName;
     const category = data?.name;
     const [bookData, setBookData] = useState([]);
-    const [role]=UserInfo()
+    const [role]=UserInfo();
+    const { user } = useContext(AuthContext)
+    const email = user?.email
+    const {handleCart,handleWishlist}=AddTo()
 
     useEffect(() => {
         fetch(`https://chapter-and-verse-server-side.vercel.app/books/${bookName}`)
             .then(res => res.json())
             .then(data => setBookData(data))
     }, []);
-
-
-    //console.log(myBook);
 
     const date = bookData?.dateOfArrival
 
@@ -49,10 +51,10 @@ function BookDetails() {
                     <h1 className=' font-semibold'>Pages: 300</h1>
                     <h1 className=' font-semibold'> 1st Published: {formattedDate}</h1>
                     <p className=' underline'><Link to={`/categories/${bookData?.category}`}>Explore similar books</Link></p>
-                    <button
+                    <button onClick={() => handleWishlist(bookData?._id, bookData?.bookName, bookData?.bookImage, bookData?.price, email)}
                         className='bg-green-500 md:w-1/2 text-white border shadow hover:text-black hover:bg-white hover:border-black'>Add To Favorite
                     </button>
-                    <button
+                    <button onClick={() => handleCart(bookData?._id, bookData?.bookName, bookData?.bookImage, bookData?.price, email)}
                         className='bg-green-500 md:w-1/2 text-white border shadow hover:text-black hover:bg-white hover:border-black'>Add To Cart
                     </button>
                 </div>

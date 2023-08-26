@@ -29,9 +29,9 @@ function Navbar() {
     logOut()
       .then(() => {
         Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Successfully Logged Out',
+          position:'center',
+          icon:'success',
+          title:'Successfully Logged Out',
           showConfirmButton: false,
           timer: 1500
         })

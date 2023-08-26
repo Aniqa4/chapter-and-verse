@@ -28,7 +28,7 @@ function Cart() {
   return (
     <div className='pt-1'>
       <Title title={'Cart'} />
-      <table className='container mx-auto'>
+      <table className='container mx-auto  text-gray-600 font-semibold'>
         <tbody>
           {
             cartItems && cartItems[0] !== undefined ? cartItems.map((x, index) =>

@@ -26,17 +26,18 @@ function Wishlist() {
   }
 
   return (
-    <div className='pt-1'>
+    <div className='pt-1 '>
       <Title title={'Favorite Books'} />
-      <table className='container mx-auto'>
+      <table className='container mx-auto  text-gray-600 font-semibold'>
         <tbody>
           {
             favoriteItems && favoriteItems[0] !== undefined ? favoriteItems.map((x, index) =>
-              <tr key={index} className=''>
+              <tr key={index} className='border-b'>
                 <td>{index + 1}</td>
                 <td><img src={x.bookImage} className='w-16' /></td>
-                <td>{x.bookName}</td>
+                <td className=''>{x.bookName}</td>
                 <td>{x.price} Tk</td>
+                <td className='underline text-blue-600'>Add to Cart</td>
                 <td onClick={() => deleteItem(index)} className=' text-red-800 text-xl'><MdDeleteForever /></td>
               </tr>) : <tr><td>You have not selected any item</td></tr>
           }

@@ -2,50 +2,13 @@ import React, { useContext } from 'react';
 import { CgShoppingBag } from 'react-icons/cg';
 import { MdOutlineFavoriteBorder } from 'react-icons/md';
 import { Link } from 'react-router-dom';
-import Swal from 'sweetalert2';
 import { AuthContext } from '../Authentication/AuthProvider/AuthProvider';
+import AddTo from '../Hooks/AddTo';
 
 function BookLayout({ product_id, bookImage, bookName, price, route }) {
-    const {user}=useContext(AuthContext)
-    const email=user?.email
-    
-  
-    
-    const handleWishlist = (product_id, bookName, bookImage, price ,email) => {
-        let selectedFavorites = localStorage.getItem(email?email + 'favorites':'favorites') ? 
-        JSON.parse(localStorage.getItem(email? email + 'favorites':'favorites')) : [];
-        const myFavorites = { product_id, bookName, bookImage, price };
-        selectedFavorites.push(myFavorites)
-
-        localStorage.setItem(email? email + 'favorites':'favorites', JSON.stringify(selectedFavorites));
-
-        Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Added to Wishlist!',
-            showConfirmButton: false,
-            timer: 500
-
-        })
-    }
-
-    const handleCart = (product_id, bookName, bookImage, price,email) => {
-        let selectedCart = localStorage.getItem(email?email + 'cart':'cart') ? 
-        JSON.parse(localStorage.getItem(email? email + 'cart':'cart')) : [];
-        const myCart = { product_id, bookName, bookImage, price };
-        selectedCart.push(myCart)
-
-        localStorage.setItem(email? email + 'cart':'cart', JSON.stringify(selectedCart));
-
-        Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Added to Cart!',
-            showConfirmButton: false,
-            timer: 500
-
-        })
-    }
+    const { user } = useContext(AuthContext)
+    const email = user?.email
+    const {handleCart,handleWishlist}=AddTo()
 
     return (
         <div className='book grid gap-2 md:gap-5 shadow border py-5 hover:border-gray-300 relative'>

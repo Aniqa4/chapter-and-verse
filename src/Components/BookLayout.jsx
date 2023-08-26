@@ -6,9 +6,9 @@ import Swal from 'sweetalert2';
 
 function BookLayout({ product_id, bookImage, bookName, price, route }) {
 
-    let selectedFavorites = localStorage.getItem('favorites') ? JSON.parse(localStorage.getItem('favorites')) : [];
-
+    
     const handleWishlist = (product_id, bookName, bookImage, price) => {
+        let selectedFavorites = localStorage.getItem('favorites') ? JSON.parse(localStorage.getItem('favorites')) : [];
         const myFavorites = { product_id, bookName, bookImage, price };
         selectedFavorites.push(myFavorites)
        
@@ -22,9 +22,9 @@ function BookLayout({ product_id, bookImage, bookName, price, route }) {
 
         })
     }
-    let selectedItems = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
-
+    
     const handleCart = (product_id, bookName, bookImage, price) => {
+        let selectedItems = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
         const myCart = { product_id, bookName, bookImage, price };
         selectedItems.push(myCart)
        

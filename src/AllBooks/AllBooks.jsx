@@ -5,9 +5,6 @@ import BookLayout from '../Components/BookLayout';
 import { AuthContext } from '../Authentication/AuthProvider/AuthProvider';
 import UserInfo from '../Hooks/UserInfo';
 import Books from '../Hooks/Books';
-import SearchBooks from '../Home/SearchBooks';
-
-
 
 function AllBooks() {
   const {loading}=useContext(AuthContext);
@@ -24,8 +21,7 @@ function AllBooks() {
      {
        role==='admin' && <AddItems text={'Manage Books'} route={'/books/manage-books'} />
      }
-      <SearchBooks/>
-      <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-5 justify-center mx-5 md:mx-0 mt-10'>
+      <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-5 justify-center mx-5 md:mx-0'>
         {
           books?.map(x => 
           <BookLayout key={x?._id} product_id={x._id} bookImage={x.bookImage} bookName={x.bookName} price={x.price} 

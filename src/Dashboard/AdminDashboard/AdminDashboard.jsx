@@ -6,33 +6,13 @@ import { IoMdArrowDropright } from 'react-icons/io';
 import { IoIosPhonePortrait } from 'react-icons/io';
 import { ImAddressBook } from 'react-icons/im';
 import { AiOutlineEdit } from 'react-icons/ai';
-import Swal from 'sweetalert2';
-import { AuthContext } from '../../Authentication/AuthProvider/AuthProvider';
 import UserInfo from '../../Hooks/UserInfo';
+import LogOut from '../../Hooks/LogOut';
 
 function AdminDashboard() {
-    const { logOut } = useContext(AuthContext);
     const [role, userInfo] = UserInfo();
-    const navigate = useNavigate();
-    const from = "/";
+    const {handleSignOut}=LogOut()
 
-    const handleSignOut = () => {
-        logOut()
-            .then(() => {
-                navigate(from, { replace: true })
-                Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: 'Successfully Logged Out',
-                    showConfirmButton: false,
-                    timer: 1500
-                })
-            })
-            .catch(error => {
-                console.log(error);
-
-            })
-    }
     return (
         <div>
             <div className=' my-5 md:my-0 grid md:flex gap-10'>

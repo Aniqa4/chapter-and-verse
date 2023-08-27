@@ -1,38 +1,16 @@
-import React, { useContext } from 'react'
-import { useNavigate } from 'react-router-dom';
+import React from 'react'
 import { BiUser } from 'react-icons/bi';
 import { AiTwotoneMail } from 'react-icons/ai';
 import { IoIosPhonePortrait } from 'react-icons/io';
 import { ImAddressBook } from 'react-icons/im';
 import { AiOutlineEdit } from 'react-icons/ai';
-import Swal from 'sweetalert2';
-import { AuthContext } from '../Authentication/AuthProvider/AuthProvider';
 import UserInfo from '../Hooks/UserInfo';
 import Title from '../Components/Title';
+import LogOut from '../Hooks/LogOut';
 
 function UserDashboard() {
-    const { logOut } = useContext(AuthContext);
-    const [role, userInfo] = UserInfo();
-    const navigate = useNavigate();
-    const from = "/";
-
-    const handleSignOut = () => {
-        logOut()
-            .then(() => {
-                navigate(from, { replace: true })
-                Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: 'Successfully Logged Out',
-                    showConfirmButton: false,
-                    timer: 1500
-                })
-            })
-            .catch(error => {
-                console.log(error);
-
-            })
-    }
+    const {handleSignOut}=LogOut()
+    const [x, userInfo] = UserInfo();
 
     return (
         <div className=' my-5 md:my-0 grid md:flex gap-10'>

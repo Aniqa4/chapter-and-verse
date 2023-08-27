@@ -1,14 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Title from '../Components/Title';
-import AddItems from '../Components/AddItems';
 import BookLayout from '../Components/BookLayout';
 import { AuthContext } from '../Authentication/AuthProvider/AuthProvider';
-import UserInfo from '../Hooks/UserInfo';
 import Books from '../Hooks/Books';
 
 function AllBooks() {
   const {loading}=useContext(AuthContext);
-  const [role]=UserInfo();
   const books=Books();
 
   if(loading){
@@ -18,9 +15,6 @@ function AllBooks() {
   return (
     <div className=' container mx-auto pt-1'>
       <Title title={'books'}></Title>
-     {
-       role==='admin' && <AddItems text={'Manage Books'} route={'/books/manage-books'} />
-     }
       <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-5 justify-center mx-5 md:mx-0'>
         {
           books?.map(x => 

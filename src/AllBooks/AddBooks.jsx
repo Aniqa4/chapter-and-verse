@@ -93,7 +93,7 @@ function AddBooks() {
         <input type="text" name='description' className='h-20' />
         <input type="submit" value="Add" className='mb-10 mt-5 p-2 bg-slate-500 text-white' />
       </form>
-      <p className=' text-center underline text-blue-600 pt-10'><Link to={'/books'}>Retun</Link></p>
+      <p className=' text-center underline text-blue-600 pt-10'><Link to={'/dashboard/manage-books'}>Retun</Link></p>
     </div>
   )
 }

@@ -22,99 +22,107 @@ import DeleteBooks from "../AllBooks/DeleteBooks";
 import Dashboard from "../Dashboard/Dashboard";
 import Cart from "../Cart/Cart";
 import Wishlist from "../Wishlist/Wishlist";
+import ManageUsers from "../Dashboard/AdminDashboard/ManageUsers";
 
-const router=createBrowserRouter([
+
+const router = createBrowserRouter([
     {
-        path:"/",
-        element:<Main/>,
-        children:[
+        path: "/",
+        element: <Main />,
+        children: [
             {
-                path:'/',
-                element:<Home/>
+                path: '/',
+                element: <Home />
             },
             {
-                path:'/books',
-                element:<AllBooks/>
+                path: 'books',
+                element: <AllBooks />
             },
             {
-                path:'books/manage-books/add-books',
-                element:<AddBooks/>
+                path: '/dashboard/manage-books/add-books',
+                element: <AddBooks />
             },
             {
-                path:'books/manage-books',
-                element:<DeleteBooks/>
+                path: '/categories',
+                element: <CategoriesOfBooks />
             },
             {
-                path:'/categories',
-                element:<CategoriesOfBooks/>
+                path: 'categories/add-new-category',
+                element: <AddNewCategory />
             },
             {
-                path:'categories/add-new-category',
-                element:<AddNewCategory/>
+                path: `/categories/:name`,
+                element: <BooksByCategory />
             },
             {
-                path:`/categories/:name`,
-                element:<BooksByCategory/>
+                path: `/categories/:name/:bookName`,
+                element: <BookDetails />
             },
             {
-                path:`/categories/:name/:bookName`,
-                element:<BookDetails/>
+                path: `/categories/:name/:bookName/update-book`,
+                element: <UpdateBooks />
             },
             {
-                path:`/categories/:name/:bookName/update-book`,
-                element:<UpdateBooks/>
+                path: '/authors',
+                element: <Authors />
             },
             {
-                path:'/authors',
-                element:<Authors/>
+                path: '/authors/:name',
+                element: <BooksByAuthor />
             },
             {
-                path:'/authors/:name',
-                element:<BooksByAuthor/>
+                path: '/authors/add-authors',
+                element: <AddAuthors />
             },
             {
-                path:'/authors/add-authors',
-                element:<AddAuthors/>
+                path: '/authors/:id/update-authors',
+                element: <UpdateAuthor />
             },
             {
-                path:'/authors/:id/update-authors',
-                element:<UpdateAuthor/>
+                path: '/publishers',
+                element: <Publishers />
             },
             {
-                path:'/publishers',
-                element:<Publishers/>
+                path: '/publishers/:name',
+                element: <BooksByPublisher />
             },
             {
-                path:'/publishers/:name',
-                element:<BooksByPublisher/>
+                path: '/publishers/:id/update-publisher',
+                element: <UpdatePublisher />
             },
             {
-                path:'/publishers/:id/update-publisher',
-                element:<UpdatePublisher/>
+                path: '/publishers/add-publishers',
+                element: <AddPublishers />
             },
             {
-                path:'/publishers/add-publishers',
-                element:<AddPublishers/>
+                path: '/log-in',
+                element: <Login />
             },
             {
-                path:'/log-in',
-                element:<Login/>
+                path: '/register',
+                element: <Register />
             },
             {
-                path:'/register',
-                element:<Register/>
+                path: '/dashboard',
+                element: <Dashboard />,
+                children: [
+                    {
+                        path: 'manage-users',
+                        element: <ManageUsers/>
+                    },
+                    {
+                        path: 'manage-books',
+                        element: <DeleteBooks/>
+                    },
+                ]
             },
             {
-                path:'/dashboard',
-                element:<Dashboard/>
+                path: '/wishlist',
+                element: <Wishlist />
             },
             {
-                path:'/wishlist',
-                element:<Wishlist/>
-            },
-            {
-                path:'/cart',
-                element:<Cart/>
+                path: '/cart',
+                element: <Cart />
             },
         ]
     }

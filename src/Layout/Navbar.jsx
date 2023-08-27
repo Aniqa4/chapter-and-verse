@@ -1,19 +1,17 @@
 import React, { useContext } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import { AiOutlineUserAdd } from 'react-icons/ai';
 import { MdOutlineDashboardCustomize } from 'react-icons/md';
 import NavbarMenu from './NavbarMenu';
 import { MdOutlineFavoriteBorder } from 'react-icons/md';
-import { AuthContext } from '../Authentication/AuthProvider/AuthProvider';
-import Swal from 'sweetalert2';
+import { AuthContext } from '../Authentication/AuthProvider/AuthProvider';;
 import { CgShoppingBag } from 'react-icons/cg';
+import LogOut from '../Hooks/LogOut';
 
 
 function Navbar() {
-  const { user, logOut } = useContext(AuthContext)
-  const navigate = useNavigate();
-  const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
+  const { user} = useContext(AuthContext);
+  const {handleSignOut}=LogOut()
 
   const favoriteItemsString=localStorage.getItem(user?user.email+'favorites':'favorites');
   const favoriteItems=JSON.parse(favoriteItemsString);
@@ -23,26 +21,6 @@ function Navbar() {
   const cartItems=JSON.parse(cartItemsString);
   const totalItemsInCart=cartItems?.length
  
-
-
-  const handleSignOut = () => {
-    logOut()
-      .then(() => {
-        Swal.fire({
-          position:'center',
-          icon:'success',
-          title:'Successfully Logged Out',
-          showConfirmButton: false,
-          timer: 1500
-        })
-        navigate(from, { replace: true })
-      })
-      .catch(error => {
-        console.log(error);
-
-      })
-  }
-
   //console.log(user.email);
   return (
     <>

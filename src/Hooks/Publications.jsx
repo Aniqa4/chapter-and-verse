@@ -9,7 +9,7 @@ function Publications() {
           .then(data => setPublications(data))
       }, []);
 
-  return publications
+  return [publications,setPublications]
 }
 
 export default Publications

@@ -5,7 +5,7 @@ import UserInfo from '../Hooks/UserInfo';
 
 function Modal({ name, email, phone, description, route }) {
     const [open, setOpen] = useState(false);
-    const role=UserInfo()
+    const [role]=UserInfo()
 
     return (
         <div>

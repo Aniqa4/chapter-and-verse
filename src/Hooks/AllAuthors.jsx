@@ -8,7 +8,7 @@ function AllAuthors() {
             .then(res => res.json())
             .then(data => setAuthors(data))
     }, []);
-    return authors
+    return [authors,setAuthors]
 }
 
 export default AllAuthors

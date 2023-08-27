@@ -1,6 +1,5 @@
 import React from 'react'
 import Title from '../Components/Title';
-import AddItems from '../Components/AddItems';
 import Modal from '../Components/Modal';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
@@ -8,7 +7,7 @@ import UserInfo from '../Hooks/UserInfo';
 import Publications from '../Hooks/Publications';
 
 function Publishers() {
-  const publications=Publications()
+const [publications,setPublications]=Publications()
   const [role]=UserInfo()
 
   const handleDelete = (id) => {
@@ -51,9 +50,6 @@ function Publishers() {
     <div className=' lg:container lg:mx-auto py-5 mx-5'>
       <Title title={'Publishers'} />
       <p className='py-2 text-gray-400'>Search books by Publishers</p>
-      {
-        role==='admin' && <AddItems text={'Add Publishers'} route={'/publishers/add-publishers'} />
-      }
       <div className='grid xl:grid-cols-3 md:grid-cols-2 gap-2'>
         {
           publications?.map(x =>

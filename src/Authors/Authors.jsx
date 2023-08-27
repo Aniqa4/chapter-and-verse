@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Title from '../Components/Title';
-import AddItems from '../Components/AddItems';
 import Modal from '../Components/Modal';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
@@ -8,7 +7,7 @@ import UserInfo from '../Hooks/UserInfo';
 import AllAuthors from '../Hooks/AllAuthors';
 
 function Authors() {
-  const authors = AllAuthors()
+  const [authors,setAuthors] = AllAuthors()
   const [role]=UserInfo()
 
   const handleDelete = (id) => {
@@ -50,9 +49,6 @@ function Authors() {
     <div className=' lg:container lg:mx-auto py-5 mx-5'>
       <Title title={'Authors'} />
       <p className='py-2 text-gray-400'>Search books by Author</p>
-      {
-        role==='admin' && <AddItems text={'Add Authors'} route={'/authors/add-authors'} />
-      }
       <div className='grid xl:grid-cols-3 md:grid-cols-2 gap-5'>
         {
           authors?.map(x =>

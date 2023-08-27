@@ -8,9 +8,9 @@ import AllAuthors from '../Hooks/AllAuthors';
 import Publications from '../Hooks/Publications';
 
 function AddBooks() {
-  const categories=BookCategories();
-  const namesOfPublications=Publications()
-  const namesOfAuthors = AllAuthors()
+  const categories = BookCategories();
+  const [namesOfPublications] = Publications()
+  const [namesOfAuthors] = AllAuthors()
 
   const handleForm = (e) => {
     e.preventDefault();

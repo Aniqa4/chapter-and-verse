@@ -1,7 +1,6 @@
 import React from 'react'
 import Swal from 'sweetalert2';
 import Title from '../Components/Title';
-import { Link } from 'react-router-dom';
 
 function AddPublishers() {
   const handleForm = (e) => {
@@ -35,9 +34,9 @@ function AddPublishers() {
     form.reset()
 }
   return (
-    <div className=' container mx-auto pt-1'>
+    <div className='container mx-auto '>
             <Title title={'Add publisher'} />
-            <form onSubmit={handleForm} className='grid px-10 md:shadow'>
+            <form onSubmit={handleForm} className='grid px-5  md:shadow'>
                 <label>publisher's Name: </label>
                 <input type="text" name='name' />
                 <label>Email: </label>
@@ -48,7 +47,6 @@ function AddPublishers() {
                 <input type="text" name="description" />
                 <input type="submit" value="ADD" className='mb-10 mt-5 p-2 bg-slate-500 text-white' />
             </form>
-            <p className=' text-center underline text-blue-400 py-10'><Link to={'/publishers'}>Return to Previous Page</Link></p>
         </div>
   )
 }

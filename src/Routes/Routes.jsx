@@ -23,6 +23,7 @@ import Dashboard from "../Dashboard/Dashboard";
 import Cart from "../Cart/Cart";
 import Wishlist from "../Wishlist/Wishlist";
 import ManageUsers from "../Dashboard/AdminDashboard/ManageUsers";
+import DashboardHome from "../Dashboard/AdminDashboard/DashboardHome";
 
 
 const router = createBrowserRouter([
@@ -47,10 +48,6 @@ const router = createBrowserRouter([
                 element: <CategoriesOfBooks />
             },
             {
-                path: 'categories/add-new-category',
-                element: <AddNewCategory />
-            },
-            {
                 path: `/categories/:name`,
                 element: <BooksByCategory />
             },
@@ -71,10 +68,6 @@ const router = createBrowserRouter([
                 element: <BooksByAuthor />
             },
             {
-                path: '/authors/add-authors',
-                element: <AddAuthors />
-            },
-            {
                 path: '/authors/:id/update-authors',
                 element: <UpdateAuthor />
             },
@@ -91,10 +84,6 @@ const router = createBrowserRouter([
                 element: <UpdatePublisher />
             },
             {
-                path: '/publishers/add-publishers',
-                element: <AddPublishers />
-            },
-            {
                 path: '/log-in',
                 element: <Login />
             },
@@ -107,12 +96,28 @@ const router = createBrowserRouter([
                 element: <Dashboard />,
                 children: [
                     {
+                        path: '/dashboard',
+                        element: <DashboardHome/>
+                    },
+                    {
                         path: 'manage-users',
                         element: <ManageUsers/>
                     },
                     {
                         path: 'manage-books',
                         element: <DeleteBooks/>
+                    },
+                    {
+                        path: 'add-publishers',
+                        element: <AddPublishers />
+                    },
+                    {
+                        path: 'add-authors',
+                        element: <AddAuthors />
+                    },
+                    {
+                        path: 'add-new-category',
+                        element: <AddNewCategory />
                     },
                 ]
             },

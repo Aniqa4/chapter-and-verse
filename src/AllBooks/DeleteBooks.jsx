@@ -56,7 +56,6 @@ function DeleteBooks() {
                         </div>)
                 }
             </div>
-            <p className=' text-center underline text-blue-600 pt-10'><Link to={'/books'}>Retun</Link></p>
         </div>
     )
 }

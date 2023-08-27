@@ -15,7 +15,7 @@ function Gallery() {
   return (
     <div className=' container mx-auto'>
         <Title title={`Bookworm's Haven: A Visual Journey Through Our Library`}></Title>
-        <div className=' grid grid-cols-3 gap-2 md:gap-5 px-2 md:px-5 lg:px-0'>
+        <div className=' grid grid-cols-3 gap-2 md:gap-5 px-2 md:px-5 lg:px-0 pb-10'>
             <img src={gallery} className=' rounded shadow-2xl'/>
             <img src={gallery3} className='rounded shadow-2xl'/>
             <img src={gallery4} className='rounded shadow-2xl'/>

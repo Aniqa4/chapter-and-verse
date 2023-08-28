@@ -47,8 +47,8 @@ function BookDetails() {
                     <h1 className=' font-semibold'>Writer: <span className='text-red-700'>{bookData?.authorName}</span></h1>
                     <h1 className=' font-semibold'>Publisher: <span className='text-red-700'>{bookData?.publisherName}</span></h1>
                     <h1 className=' font-semibold'>Category: {bookData?.category}</h1>
-                    <h1 className=' font-semibold'>Price: {bookData?.price} taka</h1>
-                    <h1 className=' font-semibold'>Pages: 300</h1>
+                    <h1 className=' font-semibold'>Price: {bookData?.price} BDT</h1>
+                    <h1 className=' font-semibold'>Pages: {bookData?.numberOfPages}</h1>
                     <h1 className=' font-semibold'> 1st Published: {formattedDate}</h1>
                     <p className=' underline'><Link to={`/categories/${bookData?.category}`}>Explore similar books</Link></p>
                     <button onClick={() => handleWishlist(bookData?._id, bookData?.bookName, bookData?.bookImage, bookData?.price, email)}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Title from '../Components/Title';
 import { TbCurrencyTaka } from 'react-icons/tb'
 import { useNavigate, useParams } from 'react-router-dom';
@@ -34,8 +34,9 @@ function UpdateBooks() {
         const dateOfArrival = form.date.value;
         const availableCopies = form.availableCopies.value;
         const soldCopies = form.soldCopies.value;
+        const numberOfPages = form.numberOfPages.value;
         const description = form.description.value;
-        const newBook = { bookName, bookImage, authorName, publisherName, price, category, dateOfArrival, availableCopies, soldCopies, description }
+        const newBook = { bookName, bookImage, authorName, publisherName, price, category, dateOfArrival, availableCopies, soldCopies, numberOfPages, description }
 
         fetch(`https://chapter-and-verse-server-side.vercel.app/update-book/${myBook._id}`, {
             method: 'PUT',
@@ -59,7 +60,7 @@ function UpdateBooks() {
             })
 
         form.reset()
-        console.log(myBook._id, newBook);
+        //console.log(myBook._id, newBook);
 
     }
     return (
@@ -74,16 +75,16 @@ function UpdateBooks() {
                 <select name="authorName">
                     <option defaultValue={myBook?.authorName}>{myBook?.authorName}</option>
                     {
-                        namesOfAuthors?.map(x =>
-                            <option key={x._id} value={x?.name}>{x?.name}</option>)
+                        namesOfAuthors?.map((x,index) =>
+                            <option key={index} value={x?.name}>{x?.name}</option>)
                     }
                 </select>
                 <label>Publisher's Name: </label>
                 <select name="publisherName" defaultValue={myBook?.publisherName}>
                     <option defaultValue={myBook?.publisherName}>{myBook?.publisherName}</option>
                     {
-                        namesOfPublications?.map((x) =>
-                            <option key={x._id} value={x?.name}>{x?.name}</option>)
+                        namesOfPublications?.map((x,index) =>
+                            <option key={index} value={x?.name}>{x?.name}</option>)
                     }
                 </select>
                 <label className='flex'>Price<span><TbCurrencyTaka /></span> : </label>
@@ -102,9 +103,11 @@ function UpdateBooks() {
                 <input type="number" name='availableCopies' defaultValue={myBook?.availableCopies} />
                 <label>Copies sold: </label>
                 <input type="number" name='soldCopies' defaultValue={myBook?.soldCopies} disabled className='bg-gray-100 border-0' />
+                <label>Number of Pages: </label>
+                <input type="number" name='numberOfPages'  defaultValue={myBook?.numberOfPages} />
                 <label>Description: </label>
                 <input type="text" name='description' defaultValue={myBook?.description} className='h-20' />
-                <input type="submit" value="Add" className='mb-10 mt-5 p-2 bg-slate-500 text-white' />
+                <input type="submit" value="Update" className='mb-10 mt-5 p-2 bg-slate-500 text-white' />
             </form>
         </div>
     )

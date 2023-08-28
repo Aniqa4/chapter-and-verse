@@ -10,7 +10,9 @@ function Dashboard() {
        {
         role==='admin' && <AdminDashboard/>
        }
-       <UserDashboard/>
+       {
+        role==='user' && <UserDashboard/>
+       }
     </div>
   )
 }

@@ -14,17 +14,17 @@ function Login() {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
-  //console.log(location.state.from.pathname);
-
-
+  
+  
   const [users, setUsers] = useState([]);
-
+  
   useEffect(() => {
     fetch('https://chapter-and-verse-server-side.vercel.app/users')
-      .then(res => res.json())
-      .then(data => setUsers(data))
+    .then(res => res.json())
+    .then(data => setUsers(data))
   }, []);
-
+  
+  console.log(users);
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -60,8 +60,8 @@ function Login() {
       .then(result => {
         const loggedUser = result.user;
         //console.log(loggedUser);
-        const currentUser = loggedUser.email;
-        const existingUser = users.find(x => x.email === currentUser)
+        const email = loggedUser?.email;
+        const existingUser = users.find(x => x?.email === email)
         if (!existingUser) {
           const name = loggedUser.displayName;
           const email = loggedUser.email;

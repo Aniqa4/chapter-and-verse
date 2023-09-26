@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Title from '../Components/Title'
 import BookLayout from '../Components/BookLayout';
 import { Link } from 'react-router-dom';
+import LoaderForHome from '../Loader/LoaderForHome';
 
 function FeaturedBooks() {
   const [books, setBooks] = useState([]);
@@ -12,6 +13,9 @@ function FeaturedBooks() {
       .then(data => setBooks(data))
   }, []);
 
+  if(!books){
+    return <LoaderForHome/>
+  }
   //console.log(books);
   return (
     <div className=' container mx-auto'>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import Title from '../Components/Title';
 import Swal from 'sweetalert2';
+import axios from 'axios';
 
 function UpdateAuthor() {
     const data = useParams();
@@ -10,9 +11,8 @@ function UpdateAuthor() {
     const from = `/authors`;
 
     useEffect(() => {
-        fetch(`https://chapter-and-verse-server-side.vercel.app/authors/${data?.id}`)
-            .then(res => res.json())
-            .then(data => setAuthor(data))
+        axios.get(`https://chapter-and-verse-server-side.vercel.app/authors/${data?.id}`)
+            .then(data => setAuthor(data.data))
     }, []);
 
     const handleForm = (e) => {
@@ -24,16 +24,10 @@ function UpdateAuthor() {
         const description = form.description.value;
         const authorInfo = {name, email, phone, description }
 
-        fetch(`https://chapter-and-verse-server-side.vercel.app/update-author/${data?.id}`, {
-            method: 'PUT',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(authorInfo)
-        })
-            .then(res => res.json())
+        axios.put(`https://chapter-and-verse-server-side.vercel.app/update-author/${data?.id}`,authorInfo)
             .then(data => {
-                if (data.modifiedCount === 1) {
+                const updatedData=data.data
+                if (updatedData.modifiedCount === 1) {
                     Swal.fire({
                         position: 'center',
                         icon: 'success',
@@ -42,9 +36,9 @@ function UpdateAuthor() {
                         timer: 1500
                     })
                     navigate(from, { replace: true })
+                    form.reset()
                 }
             })
-        form.reset()
     }
 
     //console.log(author);

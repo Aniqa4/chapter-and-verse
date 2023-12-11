@@ -7,6 +7,7 @@ import Books from '../Hooks/Books';
 import BookCategories from '../Hooks/BookCategories';
 import Publications from '../Hooks/Publications';
 import AllAuthors from '../Hooks/AllAuthors';
+import axios from 'axios';
 
 function UpdateBooks() {
     const books = Books()
@@ -38,16 +39,10 @@ function UpdateBooks() {
         const description = form.description.value;
         const newBook = { bookName, bookImage, authorName, publisherName, price, category, dateOfArrival, availableCopies, soldCopies, numberOfPages, description }
 
-        fetch(`https://chapter-and-verse-server-side.vercel.app/update-book/${myBook._id}`, {
-            method: 'PUT',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(newBook)
-        })
-            .then(res => res.json())
+        axios.put(`https://chapter-and-verse-server-side.vercel.app/update-book/${myBook._id}`, newBook)
             .then(data => {
-                if (data.modifiedCount === 1) {
+                const updatedData=data.data;
+                if (updatedData.modifiedCount === 1) {
                     Swal.fire({
                         position: 'center',
                         icon: 'success',
@@ -56,10 +51,10 @@ function UpdateBooks() {
                         timer: 1500
                     })
                     navigate(from, { replace: true })
+                    form.reset()
                 }
             })
 
-        form.reset()
         //console.log(myBook._id, newBook);
 
     }
@@ -75,7 +70,7 @@ function UpdateBooks() {
                 <select name="authorName">
                     <option defaultValue={myBook?.authorName}>{myBook?.authorName}</option>
                     {
-                        namesOfAuthors?.map((x,index) =>
+                        namesOfAuthors?.map((x, index) =>
                             <option key={index} value={x?.name}>{x?.name}</option>)
                     }
                 </select>
@@ -83,7 +78,7 @@ function UpdateBooks() {
                 <select name="publisherName" defaultValue={myBook?.publisherName}>
                     <option defaultValue={myBook?.publisherName}>{myBook?.publisherName}</option>
                     {
-                        namesOfPublications?.map((x,index) =>
+                        namesOfPublications?.map((x, index) =>
                             <option key={index} value={x?.name}>{x?.name}</option>)
                     }
                 </select>
@@ -104,7 +99,7 @@ function UpdateBooks() {
                 <label>Copies sold: </label>
                 <input type="number" name='soldCopies' defaultValue={myBook?.soldCopies} disabled className='bg-gray-100 border-0' />
                 <label>Number of Pages: </label>
-                <input type="number" name='numberOfPages'  defaultValue={myBook?.numberOfPages} />
+                <input type="number" name='numberOfPages' defaultValue={myBook?.numberOfPages} />
                 <label>Description: </label>
                 <input type="text" name='description' defaultValue={myBook?.description} className='h-20' />
                 <input type="submit" value="Update" className='mb-10 mt-5 p-2 bg-slate-500 text-white' />

@@ -5,10 +5,11 @@ import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import UserInfo from '../Hooks/UserInfo';
 import Publications from '../Hooks/Publications';
+import axios from 'axios';
 
 function Publishers() {
-const [publications,setPublications]=Publications()
-  const [role]=UserInfo()
+  const [publications, setPublications] = Publications()
+  const [role] = UserInfo()
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -22,12 +23,10 @@ const [publications,setPublications]=Publications()
     }).then((result) => {
       if (result.isConfirmed) {
         // User confirmed, proceed with the deletion
-        fetch(`https://chapter-and-verse-server-side.vercel.app/delete-publisher/${id}`, {
-          method: 'DELETE'
-        })
-          .then(res => res.json())
+        axios.delete(`https://chapter-and-verse-server-side.vercel.app/delete-publisher/${id}`)
           .then(data => {
-            if (data.deletedCount > 0) {
+            const deletedData = data.data
+            if (deletedData.deletedCount > 0) {
               Swal.fire({
                 position: 'center',
                 icon: 'success',
@@ -55,9 +54,9 @@ const [publications,setPublications]=Publications()
           publications?.map(x =>
             <div key={x?._id} className=' p-5 shadow my-2 flex justify-between items-center hover:bg-gray-100' >
               <Link to={`${x?.name}`}><h1 className=' font-semibold text-sm text-red-700 hover:text-red-400'>{x.name}</h1></Link>
-              <div className={role==='admin'?'grid grid-cols-2 gap-2':''}>
+              <div className={role === 'admin' ? 'grid grid-cols-2 gap-2' : ''}>
                 {
-                  role==='admin' && <button onClick={()=>handleDelete(x._id)} className=' border px-3 py-1 hover:bg-white'>Delete</button>
+                  role === 'admin' && <button onClick={() => handleDelete(x._id)} className=' border px-3 py-1 hover:bg-white'>Delete</button>
                 }
                 <Modal name={x.name} email={x.email} phone={x.phone} description={x.description} route={`${x._id}/update-publisher`} />
               </div>

@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import UserInfo from '../Hooks/UserInfo';
 import AllAuthors from '../Hooks/AllAuthors';
+import axios from 'axios';
 
 function Authors() {
   const [authors,setAuthors] = AllAuthors()
@@ -22,12 +23,10 @@ function Authors() {
     }).then((result) => {
       if (result.isConfirmed) {
         // User confirmed, proceed with the deletion
-        fetch(`https://chapter-and-verse-server-side.vercel.app/delete-author/${id}`, {
-          method: 'DELETE'
-        })
-          .then(res => res.json())
+        axios.delete(`https://chapter-and-verse-server-side.vercel.app/delete-author/${id}`)
           .then(data => {
-            if (data.deletedCount > 0) {
+            const deleteData=data.data
+            if (deleteData.deletedCount > 0) {
               Swal.fire({
                 position: 'center',
                 icon: 'success',

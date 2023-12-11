@@ -5,6 +5,7 @@ import AddItems from '../Components/AddItems';
 import UserInfo from '../Hooks/UserInfo';
 import AddTo from '../Hooks/AddTo';
 import { AuthContext } from '../Authentication/AuthProvider/AuthProvider';
+import axios from 'axios';
 
 function BookDetails() {
     const data = useParams();
@@ -17,9 +18,8 @@ function BookDetails() {
     const {handleCart,handleWishlist}=AddTo()
 
     useEffect(() => {
-        fetch(`https://chapter-and-verse-server-side.vercel.app/books/${bookName}`)
-            .then(res => res.json())
-            .then(data => setBookData(data))
+        axios.get(`https://chapter-and-verse-server-side.vercel.app/books/${bookName}`)
+            .then(data => setBookData(data.data))
     }, []);
 
     const date = bookData?.dateOfArrival

@@ -3,6 +3,7 @@ import { Box, Drawer, Typography } from '@mui/material';
 import { CiMenuKebab } from 'react-icons/ci';
 import { MdOutlineClose } from 'react-icons/md';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 function NavbarMenu() {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -10,9 +11,8 @@ function NavbarMenu() {
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
-        fetch('https://chapter-and-verse-server-side.vercel.app/names-of-categories')
-            .then(res => res.json())
-            .then(data => setCategories(data))
+        axios.get('https://chapter-and-verse-server-side.vercel.app/names-of-categories')
+            .then(data => setCategories(data.data))
     }, []);
 
     return (

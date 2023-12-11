@@ -3,20 +3,20 @@ import Title from '../Components/Title'
 import BookLayout from '../Components/BookLayout';
 import { Link } from 'react-router-dom';
 import LoaderForHome from '../Loader/LoaderForHome';
+import  axios  from "axios";
 
 function FeaturedBooks() {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    fetch('https://chapter-and-verse-server-side.vercel.app/featured-books')
-      .then(res => res.json())
-      .then(data => setBooks(data))
+    axios.get('https://chapter-and-verse-server-side.vercel.app/featured-books')
+      .then(data => setBooks(data.data))
   }, []);
 
-  if(!books){
-    return <LoaderForHome/>
+  if (!books) {
+    return <LoaderForHome />
   }
-  //console.log(books);
+  console.log(books);
   return (
     <div className=' container mx-auto'>
       <Title title={'Featured books'}></Title>

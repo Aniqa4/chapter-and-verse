@@ -2,11 +2,11 @@ import React from 'react'
 import Swal from 'sweetalert2';
 import Title from '../Components/Title';
 import AddItems from '../Components/AddItems';
-import { Link } from 'react-router-dom';
 import Books from '../Hooks/Books';
+import axios from 'axios';
 
 function DeleteBooks() {
-    const books=Books();
+    const books = Books();
 
     const handleDelete = (id) => {
         Swal.fire({
@@ -20,12 +20,10 @@ function DeleteBooks() {
         }).then((result) => {
             if (result.isConfirmed) {
                 // User confirmed, proceed with the deletion
-                fetch(`https://chapter-and-verse-server-side.vercel.app/delete-book/${id}`, {
-                    method: 'DELETE'
-                })
-                    .then(res => res.json())
+                axios.delete(`https://chapter-and-verse-server-side.vercel.app/delete-book/${id}`)
                     .then(data => {
-                        if (data.deletedCount > 0) {
+                        const deletedData = data.data
+                        if (deletedData.deletedCount > 0) {
                             Swal.fire({
                                 position: 'center',
                                 icon: 'success',

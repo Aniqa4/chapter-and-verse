@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import BookCategories from '../Hooks/BookCategories';
 import AllAuthors from '../Hooks/AllAuthors';
 import Publications from '../Hooks/Publications';
+import axios from 'axios';
 
 function AddBooks() {
   const categories = BookCategories();
@@ -28,16 +29,10 @@ function AddBooks() {
     const description = form.description.value;
     const newBook = { bookName, bookImage, authorName, publisherName, price, category, dateOfArrival, availableCopies, soldCopies, numberOfPages, description }
 
-    fetch('https://chapter-and-verse-server-side.vercel.app/add-books', {
-      method: 'POST',
-      headers:
-        { 'content-type': 'application/json' },
-      body: JSON.stringify(newBook)
-    })
-      .then(res => res.json())
+    axios.post('https://chapter-and-verse-server-side.vercel.app/add-books', newBook)
       .then(data => {
-        console.log(data);
-        if (data.acknowledged === true) {
+        const postedData = data.data
+        if (postedData.acknowledged === true) {
           Swal.fire({
             position: 'center',
             icon: 'success',
@@ -45,9 +40,9 @@ function AddBooks() {
             showConfirmButton: false,
             timer: 1500
           })
+          form.reset()
         }
       })
-    form.reset()
   }
 
   return (
@@ -91,7 +86,7 @@ function AddBooks() {
         <label>Copies sold: </label>
         <input type="number" name='soldCopies' value={0} disabled />
         <label>Number of Pages: </label>
-        <input type="number" name='numberOfPages'/>
+        <input type="number" name='numberOfPages' />
         <label>Description: </label>
         <input type="text" name='description' className='h-20' />
         <input type="submit" value="Add" className='mb-10 mt-5 p-2 bg-slate-500 text-white' />

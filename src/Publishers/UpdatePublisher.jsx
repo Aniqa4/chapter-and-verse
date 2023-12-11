@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import Title from '../Components/Title';
+import axios from 'axios';
 
 function UpdatePublisher() {
     const data = useParams();
@@ -10,9 +11,8 @@ function UpdatePublisher() {
     const from = `/publishers`;
 
     useEffect(() => {
-        fetch(`https://chapter-and-verse-server-side.vercel.app/publishers/${data?.id}`)
-            .then(res => res.json())
-            .then(data => setPublisher(data))
+        axios.get(`https://chapter-and-verse-server-side.vercel.app/publishers/${data?.id}`)
+            .then(data => setPublisher(data.data))
     }, []);
 
     const handleForm = (e) => {
@@ -24,16 +24,11 @@ function UpdatePublisher() {
         const description = form.description.value;
         const publisherInfo = { name, email, phone, description }
 
-        fetch(`https://chapter-and-verse-server-side.vercel.app/update-publisher/${data?.id}`, {
-            method: 'PUT',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(publisherInfo)
-        })
+        axios.put(`https://chapter-and-verse-server-side.vercel.app/update-publisher/${data?.id}`, publisherInfo)
             .then(res => res.json())
             .then(data => {
-                if (data.modifiedCount === 1) {
+                const updatedData = data.data
+                if (updatedData.modifiedCount === 1) {
                     Swal.fire({
                         position: 'center',
                         icon: 'success',
@@ -42,9 +37,9 @@ function UpdatePublisher() {
                         timer: 1500
                     })
                     navigate(from, { replace: true })
+                    form.reset()
                 }
             })
-        form.reset()
     }
     return (
         <div className=' container mx-auto pt-1'>

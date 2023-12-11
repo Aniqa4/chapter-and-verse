@@ -1,7 +1,7 @@
 import React from 'react'
 import Title from '../Components/Title';
 import Swal from 'sweetalert2';
-import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 function AddAuthors() {
 
@@ -12,18 +12,13 @@ function AddAuthors() {
         const email = form.email.value;
         const phone = form.phone.value;
         const description = form.description.value;
-        const authorInfo = {name, email, phone, description }
+        const authorInfo = { name, email, phone, description }
 
-        fetch(`https://chapter-and-verse-server-side.vercel.app/add-authors`, {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(authorInfo)
-        })
-            .then(res => res.json())
+        axios.post(`https://chapter-and-verse-server-side.vercel.app/add-authors`, authorInfo)
             .then(data => {
-                if (data.acknowledged === true) {
+                const addedData = data.data
+                console.log(addedData);
+                if (addedData.acknowledged === true) {
                     Swal.fire({
                         position: 'center',
                         icon: 'success',
@@ -31,9 +26,9 @@ function AddAuthors() {
                         showConfirmButton: false,
                         timer: 1500
                     })
+                    form.reset()
                 }
             })
-        form.reset()
     }
 
     //console.log(author);
@@ -44,7 +39,7 @@ function AddAuthors() {
                 <label>Author's Name: </label>
                 <input type="text" name='name' />
                 <label>Email: </label>
-                <input type="text" name='email' /> 
+                <input type="text" name='email' />
                 <label >Phone: </label>
                 <input type="text" name="phone" />
                 <label>Description: </label>

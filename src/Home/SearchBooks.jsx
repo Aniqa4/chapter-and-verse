@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect, useState, useRef } from 'react';
 import { BiSearchAlt2 } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
@@ -18,9 +19,8 @@ function SearchBooks() {
 
     useEffect(() => {
         if (searchedItem !== '') {
-            fetch(`https://chapter-and-verse-server-side.vercel.app/search-books/${searchedItem}`)
-                .then(res => res.json())
-                .then(data => setSearchResult(data))
+            axios.get(`https://chapter-and-verse-server-side.vercel.app/search-books/${searchedItem}`)
+                .then(data => setSearchResult(data.data))
                 .catch(error => console.error('Error fetching data:', error));
         } else {
             setSearchResult([]); // Clear search results if the search term is empty

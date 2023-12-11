@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react'
 import Title from '../Components/Title';
 import BookLayout from '../Components/BookLayout';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 function BestSellingBooks() {
     const [books, setBooks] = useState([]);
 
     useEffect(() => {
-        fetch('https://chapter-and-verse-server-side.vercel.app/best-selling')
-            .then(res => res.json())
-            .then(data => setBooks(data))
+        axios.get('https://chapter-and-verse-server-side.vercel.app/best-selling')
+            .then(data => setBooks(data.data))
     }, []);
 
     return (

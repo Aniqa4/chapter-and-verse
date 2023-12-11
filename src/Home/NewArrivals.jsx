@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react'
 import Title from '../Components/Title'
 import { Link } from 'react-router-dom';
 import BookLayout from '../Components/BookLayout';
+import axios from 'axios';
 
 function NewArrivals() {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    fetch('https://chapter-and-verse-server-side.vercel.app/new-arrivals')
-      .then(res => res.json())
-      .then(data => setBooks(data))
+    axios.get('https://chapter-and-verse-server-side.vercel.app/new-arrivals')
+      .then(data => setBooks(data.data))
   }, []);
 
   return (

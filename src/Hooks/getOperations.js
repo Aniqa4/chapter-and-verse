@@ -1,8 +1,9 @@
-let URL= import.meta.env.VITE_BASE_URL
+import { useQuery } from "@tanstack/react-query"
 
-function getData(endPoint) {
-    const url=`${URL}/${endPoint}`
-  return url
+let BASE_URL = import.meta.env.VITE_BASE_URL
+
+function getData() {
+    return BASE_URL
 }
 
 export default getData

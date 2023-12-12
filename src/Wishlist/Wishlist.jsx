@@ -42,7 +42,7 @@ function Wishlist() {
                 <td>{x.price} Tk</td>
                 <td onClick={()=>handleCart(x.product_id,x.bookName,x.bookImage,x.price,email,index,setFavoriteItems)} className='underline text-blue-600'>Add to Cart</td>
                 <td onClick={() => deleteItem(index)} className=' text-red-800 text-xl'><MdDeleteForever /></td>
-              </tr>) : <tr><td>You have not selected any item</td></tr>
+              </tr>) : <tr><td className='text-red-700 pb-10 text-center'>You have not selected any item</td></tr>
           }
         </tbody>
       </table>

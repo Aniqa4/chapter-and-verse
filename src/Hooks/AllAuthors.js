@@ -9,7 +9,7 @@ function AllAuthors() {
             .then(data => setAuthors(data.data))
     }, []);
     
-    return [authors,setAuthors]
+    return {authors,setAuthors}
 }
 
 export default AllAuthors

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Title from '../Components/Title'
 import BookLayout from '../Components/BookLayout';
 import { Link } from 'react-router-dom';
@@ -6,13 +6,7 @@ import axios from "axios";
 import { useQuery } from '@tanstack/react-query';
 
 function FeaturedBooks() {
-  /* const [books, setBooks] = useState([]);
-
-  useEffect(() => {
-    axios.get('https://chapter-and-verse-server-side.vercel.app/featured-books')
-      .then(data => setBooks(data.data))
-  }, []); */
-
+  
   const { isLoading, data } = useQuery({
     queryKey: ['featuredBooks'],
     queryFn: () => {
@@ -25,7 +19,6 @@ function FeaturedBooks() {
   }
   
   const books = data?.data
-
   return (
     <div className=' container mx-auto'>
       <Title title={'Featured books'}></Title>

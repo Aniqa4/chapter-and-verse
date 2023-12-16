@@ -8,8 +8,8 @@ import AllAuthors from '../Hooks/AllAuthors';
 import axios from 'axios';
 
 function Authors() {
-  const [authors,setAuthors] = AllAuthors()
-  const [role]=UserInfo()
+  const [authors, setAuthors] = AllAuthors()
+  const [role] = UserInfo()
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -25,7 +25,7 @@ function Authors() {
         // User confirmed, proceed with the deletion
         axios.delete(`https://chapter-and-verse-server-side.vercel.app/delete-author/${id}`)
           .then(data => {
-            const deleteData=data.data
+            const deleteData = data.data
             if (deleteData.deletedCount > 0) {
               Swal.fire({
                 position: 'center',
@@ -43,7 +43,7 @@ function Authors() {
     });
   }
 
-  //console.log(authors);
+  console.log('authors', authors);
   return (
     <div className=' lg:container lg:mx-auto py-5 mx-5'>
       <Title title={'Authors'} />
@@ -53,9 +53,9 @@ function Authors() {
           authors?.map(x =>
             <div key={x._id} className=' p-5 shadow my-2 flex justify-between items-center' >
               <Link to={`${x?.name}`}><h1 className=' font-semibold text text-red-700 hover:text-gray-700'>{x.name}</h1></Link>
-              <div className={role==='admin'?'grid grid-cols-2 gap-2':''}>
+              <div className={role === 'admin' ? 'grid grid-cols-2 gap-2' : ''}>
                 {
-                  role==='admin' && <button onClick={() => handleDelete(x._id)} className=' border px-3 py-1 hover:bg-gray-100'>Delete</button>
+                  role === 'admin' && <button onClick={() => handleDelete(x._id)} className=' border px-3 py-1 hover:bg-gray-100'>Delete</button>
                 }
                 <Modal name={x.name} email={x.email} phone={x.phone} description={x.description} route={`${x._id}/update-authors`} />
               </div>

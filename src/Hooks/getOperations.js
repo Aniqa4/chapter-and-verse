@@ -1,5 +1,3 @@
-import { useQuery } from "@tanstack/react-query"
-
 let BASE_URL = import.meta.env.VITE_BASE_URL
 
 function getData() {

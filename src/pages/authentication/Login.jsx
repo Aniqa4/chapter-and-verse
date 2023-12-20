@@ -3,9 +3,9 @@ import Title from '../../components/Title';
 import { FcGoogle } from 'react-icons/fc';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Divider } from '@mui/material';
-import { AuthContext } from './AuthProvider/AuthProvider';
 import { GoogleAuthProvider } from 'firebase/auth';
 import Swal from 'sweetalert2';
+import { AuthContext } from '../../authProvider/AuthProvider';
 
 function Login() {
   const { signIn, googleSignIn } = useContext(AuthContext);

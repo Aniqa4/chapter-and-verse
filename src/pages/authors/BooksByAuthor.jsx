@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import Title from '../Components/Title';
-import BookLayout from '../Components/BookLayout';
+import Title from '../../components/Title';
+import BookLayout from '../../components/BookLayout';
 import axios from 'axios';
 
 function BooksByAuthor() {

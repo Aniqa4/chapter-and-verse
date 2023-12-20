@@ -4,7 +4,7 @@ import { AiOutlineUserAdd } from 'react-icons/ai';
 import { MdOutlineDashboardCustomize } from 'react-icons/md';
 import NavbarMenu from './NavbarMenu';
 import { MdOutlineFavoriteBorder } from 'react-icons/md';
-import { AuthContext } from '../Authentication/AuthProvider/AuthProvider';;
+import { AuthContext } from '../authProvider/AuthProvider';;
 import { CgShoppingBag } from 'react-icons/cg';
 import LogOut from '../Hooks/LogOut';
 

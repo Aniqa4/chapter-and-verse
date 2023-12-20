@@ -1,14 +1,14 @@
 import React from 'react'
-import Title from '../components/Title';
-import gallery from '../assets/Gallery/gallery.jpg'
-import gallery3 from '../assets/Gallery/gallery3.jpg'
-import gallery4 from '../assets/Gallery/gallery4.jpg'
-import gallery5 from '../assets/Gallery/gallery5.jpg'
-import gallery6 from '../assets/Gallery/gallery6.jpg'
-import gallery7 from '../assets/Gallery/gallery7.jpg'
-import gallery8 from '../assets/Gallery/gallery8.jpg'
-import gallery9 from '../assets/Gallery/gallery9.jpg'
-import gallery10 from '../assets/Gallery/gallery10.jpg'
+import Title from '../../components/Title';
+import gallery from '../../assets/Gallery/gallery.jpg'
+import gallery3 from '../../assets/Gallery/gallery3.jpg'
+import gallery4 from '../../assets/Gallery/gallery4.jpg'
+import gallery5 from '../../assets/Gallery/gallery5.jpg'
+import gallery6 from '../../assets/Gallery/gallery6.jpg'
+import gallery7 from '../../assets/Gallery/gallery7.jpg'
+import gallery8 from '../../assets/Gallery/gallery8.jpg'
+import gallery9 from '../../assets/Gallery/gallery9.jpg'
+import gallery10 from '../../assets/Gallery/gallery10.jpg'
 
 
 function Gallery() {

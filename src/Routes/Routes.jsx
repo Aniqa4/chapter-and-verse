@@ -1,39 +1,38 @@
 import { createBrowserRouter } from "react-router-dom";
-import Home from "../home/Home";
-import Main from "../Layout/Main";
-import AllBooks from "../AllBooks/AllBooks";
-import Login from "../Authentication/Login";
-import Register from "../Authentication/Register";
-import CategoriesOfBooks from "../CategoriesOfBooks/CategoriesOfBooks";
-import AddBooks from "../AllBooks/AddBooks";
-import Authors from "../Authors/Authors";
-import Publishers from "../publishers/Publishers";
-import BooksByCategory from "../categoriesOfBooks/BooksByCategory";
-import AddAuthors from "../authors/AddAuthors";
-import AddPublishers from "../publishers/AddPublishers";
-import AddNewCategory from "../CategoriesOfBooks/AddNewCategory";
-import BookDetails from "../CategoriesOfBooks/BookDetails";
-import UpdateBooks from "../AllBooks/UpdateBooks";
-import UpdateAuthor from "../Authors/UpdateAuthor";
-import BooksByAuthor from "../Authors/BooksByAuthor";
-import UpdatePublisher from "../publishers/UpdatePublisher";
-import BooksByPublisher from "../publishers/BooksByPublisher";
-import DeleteBooks from "../AllBooks/DeleteBooks";
+import Home from "../pages/home/Home";
+import AllBooks from "../pages/allBooks/AllBooks";
+import AddBooks from "../pages/allBooks/AddBooks";
+import CategoriesOfBooks from "../pages/categoriesOfBooks/CategoriesOfBooks";
+import BooksByCategory from "../pages/categoriesOfBooks/BooksByCategory";
+import BookDetails from "../pages/categoriesOfBooks/BookDetails";
+import UpdateBooks from "../pages/allBooks/UpdateBooks";
+import Authors from "../pages/authors/Authors";
+import BooksByAuthor from "../pages/authors/BooksByAuthor";
+import UpdateAuthor from "../pages/authors/UpdateAuthor";
+import Publishers from "../pages/publishers/Publishers";
+import BooksByPublisher from "../pages/publishers/BooksByPublisher";
+import UpdatePublisher from "../pages/publishers/UpdatePublisher";
+import Login from "../pages/authentication/Login";
+import Register from "../pages/authentication/Register";
 import Dashboard from "../Dashboard/Dashboard";
-import Cart from "../cart/Cart";
-import Wishlist from "../Wishlist/Wishlist";
-import ManageUsers from "../Dashboard/adminDashboard/ManageUsers";
 import DashboardHome from "../Dashboard/adminDashboard/DashboardHome";
-
+import ManageUsers from "../Dashboard/adminDashboard/ManageUsers";
+import DeleteBooks from "../pages/allBooks/DeleteBooks";
+import AddPublishers from "../pages/publishers/AddPublishers";
+import AddAuthors from "../pages/authors/AddAuthors";
+import AddNewCategory from "../pages/categoriesOfBooks/AddNewCategory";
+import Wishlist from "../pages/Wishlist/Wishlist";
+import Cart from "../pages/cart/Cart";
+import Main from "../layout/Main";
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Main />,
+        element: <Main/>,
         children: [
             {
                 path: '/',
-                element: <Home />
+                element: <Home/>
             },
             {
                 path: 'books',
@@ -49,7 +48,7 @@ const router = createBrowserRouter([
             },
             {
                 path: `/categories/:name`,
-                element: <BooksByCategory />
+                element: <BooksByCategory/>
             },
             {
                 path: `/categories/:name/:bookName`,
@@ -93,7 +92,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard',
-                element: <Dashboard />,
+                element: <Dashboard/>,
                 children: [
                     {
                         path: '/dashboard',

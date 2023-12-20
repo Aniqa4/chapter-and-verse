@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import Title from '../components/Title';
-import BookLayout from '../components/BookLayout';
+
+import BookLayout from '../../components/BookLayout';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Title from '../../components/Title';
 
 function BestSellingBooks() {
     const [books, setBooks] = useState([]);

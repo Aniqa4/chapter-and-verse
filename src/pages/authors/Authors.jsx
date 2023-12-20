@@ -1,10 +1,10 @@
 import React from 'react'
-import Title from '../Components/Title';
-import Modal from '../Components/Modal';
+import Title from '../../components/Title';
+import Modal from '../../components/Modal';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import UserInfo from '../Hooks/UserInfo';
-import AllAuthors from '../Hooks/AllAuthors';
+import UserInfo from '../../Hooks/UserInfo';
+import AllAuthors from '../../Hooks/AllAuthors';
 import axios from 'axios';
 
 function Authors() {

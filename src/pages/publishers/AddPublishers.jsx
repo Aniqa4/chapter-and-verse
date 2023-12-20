@@ -1,6 +1,6 @@
 import React from 'react'
 import Swal from 'sweetalert2';
-import Title from '../components/Title';
+import Title from '../../components/Title';
 import axios from 'axios';
 
 function AddPublishers() {

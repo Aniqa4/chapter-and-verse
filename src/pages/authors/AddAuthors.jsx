@@ -1,5 +1,5 @@
 import React from 'react'
-import Title from '../components/Title';
+import Title from '../../components/Title';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 

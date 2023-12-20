@@ -1,11 +1,11 @@
 import React from 'react'
-import Title from '../components/Title'
+import Title from '../../components/Title'
 import { TbCurrencyTaka } from 'react-icons/tb'
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
-import BookCategories from '../hooks/BookCategories';
-import AllAuthors from '../hooks/AllAuthors';
-import Publications from '../hooks/Publications';
+import BookCategories from '../../Hooks/BookCategories';
+import AllAuthors from '../../Hooks/AllAuthors';
+import Publications from '../../Hooks/Publications';
 import axios from 'axios';
 
 function AddBooks() {

@@ -1,9 +1,9 @@
 import React from 'react'
 import Swal from 'sweetalert2';
-import Title from '../components/Title';
-import AddItems from '../components/AddItems';
-import Books from '../Hooks/Books';
+import AddItems from '../../components/AddItems';
+import Books from '../../Hooks/Books';
 import axios from 'axios';
+import Title from '../../components/Title';
 
 function DeleteBooks() {
     const books = Books();

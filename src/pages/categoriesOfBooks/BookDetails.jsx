@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom';
-import Title from '../components/Title';
-import AddItems from '../components/AddItems';
-import UserInfo from '../Hooks/UserInfo';
-import AddTo from '../Hooks/AddTo';
-import { AuthContext } from '../Authentication/AuthProvider/AuthProvider';
+import Title from '../../components/Title';
+import AddItems from '../../components/AddItems';
+import UserInfo from '../../Hooks/UserInfo';
+import AddTo from '../../Hooks/AddTo';
+import { AuthContext } from '../../authProvider/AuthProvider';
 import axios from 'axios';
 
 function BookDetails() {

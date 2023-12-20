@@ -1,6 +1,6 @@
 import React from 'react'
-import Title from '../components/Title'
-import BookLayout from '../components/BookLayout';
+import Title from '../../components/Title'
+import BookLayout from '../../components/BookLayout';
 import { Link } from 'react-router-dom';
 import axios from "axios";
 import { useQuery } from '@tanstack/react-query';

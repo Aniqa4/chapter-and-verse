@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../Authentication/AuthProvider/AuthProvider";
+import { AuthContext } from "../authProvider/AuthProvider";
 import Swal from "sweetalert2";
 
 function LogOut() {

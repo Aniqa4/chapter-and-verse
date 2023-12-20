@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import Title from '../../components/Title';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { AuthContext, auth } from './AuthProvider/AuthProvider';
+import { AuthContext, auth } from '../../authProvider/AuthProvider';
 import { updateProfile } from 'firebase/auth';
 import Swal from 'sweetalert2';
 

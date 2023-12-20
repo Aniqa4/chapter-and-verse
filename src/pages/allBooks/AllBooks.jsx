@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Title from '../components/Title';
-import BookLayout from '../components/BookLayout';
-import Books from '../Hooks/Books';
+import Title from '../../components/Title';
+import BookLayout from '../../components/BookLayout';
+import Books from '../../Hooks/Books';
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 
 function AllBooks() {

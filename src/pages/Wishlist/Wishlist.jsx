@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { MdDeleteForever } from 'react-icons/md'
 import Title from '../../components/Title';
-import { AuthContext } from '../../AuthProvider/AuthProvider';
+import { AuthContext } from '../../authProvider/AuthProvider';
 import WishlistToCart from '../../Hooks/WishlistToCart';
 
 function Wishlist() {

@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
-import { AuthContext } from '../Authentication/AuthProvider/AuthProvider';
+import { AuthContext } from '../authProvider/AuthProvider';
 import axios from 'axios';
 
 function UserInfo() {

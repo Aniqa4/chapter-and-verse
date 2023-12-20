@@ -1,5 +1,5 @@
 import UserInfo from "../Hooks/UserInfo";
-import AdminDashboard from "./AdminDashboard/AdminDashboard";
+import AdminDashboard from "./adminDashboard/AdminDashboard";
 import UserDashboard from "./UserDashboard";
 
 function Dashboard() {

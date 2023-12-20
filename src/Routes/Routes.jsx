@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import Home from "../Home/Home";
+import Home from "../home/Home";
 import Main from "../Layout/Main";
 import AllBooks from "../AllBooks/AllBooks";
 import Login from "../Authentication/Login";
@@ -7,23 +7,23 @@ import Register from "../Authentication/Register";
 import CategoriesOfBooks from "../CategoriesOfBooks/CategoriesOfBooks";
 import AddBooks from "../AllBooks/AddBooks";
 import Authors from "../Authors/Authors";
-import Publishers from "../Publishers/Publishers";
-import BooksByCategory from "../CategoriesOfBooks/BooksByCategory";
-import AddAuthors from "../Authors/AddAuthors";
-import AddPublishers from "../Publishers/AddPublishers";
+import Publishers from "../publishers/Publishers";
+import BooksByCategory from "../categoriesOfBooks/BooksByCategory";
+import AddAuthors from "../authors/AddAuthors";
+import AddPublishers from "../publishers/AddPublishers";
 import AddNewCategory from "../CategoriesOfBooks/AddNewCategory";
 import BookDetails from "../CategoriesOfBooks/BookDetails";
 import UpdateBooks from "../AllBooks/UpdateBooks";
 import UpdateAuthor from "../Authors/UpdateAuthor";
 import BooksByAuthor from "../Authors/BooksByAuthor";
-import UpdatePublisher from "../Publishers/UpdatePublisher";
-import BooksByPublisher from "../Publishers/BooksByPublisher";
+import UpdatePublisher from "../publishers/UpdatePublisher";
+import BooksByPublisher from "../publishers/BooksByPublisher";
 import DeleteBooks from "../AllBooks/DeleteBooks";
 import Dashboard from "../Dashboard/Dashboard";
-import Cart from "../Cart/Cart";
+import Cart from "../cart/Cart";
 import Wishlist from "../Wishlist/Wishlist";
-import ManageUsers from "../Dashboard/AdminDashboard/ManageUsers";
-import DashboardHome from "../Dashboard/AdminDashboard/DashboardHome";
+import ManageUsers from "../Dashboard/adminDashboard/ManageUsers";
+import DashboardHome from "../Dashboard/adminDashboard/DashboardHome";
 
 
 const router = createBrowserRouter([
@@ -97,15 +97,15 @@ const router = createBrowserRouter([
                 children: [
                     {
                         path: '/dashboard',
-                        element: <DashboardHome/>
+                        element: <DashboardHome />
                     },
                     {
                         path: 'manage-users',
-                        element: <ManageUsers/>
+                        element: <ManageUsers />
                     },
                     {
                         path: 'manage-books',
-                        element: <DeleteBooks/>
+                        element: <DeleteBooks />
                     },
                     {
                         path: 'add-publishers',

@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { CgShoppingBag } from 'react-icons/cg';
 import { MdOutlineFavoriteBorder } from 'react-icons/md';
 import { Link } from 'react-router-dom';
-import { AuthContext } from '../Authentication/AuthProvider/AuthProvider';
+import { AuthContext } from '../authProvider/AuthProvider';
 import AddTo from '../Hooks/AddTo';
 
 function BookLayout({ product_id, bookImage, bookName, price, route }) {

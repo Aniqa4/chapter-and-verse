@@ -5,7 +5,7 @@ import { IoIosPhonePortrait } from 'react-icons/io';
 import { ImAddressBook } from 'react-icons/im';
 import { AiOutlineEdit } from 'react-icons/ai';
 import UserInfo from '../Hooks/UserInfo';
-import Title from '../Components/Title';
+import Title from '../components/Title';
 import LogOut from '../Hooks/LogOut';
 
 function UserDashboard() {

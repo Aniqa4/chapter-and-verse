@@ -2,10 +2,13 @@ import React, { useContext, useEffect, useState } from 'react';
 import { MdDeleteForever } from 'react-icons/md'
 import Title from '../../components/Title';
 import { AuthContext } from '../../authProvider/AuthProvider';
+import { useDispatch } from 'react-redux';
+import { CartItems } from '../../redux/features/cart/cartSlice';
 
 function Cart() {
   const [cartItems, setCartItems] = useState([])
   const {user}=useContext(AuthContext)
+  const dispatch = useDispatch()
   const email = user?.email;
 
   //get items from local storage
@@ -22,6 +25,7 @@ function Cart() {
     arrayOfObjects.splice(index, 1)
     localStorage.setItem(email ? email + 'cart' : 'cart', JSON.stringify(arrayOfObjects));
     setCartItems(arrayOfObjects);
+    dispatch(CartItems(cartItems.length-1))
     //console.log(arrayOfObjects);
   }
    

@@ -3,11 +3,14 @@ import { MdDeleteForever } from 'react-icons/md'
 import Title from '../../components/Title';
 import { AuthContext } from '../../authProvider/AuthProvider';
 import WishlistToCart from '../../Hooks/WishlistToCart';
+import { useDispatch } from 'react-redux';
+import { FavoriteItems } from '../../redux/features/favorites/favoriteSlice';
 
 function Wishlist() {
   const [favoriteItems, setFavoriteItems] = useState([]);
-  const {handleCart}=WishlistToCart()
-  const {user}=useContext(AuthContext)
+  const { handleCart } = WishlistToCart()
+  const { user } = useContext(AuthContext)
+  const dispatch = useDispatch()
   const email = user?.email;
 
   //get items from local storage
@@ -24,6 +27,7 @@ function Wishlist() {
     arrayOfObjects.splice(index, 1)
     localStorage.setItem(email ? email + 'favorites' : 'favorites', JSON.stringify(arrayOfObjects));
     setFavoriteItems(arrayOfObjects);
+    dispatch(FavoriteItems(favoriteItems.length-1))
     //console.log(arrayOfObjects);
   }
 
@@ -40,7 +44,7 @@ function Wishlist() {
                 <td><img src={x.bookImage} className='w-16' /></td>
                 <td className=''>{x.bookName}</td>
                 <td>{x.price} Tk</td>
-                <td onClick={()=>handleCart(x.product_id,x.bookName,x.bookImage,x.price,email,index,setFavoriteItems)} className='underline text-blue-600'>Add to Cart</td>
+                <td onClick={() => handleCart(x.product_id, x.bookName, x.bookImage, x.price, email, index, setFavoriteItems)} className='underline text-blue-600'>Add to Cart</td>
                 <td onClick={() => deleteItem(index)} className=' text-red-800 text-xl'><MdDeleteForever /></td>
               </tr>) : <tr><td className='text-red-700 pb-10 text-center'>You have not selected any item</td></tr>
           }

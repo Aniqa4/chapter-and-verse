@@ -8,15 +8,12 @@ const favoriteSlice = createSlice({
     name: 'favorite',
     initialState,
     reducers: {
-        incrementFavorite: (state) => {
-            state.favoriteItems += 1
-        },
-        decrementFavorite: (state) => {
-            state.favoriteItems -= 1
+        FavoriteItems: (state, { payload }) => {
+            state.favoriteItems = payload
         }
     }
 })
 
-export const { incrementFavorite, decrementFavorite} = favoriteSlice.actions
+export const { FavoriteItems } = favoriteSlice.actions
 
 export default favoriteSlice.reducer

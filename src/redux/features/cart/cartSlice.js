@@ -8,15 +8,13 @@ const cartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
-        incrementCart: (state) => {
-            state.cartItems += 1
+        CartItems: (state, { payload }) => {
+            state.cartItems = payload
         },
-        decrementCart: (state) => {
-            state.cartItems -= 1
-        }
+
     }
 })
 
-export const { incrementCart, decrementCart } = cartSlice.actions
+export const { CartItems } = cartSlice.actions
 
 export default cartSlice.reducer

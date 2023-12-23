@@ -1,7 +1,13 @@
+import { useDispatch } from 'react-redux';
 import Swal from 'sweetalert2';
+import { incrementCart } from '../redux/features/cart/cartSlice';
+import { incrementFavorite } from '../redux/features/favorites/favoriteSlice';
 
 function AddTo() {
+    const dispatch = useDispatch()
+
     const handleWishlist = (product_id, bookName, bookImage, price, email) => {
+        dispatch(incrementFavorite())
         let selectedFavorites = localStorage.getItem(email ? email + 'favorites' : 'favorites') ?
             JSON.parse(localStorage.getItem(email ? email + 'favorites' : 'favorites')) : [];
         const myFavorites = { product_id, bookName, bookImage, price };
@@ -20,6 +26,7 @@ function AddTo() {
     }
 
     const handleCart = (product_id, bookName, bookImage, price, email) => {
+        dispatch(incrementCart())
         let selectedCart = localStorage.getItem(email ? email + 'cart' : 'cart') ?
             JSON.parse(localStorage.getItem(email ? email + 'cart' : 'cart')) : [];
         const myCart = { product_id, bookName, bookImage, price };
@@ -35,7 +42,7 @@ function AddTo() {
 
         })
     }
-    return { handleCart, handleWishlist}
+    return { handleCart, handleWishlist }
 }
 
 export default AddTo

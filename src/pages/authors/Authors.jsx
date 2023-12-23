@@ -43,7 +43,7 @@ function Authors() {
     });
   }
 
-  console.log('authors', authors);
+  //console.log('authors', authors);
   return (
     <div className=' lg:container lg:mx-auto py-5 mx-5'>
       <Title title={'Authors'} />

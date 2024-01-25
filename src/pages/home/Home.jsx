@@ -1,6 +1,5 @@
 import React from 'react'
 import Banner from './Banner'
-import Gallery from './Gallery'
 import FeaturedBooks from './FeaturedBooks'
 import CategoriesOfBooks from './CategoriesOfBooks'
 import NewArrivals from './NewArrivals'
@@ -16,7 +15,6 @@ function Home() {
       <CategoriesOfBooks/>
       <BestSellingBooks/>
       <NewArrivals/>
-      <Gallery/>
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+
 import Banner from './Banner'
 import FeaturedBooks from './FeaturedBooks'
 import CategoriesOfBooks from './CategoriesOfBooks'

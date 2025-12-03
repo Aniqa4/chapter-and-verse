@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import Title from '../../components/Title';
 import { FcGoogle } from 'react-icons/fc';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -36,7 +36,7 @@ function Login() {
     signIn(email, password)
       .then(result => {
         const loggedUser = result.user;
-        //console.log(loggedUser);
+        console.log(loggedUser);
         Swal.fire({
           position: 'center',
           icon: 'success',
@@ -123,7 +123,7 @@ function Login() {
       <div className='md:mx-auto md:w-1/2 lg:w-1/4 text-center mt-10 m-5'>
         <p onClick={handleGoogleSignIn} className='flex justify-center items-center gap-2 border rounded-full shadow border-red-700 py-2 hover:bg-gray-200 text-red-700'>
           <span className=' text-xl'><FcGoogle /></span>Join with Google</p>
-        <p className='pt-5'>Don't Have an Account? <span className='underline'><Link to="/register">Register</Link></span></p>
+        <p className='pt-5'>Don&apos;t Have an Account? <span className='underline'><Link to="/register">Register</Link></span></p>
       </div>
       <p className=' text-red-700 text-center'>{error}</p>
     </div>

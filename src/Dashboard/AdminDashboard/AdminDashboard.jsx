@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
-import { Link, Outlet, useNavigate } from 'react-router-dom';
+
+import { Link, Outlet } from 'react-router-dom';
 import { BiUser } from 'react-icons/bi';
 import { AiTwotoneMail } from 'react-icons/ai';
 import { IoMdArrowDropright } from 'react-icons/io';

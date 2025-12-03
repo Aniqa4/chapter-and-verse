@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom';
 import Title from '../../components/Title';
 import AddItems from '../../components/AddItems';
@@ -21,8 +21,6 @@ function BookDetails() {
         axios.get(`https://chapter-and-verse-server-side.vercel.app/books/${bookName}`)
             .then(data => setBookData(data.data))
     }, []);
-
-    const date = bookData?.dateOfArrival
 
     const formatDate = (date) => {
         const options = { day: "numeric", month: "short", year: "numeric" };

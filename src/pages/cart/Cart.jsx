@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { MdDeleteForever } from 'react-icons/md'
 import Title from '../../components/Title';
 import { AuthContext } from '../../authProvider/AuthProvider';

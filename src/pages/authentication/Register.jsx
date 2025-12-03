@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import Title from '../../components/Title';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext, auth } from '../../authProvider/AuthProvider';
@@ -25,7 +25,7 @@ function Register() {
     signUp(email, password)
       .then(result => {
         const loggedUser = result.user;
-        //console.log(loggedUser);
+        console.log(loggedUser);
         updateProfile(auth.currentUser, {
           displayName: name,
           photoURL: photoURL,

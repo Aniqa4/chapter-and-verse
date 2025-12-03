@@ -1,4 +1,4 @@
-import React from 'react'
+
 import Title from '../../components/Title';
 import { TbCurrencyTaka } from 'react-icons/tb'
 import { useNavigate, useParams } from 'react-router-dom';
@@ -62,11 +62,11 @@ function UpdateBooks() {
         <div className=' container mx-auto pt-1'>
             <Title title={'Update book'} />
             <form onSubmit={handleForm} className='grid px-10 md:shadow'>
-                <label>Book's Name: </label>
+                <label>Book&apos;s Name: </label>
                 <input type="text" name='bookName' defaultValue={myBook?.bookName} />
-                <label>Book's PhotoURL: </label>
+                <label>Book&apos;s PhotoURL: </label>
                 <input type="text" name='bookImage' defaultValue={myBook?.bookImage} />
-                <label>Author's Name: </label>
+                <label>Author&apos;s Name: </label>
                 <select name="authorName">
                     <option defaultValue={myBook?.authorName}>{myBook?.authorName}</option>
                     {
@@ -74,7 +74,7 @@ function UpdateBooks() {
                             <option key={index} value={x?.name}>{x?.name}</option>)
                     }
                 </select>
-                <label>Publisher's Name: </label>
+                <label>Publisher&apos;s Name: </label>
                 <select name="publisherName" defaultValue={myBook?.publisherName}>
                     <option defaultValue={myBook?.publisherName}>{myBook?.publisherName}</option>
                     {

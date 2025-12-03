@@ -1,10 +1,10 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import { Link } from 'react-router-dom';
 import { AiOutlineUserAdd } from 'react-icons/ai';
 import { MdOutlineDashboardCustomize } from 'react-icons/md';
 import NavbarMenu from './NavbarMenu';
 import { MdOutlineFavoriteBorder } from 'react-icons/md';
-import { AuthContext } from '../authProvider/AuthProvider';;
+import { AuthContext } from '../authProvider/AuthProvider';
 import { CgShoppingBag } from 'react-icons/cg';
 import LogOut from '../Hooks/LogOut';
 import { useSelector } from 'react-redux';

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import Title from '../../components/Title';
@@ -45,7 +45,7 @@ function UpdatePublisher() {
         <div className=' container mx-auto pt-1'>
             <Title title={'Update'} />
             <form onSubmit={handleForm} className='grid px-10 md:shadow'>
-                <label>Publisher's Name: </label>
+                <label>Publisher&apos;s Name: </label>
                 <input type="text" name='name' defaultValue={publisher?.name} />
                 <label>Email: </label>
                 <input type="text" name='email' defaultValue={publisher?.email} />

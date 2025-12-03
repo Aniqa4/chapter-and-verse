@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { BiSearchAlt2 } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
 

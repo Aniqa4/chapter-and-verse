@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Box, Drawer, Typography } from '@mui/material';
 import { CiMenuKebab } from 'react-icons/ci';
 import { MdOutlineClose } from 'react-icons/md';

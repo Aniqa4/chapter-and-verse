@@ -1,4 +1,4 @@
-import React from 'react'
+
 import Title from '../../components/Title';
 import Modal from '../../components/Modal';
 import { Link } from 'react-router-dom';

@@ -1,4 +1,4 @@
-import React from 'react'
+
 import Swal from 'sweetalert2';
 import Title from '../../components/Title';
 import axios from 'axios';
@@ -32,7 +32,7 @@ function AddPublishers() {
         <div className='container mx-auto '>
             <Title title={'Add publisher'} />
             <form onSubmit={handleForm} className='grid px-5  md:shadow'>
-                <label>publisher's Name: </label>
+                <label>publisher&apos;s Name: </label>
                 <input type="text" name='name' />
                 <label>Email: </label>
                 <input type="text" name='email' />

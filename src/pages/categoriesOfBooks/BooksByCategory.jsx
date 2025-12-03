@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import Title from '../../components/Title';
 import BookLayout from '../../components/BookLayout';
 import axios from 'axios';

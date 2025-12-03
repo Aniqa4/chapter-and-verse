@@ -1,4 +1,4 @@
-import React from 'react'
+
 import Title from '../../components/Title'
 import BookLayout from '../../components/BookLayout';
 import { Link } from 'react-router-dom';

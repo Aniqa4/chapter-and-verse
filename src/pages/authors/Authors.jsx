@@ -2,7 +2,7 @@
 import Title from '../../Components/Title';
 import Modal from '../../Components/Modal';
 import { Link } from 'react-router-dom';
-import Swal from 'sweetalert2';
+import { toast } from 'sonner';
 import UserInfo from '../../Hooks/UserInfo';
 import AllAuthors from '../../Hooks/AllAuthors';
 import axiosInstance from '../../api/axiosInstance';
@@ -12,35 +12,13 @@ function Authors() {
   const [role] = UserInfo()
 
   const handleDelete = (id) => {
-    Swal.fire({
-      title: 'Are you sure?',
-      text: 'You won\'t be able to revert this!',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        // User confirmed, proceed with the deletion
-        axiosInstance.delete(`/delete-author/${id}`)
-          .then(data => {
-            const deleteData = data.data
-            if (deleteData.success === true) {
-              Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'Deleted',
-                showConfirmButton: false,
-                timer: 1500
-              });
-
-              const remainingAuthors = authors.filter(x => x._id !== id);
-              setAuthors(remainingAuthors);
-            }
-          });
+    if (!window.confirm('Are you sure you want to delete this author?')) return;
+    axiosInstance.delete(`/delete-author/${id}`).then(data => {
+      if (data.data.success === true) {
+        toast.success('Author deleted');
+        setAuthors(authors.filter(x => x._id !== id));
       }
-    });
+    }).catch(() => toast.error('Failed to delete author'));
   }
 
   //console.log('authors', authors);

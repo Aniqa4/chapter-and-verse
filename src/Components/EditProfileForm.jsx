@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import { AuthContext } from '../authProvider/AuthProvider';
-import Swal from 'sweetalert2';
+import { toast } from 'sonner';
 
 function EditProfileForm({ userInfo, onClose }) {
   const { updateProfile } = useContext(AuthContext);
@@ -17,10 +17,10 @@ function EditProfileForm({ userInfo, onClose }) {
     setSaving(true);
     updateProfile(data)
       .then(() => {
-        Swal.fire({ icon: 'success', title: 'Profile updated', timer: 1200, showConfirmButton: false });
+        toast.success('Profile updated!');
         onClose();
       })
-      .catch(() => Swal.fire({ icon: 'error', title: 'Update failed' }))
+      .catch(() => toast.error('Update failed'))
       .finally(() => setSaving(false));
   };
 

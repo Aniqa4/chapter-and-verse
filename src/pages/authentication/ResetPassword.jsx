@@ -2,7 +2,7 @@
 import Title from '../../Components/Title';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
-import Swal from 'sweetalert2';
+import { toast } from 'sonner';
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -31,13 +31,7 @@ function ResetPassword() {
     try {
       const res = await axios.post(`${BASE_URL}/reset-password/${token}`, { password });
       if (res.data.success) {
-        await Swal.fire({
-          icon: 'success',
-          title: 'Password Reset!',
-          text: 'You can now log in with your new password.',
-          timer: 2000,
-          showConfirmButton: false,
-        });
+        toast.success('Password reset! You can now log in.');
         navigate('/log-in');
       } else {
         setError(res.data.message || 'Something went wrong. Please try again.');

@@ -1,6 +1,6 @@
 ﻿
 import Title from '../../Components/Title';
-import Swal from 'sweetalert2';
+import { toast } from 'sonner';
 import axiosInstance from '../../api/axiosInstance';
 
 function AddAuthors() {
@@ -18,13 +18,7 @@ function AddAuthors() {
             .then(data => {
                 const addedData = data.data
                 if (addedData.success === true) {
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'Author has been added',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
+                    toast.success('Author has been added!')
                     form.reset()
                 }
             })

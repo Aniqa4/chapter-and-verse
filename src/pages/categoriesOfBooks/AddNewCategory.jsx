@@ -1,4 +1,4 @@
-﻿import Swal from 'sweetalert2';
+﻿import { toast } from 'sonner';
 import Title from '../../Components/Title';
 import axiosInstance from '../../api/axiosInstance';
 
@@ -15,22 +15,12 @@ function AddNewCategory() {
       .then(data => {
         const postedData = data.data;
         if (postedData.acknowledged === true) {
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Category has been added',
-            showConfirmButton: false,
-            timer: 1500,
-          });
+          toast.success('Category has been added!');
           form.reset();
         }
       })
       .catch(err => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Failed to add category',
-          text: err.response?.data?.message || 'Something went wrong.',
-        });
+        toast.error(err.response?.data?.message || 'Failed to add category.');
       });
   };
 

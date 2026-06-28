@@ -1,5 +1,5 @@
 ﻿import { useEffect, useState } from 'react';
-import Swal from 'sweetalert2';
+import { toast } from 'sonner';
 import axiosInstance from '../../api/axiosInstance';
 import Title from '../../Components/Title';
 
@@ -11,40 +11,23 @@ function ManageUsers() {
   }, []);
 
   const makeAdmin = (id) => {
-    Swal.fire({
-      title: 'Make this user an admin?',
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonText: 'Yes, make admin',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        axiosInstance.patch(`/make-admin/${id}`).then(res => {
-          if (res.data.success) {
-            setUsers(prev => prev.map(u => u._id === id ? { ...u, role: 'admin' } : u));
-            Swal.fire({ icon: 'success', title: 'Admin role granted', timer: 1500, showConfirmButton: false });
-          }
-        });
+    if (!window.confirm('Make this user an admin?')) return;
+    axiosInstance.patch(`/make-admin/${id}`).then(res => {
+      if (res.data.success) {
+        setUsers(prev => prev.map(u => u._id === id ? { ...u, role: 'admin' } : u));
+        toast.success('Admin role granted');
       }
-    });
+    }).catch(() => toast.error('Update failed'));
   };
 
   const removeAdmin = (id) => {
-    Swal.fire({
-      title: 'Remove admin role?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#d33',
-      confirmButtonText: 'Yes, remove',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        axiosInstance.patch(`/remove-admin/${id}`).then(res => {
-          if (res.data.success) {
-            setUsers(prev => prev.map(u => u._id === id ? { ...u, role: 'user' } : u));
-            Swal.fire({ icon: 'success', title: 'Admin role removed', timer: 1500, showConfirmButton: false });
-          }
-        });
+    if (!window.confirm('Remove admin role from this user?')) return;
+    axiosInstance.patch(`/remove-admin/${id}`).then(res => {
+      if (res.data.success) {
+        setUsers(prev => prev.map(u => u._id === id ? { ...u, role: 'user' } : u));
+        toast.success('Admin role removed');
       }
-    });
+    }).catch(() => toast.error('Update failed'));
   };
 
   return (

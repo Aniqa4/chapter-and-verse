@@ -5,7 +5,7 @@ import { AuthContext } from '../../authProvider/AuthProvider';
 import { useDispatch } from 'react-redux';
 import { CartItems } from '../../redux/features/cart/cartSlice';
 import axiosInstance from '../../api/axiosInstance';
-import Swal from 'sweetalert2';
+import { toast } from 'sonner';
 
 function Cart() {
   const [cartItems, setCartItems] = useState([]);
@@ -50,21 +50,10 @@ function Cart() {
         localStorage.setItem(storageKey, JSON.stringify([]));
         setCartItems([]);
         dispatch(CartItems(0));
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Order placed successfully!',
-          text: 'You can track it in your dashboard.',
-          showConfirmButton: false,
-          timer: 2000,
-        });
+        toast.success('Order placed! You can track it in your dashboard.');
       })
       .catch(err => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Order failed',
-          text: err.response?.data?.message || 'Something went wrong. Please try again.',
-        });
+        toast.error(err.response?.data?.message || 'Order failed. Please try again.');
       })
       .finally(() => setPlacing(false));
   };

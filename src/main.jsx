@@ -11,6 +11,7 @@ import {
 } from '@tanstack/react-query'
 import { Provider } from 'react-redux'
 import store from './redux/store'
+import { Toaster } from 'sonner'
 
 const queryClient = new QueryClient()
 
@@ -21,6 +22,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <QueryClientProvider client={queryClient}>
           <Provider store={store}>
             <RouterProvider router={router} />
+            <Toaster richColors position="top-right" duration={2000} />
           </Provider>
         </QueryClientProvider>
       </AuthProvider>

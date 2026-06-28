@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../authProvider/AuthProvider";
-import Swal from "sweetalert2";
+import { toast } from "sonner";
 
 function LogOut() {
   const { logOut } = useContext(AuthContext);
@@ -11,13 +11,7 @@ function LogOut() {
     logOut()
       .then(() => {
         navigate("/", { replace: true });
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "Successfully Logged Out",
-          showConfirmButton: false,
-          timer: 1500,
-        });
+        toast.success("Successfully logged out");
       })
       .catch((err) => {
         console.error(err);

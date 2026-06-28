@@ -1,6 +1,6 @@
 ﻿import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
-import Swal from 'sweetalert2';
+import { toast } from 'sonner';
 import Title from '../../Components/Title';
 import axiosInstance from '../../api/axiosInstance';
 
@@ -28,13 +28,7 @@ function UpdatePublisher() {
             .then(res => {
                 const updatedData = res.data
                 if (updatedData.success === true) {
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'Publisher info has been updated',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
+                    toast.success('Publisher info has been updated!')
                     navigate(from, { replace: true })
                     form.reset()
                 }

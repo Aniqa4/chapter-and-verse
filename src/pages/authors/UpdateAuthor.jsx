@@ -1,7 +1,7 @@
 ﻿import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import Title from '../../Components/Title';
-import Swal from 'sweetalert2';
+import { toast } from 'sonner';
 import axiosInstance from '../../api/axiosInstance';
 
 function UpdateAuthor() {
@@ -28,13 +28,7 @@ function UpdateAuthor() {
             .then(data => {
                 const updatedData=data.data
                 if (updatedData.success === true) {
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'Author info has been updated',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
+                    toast.success('Author info has been updated!')
                     navigate(from, { replace: true })
                     form.reset()
                 }

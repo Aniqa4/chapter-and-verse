@@ -2,7 +2,7 @@
 import Title from '../../Components/Title';
 import { TbCurrencyTaka } from 'react-icons/tb'
 import { useNavigate, useParams } from 'react-router-dom';
-import Swal from 'sweetalert2';
+import { toast } from 'sonner';
 import Books from '../../Hooks/Books';
 import BookCategories from '../../Hooks/BookCategories';
 import Publications from '../../Hooks/Publications';
@@ -43,13 +43,7 @@ function UpdateBooks() {
             .then(data => {
                 const updatedData=data.data;
                 if (updatedData.success === true) {
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'Book has been updated',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
+                    toast.success('Book has been updated!')
                     navigate(from, { replace: true })
                     form.reset()
                 }

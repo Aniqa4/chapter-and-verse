@@ -2,7 +2,7 @@
 import Title from '../../Components/Title';
 import Modal from '../../Components/Modal';
 import { Link } from 'react-router-dom';
-import Swal from 'sweetalert2';
+import { toast } from 'sonner';
 import UserInfo from '../../Hooks/UserInfo';
 import Publications from '../../Hooks/Publications';
 import axiosInstance from '../../api/axiosInstance';
@@ -12,35 +12,13 @@ function Publishers() {
   const [role] = UserInfo()
 
   const handleDelete = (id) => {
-    Swal.fire({
-      title: 'Are you sure?',
-      text: 'You won\'t be able to revert this!',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        // User confirmed, proceed with the deletion
-        axiosInstance.delete(`/delete-publisher/${id}`)
-          .then(data => {
-            const deletedData = data.data
-            if (deletedData.success === true) {
-              Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'Deleted',
-                showConfirmButton: false,
-                timer: 1500
-              });
-
-              const remainingPublishers = publications.filter(x => x._id !== id);
-              setPublications(remainingPublishers);
-            }
-          });
+    if (!window.confirm('Are you sure you want to delete this publisher?')) return;
+    axiosInstance.delete(`/delete-publisher/${id}`).then(data => {
+      if (data.data.success === true) {
+        toast.success('Publisher deleted');
+        setPublications(publications.filter(x => x._id !== id));
       }
-    });
+    }).catch(() => toast.error('Failed to delete publisher'));
   }
 
 

@@ -2,7 +2,7 @@
 import Title from '../../Components/Title';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Divider } from '@mui/material';
-import Swal from 'sweetalert2';
+import { toast } from 'sonner';
 import { GoogleLogin } from '@react-oauth/google';
 import { AuthContext } from '../../authProvider/AuthProvider';
 
@@ -33,13 +33,7 @@ function Login() {
 
     signIn(email, password)
       .then(() => {
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Successfully Logged In',
-          showConfirmButton: false,
-          timer: 1500,
-        });
+        toast.success('Successfully logged in!');
         form.reset();
         navigate(from, { replace: true });
       })
@@ -59,13 +53,7 @@ function Login() {
     setError('');
     googleSignIn(credentialResponse.credential)
       .then(() => {
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Successfully Logged In',
-          showConfirmButton: false,
-          timer: 1500,
-        });
+        toast.success('Successfully logged in!');
         navigate(from, { replace: true });
       })
       .catch((err) => {

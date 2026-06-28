@@ -1,6 +1,6 @@
 ﻿import Title from "../../Components/Title";
 import { TbCurrencyTaka } from "react-icons/tb";
-import Swal from "sweetalert2";
+import { toast } from "sonner";
 import { Link } from "react-router-dom";
 import BookCategories from "../../Hooks/BookCategories";
 import AllAuthors from "../../Hooks/AllAuthors";
@@ -45,13 +45,7 @@ function AddBooks() {
       .then((data) => {
         const postedData = data.data;
         if (postedData.success === true) {
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "Book has been added",
-            showConfirmButton: false,
-            timer: 1500,
-          });
+          toast.success("Book has been added!");
           form.reset();
         }
       });

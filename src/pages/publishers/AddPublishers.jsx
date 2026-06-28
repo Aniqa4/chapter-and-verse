@@ -1,5 +1,5 @@
 ﻿
-import Swal from 'sweetalert2';
+import { toast } from 'sonner';
 import Title from '../../Components/Title';
 import axiosInstance from '../../api/axiosInstance';
 
@@ -17,13 +17,7 @@ function AddPublishers() {
             .then(data => {
                 const postedData = data.data
                 if (postedData.success === true) {
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'New Publisher has been added',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
+                    toast.success('Publisher has been added!')
                     form.reset()
                 }
             })

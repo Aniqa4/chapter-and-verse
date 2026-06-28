@@ -1,5 +1,5 @@
 ﻿import { useEffect, useState } from "react";
-import Swal from "sweetalert2";
+import { toast } from "sonner";
 import AddItems from "../../Components/AddItems";
 import axiosInstance from "../../api/axiosInstance";
 import Title from "../../Components/Title";
@@ -12,33 +12,13 @@ function DeleteBooks() {
   }, []);
 
   const handleDelete = (id) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        axiosInstance
-          .delete(`/delete-book/${id}`)
-          .then((data) => {
-            const deletedData = data.data;
-            if (deletedData.success === true) {
-              Swal.fire({
-                position: "center",
-                icon: "success",
-                title: "Deleted",
-                showConfirmButton: false,
-                timer: 1500,
-              });
-              setBooks(prev => prev.filter((x) => x._id !== id));
-            }
-          });
+    if (!window.confirm("Are you sure you want to delete this book?")) return;
+    axiosInstance.delete(`/delete-book/${id}`).then((data) => {
+      if (data.data.success === true) {
+        toast.success('Book deleted');
+        setBooks(prev => prev.filter((x) => x._id !== id));
       }
-    });
+    }).catch(() => toast.error('Failed to delete book'));
   };
 
   return (

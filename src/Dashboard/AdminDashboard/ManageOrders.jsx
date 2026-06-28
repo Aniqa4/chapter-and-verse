@@ -1,5 +1,5 @@
 ﻿import { useEffect, useState } from 'react';
-import Swal from 'sweetalert2';
+import { toast } from 'sonner';
 import axiosInstance from '../../api/axiosInstance';
 import Title from '../../Components/Title';
 
@@ -37,10 +37,10 @@ function ManageOrders() {
       .then(res => {
         if (res.data.success) {
           setOrders(prev => prev.map(o => o._id === id ? { ...o, orderStatus } : o));
-          Swal.fire({ icon: 'success', title: 'Order status updated', timer: 1200, showConfirmButton: false });
+          toast.success('Order status updated');
         }
       })
-      .catch(() => Swal.fire({ icon: 'error', title: 'Update failed' }));
+      .catch(() => toast.error('Update failed'));
   };
 
   const updatePaymentStatus = (id, paymentStatus) => {
@@ -48,10 +48,10 @@ function ManageOrders() {
       .then(res => {
         if (res.data.success) {
           setOrders(prev => prev.map(o => o._id === id ? { ...o, paymentStatus } : o));
-          Swal.fire({ icon: 'success', title: 'Payment status updated', timer: 1200, showConfirmButton: false });
+          toast.success('Payment status updated');
         }
       })
-      .catch(() => Swal.fire({ icon: 'error', title: 'Update failed' }));
+      .catch(() => toast.error('Update failed'));
   };
 
   const formatDate = (d) => new Date(d).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' });

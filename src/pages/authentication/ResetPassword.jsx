@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import Title from '../../components/Title';
+﻿import { useState } from 'react';
+import Title from '../../Components/Title';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';

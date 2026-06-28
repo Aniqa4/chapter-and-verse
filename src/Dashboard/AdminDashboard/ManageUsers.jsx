@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+﻿import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../api/axiosInstance';
-import Title from '../../components/Title';
+import Title from '../../Components/Title';
 
 function ManageUsers() {
   const [users, setUsers] = useState([]);

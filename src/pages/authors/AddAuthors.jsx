@@ -1,5 +1,5 @@
-
-import Title from '../../components/Title';
+﻿
+import Title from '../../Components/Title';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../api/axiosInstance';
 

@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import Title from '../../components/Title';
-import BookLayout from '../../components/BookLayout';
-import BookGridSkeleton from '../../components/BookGridSkeleton';
+﻿import { useState } from 'react';
+import Title from '../../Components/Title';
+import BookLayout from '../../Components/BookLayout';
+import BookGridSkeleton from '../../Components/BookGridSkeleton';
 import Books from '../../Hooks/Books';
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 

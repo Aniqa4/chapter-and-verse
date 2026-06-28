@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
+﻿import { useEffect, useState } from 'react'
 import {  useParams } from 'react-router-dom'
-import Title from '../../components/Title';
-import BookLayout from '../../components/BookLayout';
+import Title from '../../Components/Title';
+import BookLayout from '../../Components/BookLayout';
 import axiosInstance from '../../api/axiosInstance';
 
 function BooksByAuthor() {

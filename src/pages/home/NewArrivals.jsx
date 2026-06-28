@@ -1,7 +1,7 @@
-import Title from "../../components/Title";
+﻿import Title from "../../Components/Title";
 import { Link } from "react-router-dom";
-import BookLayout from "../../components/BookLayout";
-import BookGridSkeleton from "../../components/BookGridSkeleton";
+import BookLayout from "../../Components/BookLayout";
+import BookGridSkeleton from "../../Components/BookGridSkeleton";
 import { useQuery } from "@tanstack/react-query";
 import axiosInstance from "../../api/axiosInstance";
 

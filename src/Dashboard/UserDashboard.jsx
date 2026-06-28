@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react';
+﻿import { useEffect, useState } from 'react';
 import { BiUser } from 'react-icons/bi';
 import { AiTwotoneMail, AiOutlineEdit } from 'react-icons/ai';
 import { IoIosPhonePortrait } from 'react-icons/io';
 import { ImAddressBook } from 'react-icons/im';
 import UserInfo from '../Hooks/UserInfo';
-import Title from '../components/Title';
+import Title from '../Components/Title';
 import LogOut from '../Hooks/LogOut';
 import axiosInstance from '../api/axiosInstance';
-import EditProfileForm from '../components/EditProfileForm';
+import EditProfileForm from '../Components/EditProfileForm';
 
 const STATUS_COLORS = {
   pending: 'bg-yellow-100 text-yellow-700',
@@ -97,7 +97,7 @@ function UserDashboard() {
                     {order.books.map((b, i) => (
                       <tr key={i} className="border-t">
                         <td className="py-1 pr-4">{b.bookName}</td>
-                        <td className="py-1 pr-4">×{b.quantity}</td>
+                        <td className="py-1 pr-4">Ã—{b.quantity}</td>
                         <td className="py-1">{b.price} Tk</td>
                       </tr>
                     ))}

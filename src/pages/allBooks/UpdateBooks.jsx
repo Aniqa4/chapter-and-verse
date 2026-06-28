@@ -1,5 +1,5 @@
-
-import Title from '../../components/Title';
+﻿
+import Title from '../../Components/Title';
 import { TbCurrencyTaka } from 'react-icons/tb'
 import { useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';

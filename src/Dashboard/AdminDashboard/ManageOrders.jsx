@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+﻿import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import axiosInstance from '../../api/axiosInstance';
-import Title from '../../components/Title';
+import Title from '../../Components/Title';
 
 const ORDER_STATUSES = ['pending', 'processing', 'shipped', 'delivered', 'cancelled'];
 const PAYMENT_STATUSES = ['pending', 'paid', 'failed', 'refunded'];
@@ -73,7 +73,7 @@ function ManageOrders() {
                   <p className="text-xs text-gray-400">{formatDate(order.createdAt)}</p>
                   {order.userId ? (
                     <p className="text-sm font-semibold text-gray-700 mt-1">
-                      {order.userId.name} — <span className="font-normal">{order.userId.email}</span>
+                      {order.userId.name} â€” <span className="font-normal">{order.userId.email}</span>
                     </p>
                   ) : (
                     <p className="text-sm text-gray-500 mt-1">Guest order</p>
@@ -87,7 +87,7 @@ function ManageOrders() {
                   {order.books.map((b, i) => (
                     <tr key={i} className="border-t">
                       <td className="py-1 pr-4">{b.bookName}</td>
-                      <td className="py-1 pr-4">×{b.quantity}</td>
+                      <td className="py-1 pr-4">Ã—{b.quantity}</td>
                       <td className="py-1">{b.price} Tk</td>
                     </tr>
                   ))}

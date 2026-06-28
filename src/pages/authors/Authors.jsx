@@ -1,6 +1,6 @@
-
-import Title from '../../components/Title';
-import Modal from '../../components/Modal';
+﻿
+import Title from '../../Components/Title';
+import Modal from '../../Components/Modal';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import UserInfo from '../../Hooks/UserInfo';

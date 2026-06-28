@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
+﻿import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import Title from '../../components/Title';
+import Title from '../../Components/Title';
 import axiosInstance from '../../api/axiosInstance';
 
 function UpdatePublisher() {

@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import AddItems from "../../components/AddItems";
+import AddItems from "../../Components/AddItems";
 import axiosInstance from "../../api/axiosInstance";
-import Title from "../../components/Title";
+import Title from "../../Components/Title";
 
 function DeleteBooks() {
   const [books, setBooks] = useState([]);

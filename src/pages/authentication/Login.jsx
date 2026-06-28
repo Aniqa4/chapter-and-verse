@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from 'react';
-import Title from '../../components/Title';
+﻿import { useContext, useEffect, useState } from 'react';
+import Title from '../../Components/Title';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Divider } from '@mui/material';
 import Swal from 'sweetalert2';

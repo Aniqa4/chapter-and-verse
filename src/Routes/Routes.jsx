@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+﻿import { createBrowserRouter } from "react-router-dom";
 import Home from "../pages/home/Home";
 import AllBooks from "../pages/allBooks/AllBooks";
 import AddBooks from "../pages/allBooks/AddBooks";
@@ -19,16 +19,16 @@ import AuthCallback from "../pages/authentication/AuthCallback";
 import ForgotPassword from "../pages/authentication/ForgotPassword";
 import ResetPassword from "../pages/authentication/ResetPassword";
 import Dashboard from "../Dashboard/Dashboard";
-import DashboardHome from "../Dashboard/adminDashboard/DashboardHome";
-import ManageUsers from "../Dashboard/adminDashboard/ManageUsers";
-import ManageOrders from "../Dashboard/adminDashboard/ManageOrders";
+import DashboardHome from "../Dashboard/AdminDashboard/DashboardHome";
+import ManageUsers from "../Dashboard/AdminDashboard/ManageUsers";
+import ManageOrders from "../Dashboard/AdminDashboard/ManageOrders";
 import DeleteBooks from "../pages/allBooks/DeleteBooks";
 import AddPublishers from "../pages/publishers/AddPublishers";
 import AddAuthors from "../pages/authors/AddAuthors";
 import AddNewCategory from "../pages/categoriesOfBooks/AddNewCategory";
 import Wishlist from "../pages/Wishlist/Wishlist";
 import Cart from "../pages/cart/Cart";
-import Main from "../layout/Main";
+import Main from "../Layout/Main";
 
 const router = createBrowserRouter([
     {

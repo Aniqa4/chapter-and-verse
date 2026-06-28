@@ -1,5 +1,5 @@
-import Title from "../../components/Title";
-import Card from "../../components/Card";
+﻿import Title from "../../Components/Title";
+import Card from "../../Components/Card";
 import BookCategories from "../../Hooks/BookCategories";
 
 function CategoriesOfBooks() {

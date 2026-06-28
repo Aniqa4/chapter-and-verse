@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { BiUser } from 'react-icons/bi';
 import { AiTwotoneMail, AiOutlineEdit } from 'react-icons/ai';
@@ -6,7 +6,7 @@ import { IoMdArrowDropright, IoIosPhonePortrait } from 'react-icons/io';
 import { ImAddressBook } from 'react-icons/im';
 import UserInfo from '../../Hooks/UserInfo';
 import LogOut from '../../Hooks/LogOut';
-import EditProfileForm from '../../components/EditProfileForm';
+import EditProfileForm from '../../Components/EditProfileForm';
 
 function AdminDashboard() {
     const [role, userInfo] = UserInfo();

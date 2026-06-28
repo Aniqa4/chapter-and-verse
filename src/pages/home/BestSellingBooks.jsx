@@ -1,8 +1,8 @@
-import { useQuery } from "@tanstack/react-query";
-import BookLayout from "../../components/BookLayout";
-import BookGridSkeleton from "../../components/BookGridSkeleton";
+﻿import { useQuery } from "@tanstack/react-query";
+import BookLayout from "../../Components/BookLayout";
+import BookGridSkeleton from "../../Components/BookGridSkeleton";
 import { Link } from "react-router-dom";
-import Title from "../../components/Title";
+import Title from "../../Components/Title";
 import axiosInstance from "../../api/axiosInstance";
 
 function BestSellingBooks() {

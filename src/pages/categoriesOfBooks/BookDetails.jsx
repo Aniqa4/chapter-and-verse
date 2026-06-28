@@ -1,7 +1,7 @@
-import { useContext, useEffect, useState } from 'react'
+﻿import { useContext, useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom';
-import Title from '../../components/Title';
-import AddItems from '../../components/AddItems';
+import Title from '../../Components/Title';
+import AddItems from '../../Components/AddItems';
 import UserInfo from '../../Hooks/UserInfo';
 import AddTo from '../../Hooks/AddTo';
 import { AuthContext } from '../../authProvider/AuthProvider';
@@ -27,7 +27,7 @@ function BookDetails() {
         return new Date(date).toLocaleDateString("en-US", options);
     };
 
-    const formattedDate = bookData?.dateOfArrival ? formatDate(bookData.dateOfArrival) : '—';
+    const formattedDate = bookData?.dateOfArrival ? formatDate(bookData.dateOfArrival) : 'â€”';
 
     return (
         <div className=' container mx-auto pt-1'>

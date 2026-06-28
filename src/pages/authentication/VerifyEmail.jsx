@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+﻿import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axiosInstance from '../../api/axiosInstance';
-import Title from '../../components/Title';
+import Title from '../../Components/Title';
 
 function VerifyEmail() {
   const { token } = useParams();

@@ -1,6 +1,6 @@
-import { useContext, useEffect, useState } from 'react';
+﻿import { useContext, useEffect, useState } from 'react';
 import { MdDeleteForever } from 'react-icons/md';
-import Title from '../../components/Title';
+import Title from '../../Components/Title';
 import { AuthContext } from '../../authProvider/AuthProvider';
 import { useDispatch } from 'react-redux';
 import { CartItems } from '../../redux/features/cart/cartSlice';

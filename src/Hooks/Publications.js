@@ -1,11 +1,11 @@
-import axios from "axios";
+import axiosInstance from "../api/axiosInstance";
 import { useEffect, useState } from "react";
 
 function Publications() {
     const [publications, setPublications] = useState([]);
 
     useEffect(() => {
-        axios.get('https://chapter-and-verse-server-side.vercel.app/publishers')
+        axiosInstance.get('/publishers')
           .then(data => setPublications(data.data))
       }, []);
 

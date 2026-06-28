@@ -4,28 +4,27 @@ import { AuthContext } from "../authProvider/AuthProvider";
 import Swal from "sweetalert2";
 
 function LogOut() {
-    const { logOut } = useContext(AuthContext);
-    const navigate = useNavigate();
-    const from = "/";
+  const { logOut } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-    const handleSignOut = () => {
-        logOut()
-            .then(() => {
-                navigate(from, { replace: true })
-                Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: 'Successfully Logged Out',
-                    showConfirmButton: false,
-                    timer: 1500
-                })
-            })
-            .catch(error => {
-                console.log(error);
+  const handleSignOut = () => {
+    logOut()
+      .then(() => {
+        navigate("/", { replace: true });
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Successfully Logged Out",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
 
-            })
-    }
-  return {handleSignOut}
+  return { handleSignOut };
 }
 
-export default LogOut
+export default LogOut;

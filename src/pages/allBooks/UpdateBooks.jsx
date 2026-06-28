@@ -1,4 +1,4 @@
-import React from 'react'
+
 import Title from '../../components/Title';
 import { TbCurrencyTaka } from 'react-icons/tb'
 import { useNavigate, useParams } from 'react-router-dom';
@@ -7,7 +7,7 @@ import Books from '../../Hooks/Books';
 import BookCategories from '../../Hooks/BookCategories';
 import Publications from '../../Hooks/Publications';
 import AllAuthors from '../../Hooks/AllAuthors';
-import axios from 'axios';
+import axiosInstance from '../../api/axiosInstance';
 
 function UpdateBooks() {
     const books = Books()
@@ -39,10 +39,10 @@ function UpdateBooks() {
         const description = form.description.value;
         const newBook = { bookName, bookImage, authorName, publisherName, price, category, dateOfArrival, availableCopies, soldCopies, numberOfPages, description }
 
-        axios.put(`https://chapter-and-verse-server-side.vercel.app/update-book/${myBook._id}`, newBook)
+        axiosInstance.put(`/update-book/${myBook._id}`, newBook)
             .then(data => {
                 const updatedData=data.data;
-                if (updatedData.modifiedCount === 1) {
+                if (updatedData.success === true) {
                     Swal.fire({
                         position: 'center',
                         icon: 'success',
@@ -62,11 +62,11 @@ function UpdateBooks() {
         <div className=' container mx-auto pt-1'>
             <Title title={'Update book'} />
             <form onSubmit={handleForm} className='grid px-10 md:shadow'>
-                <label>Book's Name: </label>
+                <label>Book&apos;s Name: </label>
                 <input type="text" name='bookName' defaultValue={myBook?.bookName} />
-                <label>Book's PhotoURL: </label>
+                <label>Book&apos;s PhotoURL: </label>
                 <input type="text" name='bookImage' defaultValue={myBook?.bookImage} />
-                <label>Author's Name: </label>
+                <label>Author&apos;s Name: </label>
                 <select name="authorName">
                     <option defaultValue={myBook?.authorName}>{myBook?.authorName}</option>
                     {
@@ -74,7 +74,7 @@ function UpdateBooks() {
                             <option key={index} value={x?.name}>{x?.name}</option>)
                     }
                 </select>
-                <label>Publisher's Name: </label>
+                <label>Publisher&apos;s Name: </label>
                 <select name="publisherName" defaultValue={myBook?.publisherName}>
                     <option defaultValue={myBook?.publisherName}>{myBook?.publisherName}</option>
                     {

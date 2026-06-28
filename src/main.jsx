@@ -4,6 +4,7 @@ import './index.css'
 import { RouterProvider } from 'react-router-dom'
 import router from './routes/routes'
 import { AuthProvider } from './authProvider/AuthProvider'
+import { GoogleOAuthProvider } from '@react-oauth/google'
 import {
   QueryClient,
   QueryClientProvider,
@@ -15,12 +16,14 @@ const queryClient = new QueryClient()
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <AuthProvider>
-      <QueryClientProvider client={queryClient}>
-        <Provider store={store}>
-          <RouterProvider router={router} />
-        </Provider>
-      </QueryClientProvider>
-    </AuthProvider>
+    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
+      <AuthProvider>
+        <QueryClientProvider client={queryClient}>
+          <Provider store={store}>
+            <RouterProvider router={router} />
+          </Provider>
+        </QueryClientProvider>
+      </AuthProvider>
+    </GoogleOAuthProvider>
   </React.StrictMode>,
 )

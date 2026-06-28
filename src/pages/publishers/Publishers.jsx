@@ -1,11 +1,11 @@
-import React from 'react'
+
 import Title from '../../components/Title';
 import Modal from '../../components/Modal';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import UserInfo from '../../Hooks/UserInfo';
 import Publications from '../../Hooks/Publications';
-import axios from 'axios';
+import axiosInstance from '../../api/axiosInstance';
 
 function Publishers() {
   const [publications, setPublications] = Publications()
@@ -23,10 +23,10 @@ function Publishers() {
     }).then((result) => {
       if (result.isConfirmed) {
         // User confirmed, proceed with the deletion
-        axios.delete(`https://chapter-and-verse-server-side.vercel.app/delete-publisher/${id}`)
+        axiosInstance.delete(`/delete-publisher/${id}`)
           .then(data => {
             const deletedData = data.data
-            if (deletedData.deletedCount > 0) {
+            if (deletedData.success === true) {
               Swal.fire({
                 position: 'center',
                 icon: 'success',

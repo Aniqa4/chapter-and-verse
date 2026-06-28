@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { CgShoppingBag } from 'react-icons/cg';
 import { MdOutlineFavoriteBorder } from 'react-icons/md';
 import { Link } from 'react-router-dom';

@@ -1,16 +1,16 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import axiosInstance from '../api/axiosInstance';
+import { useEffect, useState } from 'react';
 
 function Books() {
-    const [books, setBooks] = useState([]);
+  const [books, setBooks] = useState(null);
 
-    useEffect(() => {
-        axios.get('https://chapter-and-verse-server-side.vercel.app/books')
-          .then(data => setBooks(data.data))
-      }, []);
-      
-  return books
-    
+  useEffect(() => {
+    axiosInstance.get('/books')
+      .then(res => setBooks(res.data))
+      .catch(() => setBooks([]));
+  }, []);
+
+  return books;
 }
 
-export default Books
+export default Books;

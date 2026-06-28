@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Title from '../../components/Title';
 import BookLayout from '../../components/BookLayout';
+import BookGridSkeleton from '../../components/BookGridSkeleton';
 import Books from '../../Hooks/Books';
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 
@@ -10,7 +11,12 @@ function AllBooks() {
   const [currentPage, setCurrentPage] = useState(1);
 
   if (!books) {
-    return <div>Loading...</div>;
+    return (
+      <div className="container mx-auto pt-1">
+        <Title title="books" />
+        <BookGridSkeleton count={15} />
+      </div>
+    );
   }
 
   // Calculate the index range for the current page

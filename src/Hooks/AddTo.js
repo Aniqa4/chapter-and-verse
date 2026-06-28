@@ -1,5 +1,4 @@
 import { useDispatch } from 'react-redux';
-import Swal from 'sweetalert2';
 import { CartItems } from '../redux/features/cart/cartSlice';
 import { FavoriteItems } from '../redux/features/favorites/favoriteSlice';
 

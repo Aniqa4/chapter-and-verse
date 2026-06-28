@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import { RouterProvider } from 'react-router-dom'
-import router from './routes/Routes'
+import router from './Routes/Routes'
 import { AuthProvider } from './authProvider/AuthProvider'
 import { GoogleOAuthProvider } from '@react-oauth/google'
 import {

@@ -1,17 +1,17 @@
-
+import { useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { BiUser } from 'react-icons/bi';
-import { AiTwotoneMail } from 'react-icons/ai';
-import { IoMdArrowDropright } from 'react-icons/io';
-import { IoIosPhonePortrait } from 'react-icons/io';
+import { AiTwotoneMail, AiOutlineEdit } from 'react-icons/ai';
+import { IoMdArrowDropright, IoIosPhonePortrait } from 'react-icons/io';
 import { ImAddressBook } from 'react-icons/im';
-import { AiOutlineEdit } from 'react-icons/ai';
 import UserInfo from '../../Hooks/UserInfo';
 import LogOut from '../../Hooks/LogOut';
+import EditProfileForm from '../../components/EditProfileForm';
 
 function AdminDashboard() {
     const [role, userInfo] = UserInfo();
-    const {handleSignOut}=LogOut()
+    const { handleSignOut } = LogOut();
+    const [editingProfile, setEditingProfile] = useState(false);
 
     return (
         <div>
@@ -22,15 +22,16 @@ function AdminDashboard() {
                         <p className='flex items-center gap-2'><span><AiTwotoneMail /></span>{userInfo?.email}</p>
                         <p className='flex items-center gap-2'><IoMdArrowDropright /><span>{role}</span></p>
                         <p className='flex items-center gap-2'><IoIosPhonePortrait /><span>{userInfo?.phoneNumber ? userInfo?.phoneNumber : 'Add Phone Number'}</span>
-                            <span><AiOutlineEdit /></span>
+                            <button onClick={() => setEditingProfile(true)} title="Edit profile"><AiOutlineEdit /></button>
                         </p>
                         <p className='flex items-center gap-2'><ImAddressBook /><span>{userInfo?.address ? userInfo?.address : 'Add address'} </span>
-                            <span><AiOutlineEdit /></span>
+                            <button onClick={() => setEditingProfile(true)} title="Edit profile"><AiOutlineEdit /></button>
                         </p>
                         <ul className=' grid gap-2 text-gray-600 py-10'>
                             <li><Link to='/dashboard'>Dashboard home</Link></li>
                             <li><Link to='manage-users'>Manage Users</Link></li>
                             <li><Link to='manage-books'>Manage Books</Link></li>
+                            <li><Link to='manage-orders'>Manage Orders</Link></li>
                             <li><Link to='add-publishers'>Add Publishers</Link></li>
                             <li><Link to='add-authors'>Add Authors</Link></li>
                             <li><Link to='add-new-category'>Add New Category</Link></li>
@@ -42,7 +43,11 @@ function AdminDashboard() {
                     <Outlet />
                 </div>
             </div>
-        </div >
+
+            {editingProfile && (
+                <EditProfileForm userInfo={userInfo} onClose={() => setEditingProfile(false)} />
+            )}
+        </div>
     )
 }
 

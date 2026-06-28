@@ -7,7 +7,7 @@ import Books from '../../Hooks/Books';
 import BookCategories from '../../Hooks/BookCategories';
 import Publications from '../../Hooks/Publications';
 import AllAuthors from '../../Hooks/AllAuthors';
-import axios from 'axios';
+import axiosInstance from '../../api/axiosInstance';
 
 function UpdateBooks() {
     const books = Books()
@@ -39,10 +39,10 @@ function UpdateBooks() {
         const description = form.description.value;
         const newBook = { bookName, bookImage, authorName, publisherName, price, category, dateOfArrival, availableCopies, soldCopies, numberOfPages, description }
 
-        axios.put(`https://chapter-and-verse-server-side.vercel.app/update-book/${myBook._id}`, newBook)
+        axiosInstance.put(`/update-book/${myBook._id}`, newBook)
             .then(data => {
                 const updatedData=data.data;
-                if (updatedData.modifiedCount === 1) {
+                if (updatedData.success === true) {
                     Swal.fire({
                         position: 'center',
                         icon: 'success',

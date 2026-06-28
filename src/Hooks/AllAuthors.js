@@ -1,11 +1,11 @@
-import axios from 'axios';
+import axiosInstance from '../api/axiosInstance';
 import { useEffect, useState } from 'react'
 
 function AllAuthors() {
     const [authors, setAuthors] = useState([]);
 
     useEffect(() => {
-        axios.get('https://chapter-and-verse-server-side.vercel.app/authors')
+        axiosInstance.get('/authors')
             .then(data => setAuthors(data.data))
     }, []);
     

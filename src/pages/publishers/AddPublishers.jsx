@@ -1,7 +1,7 @@
 
 import Swal from 'sweetalert2';
 import Title from '../../components/Title';
-import axios from 'axios';
+import axiosInstance from '../../api/axiosInstance';
 
 function AddPublishers() {
     const handleForm = (e) => {
@@ -13,10 +13,10 @@ function AddPublishers() {
         const description = form.description.value;
         const publisherInfo = { name, email, phone, description }
 
-        axios.post(`https://chapter-and-verse-server-side.vercel.app/add-publishers`, publisherInfo)
+        axiosInstance.post(`/add-publishers`, publisherInfo)
             .then(data => {
                 const postedData = data.data
-                if (postedData.acknowledged === true) {
+                if (postedData.success === true) {
                     Swal.fire({
                         position: 'center',
                         icon: 'success',

@@ -5,7 +5,7 @@ import AddItems from '../../components/AddItems';
 import UserInfo from '../../Hooks/UserInfo';
 import AddTo from '../../Hooks/AddTo';
 import { AuthContext } from '../../authProvider/AuthProvider';
-import axios from 'axios';
+import axiosInstance from '../../api/axiosInstance';
 
 function BookDetails() {
     const data = useParams();
@@ -18,7 +18,7 @@ function BookDetails() {
     const {handleCart,handleWishlist}=AddTo()
 
     useEffect(() => {
-        axios.get(`https://chapter-and-verse-server-side.vercel.app/books/${bookName}`)
+        axiosInstance.get(`/books/${bookName}`)
             .then(data => setBookData(data.data))
     }, []);
 
@@ -27,8 +27,7 @@ function BookDetails() {
         return new Date(date).toLocaleDateString("en-US", options);
     };
 
-    const utcDateFromMongoDB = new Date("2023-08-15T12:00:00Z");
-    const formattedDate = formatDate(utcDateFromMongoDB);
+    const formattedDate = bookData?.dateOfArrival ? formatDate(bookData.dateOfArrival) : '—';
 
     return (
         <div className=' container mx-auto pt-1'>

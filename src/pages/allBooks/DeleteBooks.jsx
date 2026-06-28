@@ -1,11 +1,15 @@
+import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import AddItems from "../../components/AddItems";
-import Books from "../../Hooks/Books";
-import axios from "axios";
+import axiosInstance from "../../api/axiosInstance";
 import Title from "../../components/Title";
 
 function DeleteBooks() {
-  const books = Books();
+  const [books, setBooks] = useState([]);
+
+  useEffect(() => {
+    axiosInstance.get('/books').then(res => setBooks(res.data)).catch(() => setBooks([]));
+  }, []);
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -18,14 +22,11 @@ function DeleteBooks() {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        // User confirmed, proceed with the deletion
-        axios
-          .delete(
-            `https://chapter-and-verse-server-side.vercel.app/delete-book/${id}`
-          )
+        axiosInstance
+          .delete(`/delete-book/${id}`)
           .then((data) => {
             const deletedData = data.data;
-            if (deletedData.deletedCount > 0) {
+            if (deletedData.success === true) {
               Swal.fire({
                 position: "center",
                 icon: "success",
@@ -33,9 +34,7 @@ function DeleteBooks() {
                 showConfirmButton: false,
                 timer: 1500,
               });
-
-              const remainingBooks = books.filter((x) => x._id !== id);
-              setBooks(remainingBooks);
+              setBooks(prev => prev.filter((x) => x._id !== id));
             }
           });
       }

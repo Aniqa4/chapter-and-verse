@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Title from '../../components/Title';
 import BookLayout from '../../components/BookLayout';
-import axios from 'axios';
+import axiosInstance from '../../api/axiosInstance';
 
 function BooksByCategory() {
   const data = useParams();
@@ -10,7 +10,7 @@ function BooksByCategory() {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    axios.get(`https://chapter-and-verse-server-side.vercel.app/books-by-category/${category}`)
+    axiosInstance.get(`/books-by-category/${category}`)
       .then(data => setBooks(data.data))
   }, []);
 

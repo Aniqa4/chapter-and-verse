@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import BookCategories from "../../Hooks/BookCategories";
 import AllAuthors from "../../Hooks/AllAuthors";
 import Publications from "../../Hooks/Publications";
-import axios from "axios";
+import axiosInstance from "../../api/axiosInstance";
 
 function AddBooks() {
   const categories = BookCategories();
@@ -40,14 +40,11 @@ function AddBooks() {
       description,
     };
 
-    axios
-      .post(
-        "https://chapter-and-verse-server-side.vercel.app/add-books",
-        newBook
-      )
+    axiosInstance
+      .post("/add-books", newBook)
       .then((data) => {
         const postedData = data.data;
-        if (postedData.acknowledged === true) {
+        if (postedData.success === true) {
           Swal.fire({
             position: "center",
             icon: "success",

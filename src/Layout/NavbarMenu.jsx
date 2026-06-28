@@ -1,17 +1,21 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Box, Drawer, Typography } from '@mui/material';
 import { CiMenuKebab } from 'react-icons/ci';
-import { MdOutlineClose } from 'react-icons/md';
+import { MdOutlineClose, MdOutlineDashboardCustomize, MdLogout } from 'react-icons/md';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import axiosInstance from '../api/axiosInstance';
+import { AuthContext } from '../authProvider/AuthProvider';
+import LogOut from '../Hooks/LogOut';
 
 function NavbarMenu() {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+    const { user } = useContext(AuthContext);
+    const { handleSignOut } = LogOut();
 
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
-        axios.get('https://chapter-and-verse-server-side.vercel.app/names-of-categories')
+        axiosInstance.get('/names-of-categories')
             .then(data => setCategories(data.data))
     }, []);
 
@@ -30,6 +34,23 @@ function NavbarMenu() {
                             <li onClick={() => setIsDrawerOpen(false)} className=' border-b py-2'><Link to='/categories'>Categories</Link></li>
                             <li onClick={() => setIsDrawerOpen(false)} className=' border-b py-2'><Link to='/authors'>Authors</Link></li>
                             <li onClick={() => setIsDrawerOpen(false)} className=' border-b py-2'><Link to='/publishers'>Publishers</Link></li>
+                            {user && (
+                                <>
+                                    <li onClick={() => setIsDrawerOpen(false)} className='border-b py-2'>
+                                        <Link to='/dashboard' className='flex items-center gap-2'>
+                                            <MdOutlineDashboardCustomize /> Dashboard
+                                        </Link>
+                                    </li>
+                                    <li className='py-2'>
+                                        <button
+                                            onClick={() => { setIsDrawerOpen(false); handleSignOut(); }}
+                                            className='flex items-center gap-2 text-red-600 w-full'
+                                        >
+                                            <MdLogout /> Log Out
+                                        </button>
+                                    </li>
+                                </>
+                            )}
                         </ul>
                         <div>
                             <h1 className=' text-2xl my-5 border-b'>Categories</h1>

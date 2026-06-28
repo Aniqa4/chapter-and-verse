@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import Title from '../../components/Title';
 import Swal from 'sweetalert2';
-import axios from 'axios';
+import axiosInstance from '../../api/axiosInstance';
 
 function UpdateAuthor() {
     const data = useParams();
@@ -11,7 +11,7 @@ function UpdateAuthor() {
     const from = `/authors`;
 
     useEffect(() => {
-        axios.get(`https://chapter-and-verse-server-side.vercel.app/authors/${data?.id}`)
+        axiosInstance.get(`/authors/${data?.id}`)
             .then(data => setAuthor(data.data))
     }, []);
 
@@ -24,10 +24,10 @@ function UpdateAuthor() {
         const description = form.description.value;
         const authorInfo = {name, email, phone, description }
 
-        axios.put(`https://chapter-and-verse-server-side.vercel.app/update-author/${data?.id}`,authorInfo)
+        axiosInstance.put(`/update-author/${data?.id}`, authorInfo)
             .then(data => {
                 const updatedData=data.data
-                if (updatedData.modifiedCount === 1) {
+                if (updatedData.success === true) {
                     Swal.fire({
                         position: 'center',
                         icon: 'success',

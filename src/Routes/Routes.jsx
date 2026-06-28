@@ -14,9 +14,14 @@ import BooksByPublisher from "../pages/publishers/BooksByPublisher";
 import UpdatePublisher from "../pages/publishers/UpdatePublisher";
 import Login from "../pages/authentication/Login";
 import Register from "../pages/authentication/Register";
+import VerifyEmail from "../pages/authentication/VerifyEmail";
+import AuthCallback from "../pages/authentication/AuthCallback";
+import ForgotPassword from "../pages/authentication/ForgotPassword";
+import ResetPassword from "../pages/authentication/ResetPassword";
 import Dashboard from "../Dashboard/Dashboard";
 import DashboardHome from "../Dashboard/adminDashboard/DashboardHome";
 import ManageUsers from "../Dashboard/adminDashboard/ManageUsers";
+import ManageOrders from "../Dashboard/adminDashboard/ManageOrders";
 import DeleteBooks from "../pages/allBooks/DeleteBooks";
 import AddPublishers from "../pages/publishers/AddPublishers";
 import AddAuthors from "../pages/authors/AddAuthors";
@@ -91,6 +96,22 @@ const router = createBrowserRouter([
                 element: <Register />
             },
             {
+                path: '/verify-email/:token',
+                element: <VerifyEmail />
+            },
+            {
+                path: '/auth/callback',
+                element: <AuthCallback />
+            },
+            {
+                path: '/forgot-password',
+                element: <ForgotPassword />
+            },
+            {
+                path: '/reset-password/:token',
+                element: <ResetPassword />
+            },
+            {
                 path: '/dashboard',
                 element: <Dashboard/>,
                 children: [
@@ -105,6 +126,10 @@ const router = createBrowserRouter([
                     {
                         path: 'manage-books',
                         element: <DeleteBooks />
+                    },
+                    {
+                        path: 'manage-orders',
+                        element: <ManageOrders />
                     },
                     {
                         path: 'add-publishers',

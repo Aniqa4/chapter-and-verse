@@ -1,82 +1,100 @@
-import axios from 'axios';
-import { useEffect, useState, useRef } from 'react';
-import { BiSearchAlt2 } from 'react-icons/bi';
-import { Link } from 'react-router-dom';
+import { useEffect, useState, useRef } from "react";
+import { BiSearchAlt2 } from "react-icons/bi";
+import { Link } from "react-router-dom";
+import axiosInstance from "../../api/axiosInstance"; // import instance
 
 function SearchBooks() {
-    const [searchedItem, setSearchedItem] = useState('')
-    const [searchResult, setSearchResult] = useState([])
-    const [showResults, setShowResults] = useState(false);
-    const searchResultsRef = useRef(null);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResult, setSearchResult] = useState([]);
+  const [showResults, setShowResults] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
+  const searchResultsRef = useRef(null);
+  const typingTimeoutRef = useRef(null);
 
-    const handleSearch = (event) => {
-        event.preventDefault();
-        const form = event.target;
-        const search = form.search.value;
-        setSearchedItem(search);
-        setShowResults(true);
+  // Fetch search results when searchTerm changes
+  useEffect(() => {
+    if (!searchTerm) {
+      setSearchResult([]);
+      return;
     }
 
-    useEffect(() => {
-        if (searchedItem !== '') {
-            axios.get(`https://chapter-and-verse-server-side.vercel.app/search-books/${searchedItem}`)
-                .then(data => setSearchResult(data.data))
-                .catch(error => console.error('Error fetching data:', error));
-        } else {
-            setSearchResult([]); // Clear search results if the search term is empty
-        }
-    }, [searchedItem]);
+    if (typingTimeoutRef.current) clearTimeout(typingTimeoutRef.current);
 
-    // Add an event listener to detect clicks outside of the search results div
-    useEffect(() => {
-        function handleClickOutside(event) {
-            if (searchResultsRef.current && !searchResultsRef.current.contains(event.target)) {
-                setShowResults(false);
-            }
-        }
+    typingTimeoutRef.current = setTimeout(() => {
+      setIsSearching(true);
+      axiosInstance
+        .get(`/search-books/${searchTerm}`)
+        .then((res) => { setSearchResult(res.data); setIsSearching(false); })
+        .catch((err) => { console.error(err); setIsSearching(false); });
+    }, 300); // debounce 300ms
+  }, [searchTerm]);
 
-        // Bind the event listener
-        document.addEventListener("mousedown", handleClickOutside);
-        
-        // Unbind the event listener when the component unmounts
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
-    }, []);
+  // Close search results on outside click
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (
+        searchResultsRef.current &&
+        !searchResultsRef.current.contains(event.target)
+      ) {
+        setShowResults(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
-    //console.log(searchResult);
-
-    return (
-        <div className=' container mx-auto'>
-            <form onSubmit={handleSearch} className='flex justify-center'>
-                <div className=' relative  w-1/2'>
-                    <input type="text" name="search" className=' absolute top-0 left-5 right-0 bottom-0' />
-                </div>
-                <button className=' text-2xl flex items-center bg-gray-800 text-white p-2'><BiSearchAlt2 /></button>
-            </form>
-            <div className=' relative' >
-                {showResults && (
-                    <div className="absolute top-0 left-0 right-0 bg-opacity-75 flex items-center justify-center z-50">
-                        <div ref={searchResultsRef} className="bg-gray-50 p-4 w-1/2 overflow-y-auto max-h-96">
-                            {searchResult.length === 0 ? (
-                                <p className="text-gray-800">No results found.</p>
-                            ) : (
-                                <ul>
-                                    {searchResult.map((book, index) => (
-                                        <li key={index} className="mb-2">
-                                            <h3 className=" text-gray-600 hover:text-blue-600" title='Click here to visit'>
-                                                <Link to={`/categories/${book?.category}/${book?.bookName}`}>{book.bookName}</Link>
-                                            </h3>
-                                        </li>
-                                    ))}
-                                </ul>
-                            )}
-                        </div>
-                    </div>
-                )}
-            </div>
+  return (
+    <div className="container mx-auto relative">
+      <div className="flex justify-center mb-4">
+        <div className="relative w-1/2">
+          <input
+            type="text"
+            placeholder="Search books..."
+            className="w-full border border-gray-300 rounded p-2"
+            value={searchTerm}
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+              setShowResults(true);
+            }}
+          />
+          <span className="absolute right-2 top-0 bottom-0  flex items-center text-2xl text-gray-600">
+            <BiSearchAlt2 />
+          </span>
         </div>
-    )
+      </div>
+
+      {showResults && searchTerm && (
+        <div
+          className="absolute top-14 left-1/4 w-1/2 bg-white shadow-lg rounded z-50 max-h-96 overflow-y-auto"
+          ref={searchResultsRef}
+        >
+          {isSearching ? (
+            <div className="p-3 space-y-3 animate-pulse">
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="h-4 bg-gray-200 rounded w-3/4" />
+              ))}
+            </div>
+          ) : searchResult.length === 0 ? (
+            <p className="p-4 text-gray-600">No results found.</p>
+          ) : (
+            <ul>
+              {searchResult.map((book, index) => (
+                <li key={index} className="p-2 hover:bg-gray-100">
+                  <Link
+                    to={`/categories/${book?.category}/${book?.bookName}`}
+                    className="text-gray-700 hover:text-blue-600"
+                    onClick={() => setShowResults(false)}
+                  >
+                    {book.bookName}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default SearchBooks;

@@ -1,28 +1,43 @@
-﻿import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
+import { MdSearch, MdShoppingBag, MdPending, MdLocalShipping, MdCheckCircle } from 'react-icons/md';
 import axiosInstance from '../../api/axiosInstance';
-import Title from '../../Components/Title';
 
 const ORDER_STATUSES = ['pending', 'processing', 'shipped', 'delivered', 'cancelled'];
 const PAYMENT_STATUSES = ['pending', 'paid', 'failed', 'refunded'];
 
-const STATUS_COLORS = {
-  pending: 'bg-yellow-100 text-yellow-700',
-  processing: 'bg-blue-100 text-blue-700',
-  shipped: 'bg-purple-100 text-purple-700',
-  delivered: 'bg-green-100 text-green-700',
-  cancelled: 'bg-red-100 text-red-700',
+const ORDER_BADGE = {
+  pending:    'bg-yellow-50 text-yellow-700 border-yellow-100',
+  processing: 'bg-blue-50 text-blue-700 border-blue-100',
+  shipped:    'bg-purple-50 text-purple-700 border-purple-100',
+  delivered:  'bg-green-50 text-green-700 border-green-100',
+  cancelled:  'bg-red-50 text-red-600 border-red-100',
 };
 
-const PAYMENT_COLORS = {
-  pending: 'bg-yellow-100 text-yellow-700',
-  paid: 'bg-green-100 text-green-700',
-  failed: 'bg-red-100 text-red-700',
-  refunded: 'bg-gray-100 text-gray-600',
+const PAYMENT_BADGE = {
+  pending:  'bg-yellow-50 text-yellow-700 border-yellow-100',
+  paid:     'bg-green-50 text-green-700 border-green-100',
+  failed:   'bg-red-50 text-red-600 border-red-100',
+  refunded: 'bg-gray-100 text-gray-500 border-gray-200',
 };
+
+const fmt = d => new Date(d).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' });
+
+function SummaryPill({ icon: Icon, label, value, color }) {
+  return (
+    <div className={`flex items-center gap-2.5 bg-white border rounded-xl px-4 py-3 shadow-sm ${color}`}>
+      <Icon size={18} />
+      <div>
+        <p className="text-xs text-gray-400 leading-none">{label}</p>
+        <p className="text-lg font-bold text-gray-800 leading-tight mt-0.5">{value}</p>
+      </div>
+    </div>
+  );
+}
 
 function ManageOrders() {
   const [orders, setOrders] = useState([]);
+  const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -54,69 +69,116 @@ function ManageOrders() {
       .catch(() => toast.error('Update failed'));
   };
 
-  const formatDate = (d) => new Date(d).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' });
+  const filtered = search
+    ? orders.filter(o =>
+        o._id.toLowerCase().includes(search.toLowerCase()) ||
+        o.userId?.name?.toLowerCase().includes(search.toLowerCase()) ||
+        o.userId?.email?.toLowerCase().includes(search.toLowerCase())
+      )
+    : orders;
 
-  if (loading) return <div className="p-10 text-gray-400 text-center">Loading orders...</div>;
+  const pending   = orders.filter(o => o.orderStatus === 'pending').length;
+  const shipped   = orders.filter(o => o.orderStatus === 'shipped').length;
+  const delivered = orders.filter(o => o.orderStatus === 'delivered').length;
 
   return (
-    <div className="lg:container lg:mx-auto py-5 mx-5">
-      <Title title="Manage Orders" />
-      {orders.length === 0 ? (
-        <p className="text-center py-10 text-gray-400">No orders found.</p>
+    <div className="p-6 lg:p-8">
+      <div className="mb-6">
+        <h1 className="text-xl font-bold text-gray-800">Manage Orders</h1>
+        <p className="text-sm text-gray-400 mt-0.5">{orders.length} total orders</p>
+      </div>
+
+      {/* Summary pills */}
+      {!loading && (
+        <div className="flex flex-wrap gap-3 mb-6">
+          <SummaryPill icon={MdShoppingBag}    label="Total"     value={orders.length} color="border-gray-100 text-gray-400" />
+          <SummaryPill icon={MdPending}        label="Pending"   value={pending}       color="border-yellow-100 text-yellow-500" />
+          <SummaryPill icon={MdLocalShipping}  label="Shipped"   value={shipped}       color="border-purple-100 text-purple-500" />
+          <SummaryPill icon={MdCheckCircle}    label="Delivered" value={delivered}     color="border-green-100 text-green-600" />
+        </div>
+      )}
+
+      {/* Search */}
+      <div className="relative mb-5 max-w-sm">
+        <MdSearch size={17} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+        <input
+          type="text"
+          value={search}
+          onChange={e => setSearch(e.target.value)}
+          placeholder="Search by ID or customer…"
+          className="w-full pl-9 pr-4 py-2 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:border-green-400 focus:ring-1 focus:ring-green-200"
+        />
+      </div>
+
+      {loading ? (
+        <div className="space-y-3">
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className="bg-white rounded-xl border border-gray-100 p-5 h-28 animate-pulse" />
+          ))}
+        </div>
+      ) : filtered.length === 0 ? (
+        <div className="bg-white rounded-xl border border-gray-100 py-16 text-center">
+          <p className="text-gray-400 text-sm">No orders found.</p>
+        </div>
       ) : (
-        <div className="grid gap-4">
-          {orders.map(order => (
-            <div key={order._id} className="border rounded p-4 shadow-sm">
-              <div className="flex flex-wrap gap-3 justify-between items-start mb-3">
+        <div className="space-y-3">
+          {filtered.map(order => (
+            <div key={order._id} className="bg-white rounded-xl border border-gray-100 shadow-sm p-5">
+              {/* Order header */}
+              <div className="flex flex-wrap justify-between items-start gap-2 mb-4">
                 <div>
-                  <p className="text-xs text-gray-400">Order #{order._id.slice(-8).toUpperCase()}</p>
-                  <p className="text-xs text-gray-400">{formatDate(order.createdAt)}</p>
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="text-xs font-mono font-semibold text-gray-500 bg-gray-100 px-2 py-0.5 rounded">
+                      #{order._id.slice(-8).toUpperCase()}
+                    </span>
+                    <span className={`text-xs font-semibold px-2 py-0.5 rounded-full border ${ORDER_BADGE[order.orderStatus] || 'bg-gray-100 text-gray-500 border-gray-200'}`}>
+                      {order.orderStatus}
+                    </span>
+                    <span className={`text-xs font-semibold px-2 py-0.5 rounded-full border ${PAYMENT_BADGE[order.paymentStatus] || 'bg-gray-100 text-gray-500 border-gray-200'}`}>
+                      {order.paymentStatus}
+                    </span>
+                  </div>
+                  <p className="text-xs text-gray-400 mt-1">{fmt(order.createdAt)}</p>
                   {order.userId ? (
                     <p className="text-sm font-semibold text-gray-700 mt-1">
-                      {order.userId.name} â€” <span className="font-normal">{order.userId.email}</span>
+                      {order.userId.name}
+                      <span className="font-normal text-gray-400"> · {order.userId.email}</span>
                     </p>
                   ) : (
-                    <p className="text-sm text-gray-500 mt-1">Guest order</p>
+                    <p className="text-sm text-gray-400 mt-1">Guest order</p>
                   )}
                 </div>
-                <p className="font-semibold text-red-700">{order.totalAmount} Tk</p>
+                <p className="text-lg font-bold text-red-600">{order.totalAmount} Tk</p>
               </div>
 
-              <table className="w-full text-sm text-gray-600 mb-3">
-                <tbody>
-                  {order.books.map((b, i) => (
-                    <tr key={i} className="border-t">
-                      <td className="py-1 pr-4">{b.bookName}</td>
-                      <td className="py-1 pr-4">Ã—{b.quantity}</td>
-                      <td className="py-1">{b.price} Tk</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+              {/* Books */}
+              <div className="bg-gray-50 rounded-lg p-3 mb-4 space-y-1.5">
+                {order.books.map((b, i) => (
+                  <div key={i} className="flex justify-between text-sm text-gray-600">
+                    <span className="truncate max-w-[60%]">{b.bookName}</span>
+                    <span className="text-gray-400 ml-2 flex-shrink-0">×{b.quantity} · {b.price} Tk</span>
+                  </div>
+                ))}
+              </div>
 
-              <div className="flex flex-wrap gap-4 items-center">
+              {/* Status controls */}
+              <div className="flex flex-wrap gap-3 items-center">
                 <div className="flex items-center gap-2">
-                  <span className="text-xs text-gray-500">Order:</span>
-                  <span className={`text-xs px-2 py-0.5 rounded font-semibold ${STATUS_COLORS[order.orderStatus] || ''}`}>
-                    {order.orderStatus}
-                  </span>
+                  <label className="text-xs text-gray-400 font-medium">Order:</label>
                   <select
                     value={order.orderStatus}
                     onChange={e => updateOrderStatus(order._id, e.target.value)}
-                    className="text-xs border rounded px-1 py-0.5"
+                    className="text-xs border border-gray-200 rounded-lg px-2 py-1.5 bg-white focus:outline-none focus:border-green-400 cursor-pointer"
                   >
                     {ORDER_STATUSES.map(s => <option key={s} value={s}>{s}</option>)}
                   </select>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-xs text-gray-500">Payment:</span>
-                  <span className={`text-xs px-2 py-0.5 rounded font-semibold ${PAYMENT_COLORS[order.paymentStatus] || ''}`}>
-                    {order.paymentStatus}
-                  </span>
+                  <label className="text-xs text-gray-400 font-medium">Payment:</label>
                   <select
                     value={order.paymentStatus}
                     onChange={e => updatePaymentStatus(order._id, e.target.value)}
-                    className="text-xs border rounded px-1 py-0.5"
+                    className="text-xs border border-gray-200 rounded-lg px-2 py-1.5 bg-white focus:outline-none focus:border-green-400 cursor-pointer"
                   >
                     {PAYMENT_STATUSES.map(s => <option key={s} value={s}>{s}</option>)}
                   </select>

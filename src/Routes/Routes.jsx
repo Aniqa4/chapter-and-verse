@@ -28,6 +28,7 @@ import AddAuthors from "../pages/authors/AddAuthors";
 import AddNewCategory from "../pages/categoriesOfBooks/AddNewCategory";
 import Wishlist from "../pages/Wishlist/Wishlist";
 import Cart from "../pages/cart/Cart";
+import Checkout from "../pages/checkout/Checkout";
 import Main from "../Layout/Main";
 
 const router = createBrowserRouter([
@@ -152,6 +153,10 @@ const router = createBrowserRouter([
             {
                 path: '/cart',
                 element: <Cart />
+            },
+            {
+                path: '/checkout',
+                element: <Checkout />
             },
         ]
     }

@@ -56,25 +56,40 @@ function AdminDashboard() {
 
         {/* Profile */}
         <div className="px-5 py-4 border-b border-gray-100">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-full bg-green-600 text-white flex items-center justify-center text-sm font-bold flex-shrink-0 select-none">
-              {initials}
+          {!userInfo ? (
+            <div className="animate-pulse">
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-full bg-gray-200 flex-shrink-0" />
+                <div className="flex-1 space-y-2">
+                  <div className="h-3 bg-gray-200 rounded w-3/4" />
+                  <div className="h-2.5 bg-gray-100 rounded w-full" />
+                </div>
+              </div>
+              <div className="h-5 bg-gray-100 rounded-full w-14 mt-3" />
             </div>
-            <div className="min-w-0 flex-1">
-              <p className="text-sm font-semibold text-gray-800 truncate leading-tight">{userInfo?.name || 'Admin'}</p>
-              <p className="text-xs text-gray-400 truncate mt-0.5">{userInfo?.email}</p>
-            </div>
-            <button
-              onClick={() => setEditingProfile(true)}
-              className="text-gray-300 hover:text-green-600 transition-colors flex-shrink-0"
-              title="Edit profile"
-            >
-              <MdEdit size={15} />
-            </button>
-          </div>
-          <span className="mt-2.5 inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-green-50 text-green-700 capitalize border border-green-100">
-            {role}
-          </span>
+          ) : (
+            <>
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-full bg-green-600 text-white flex items-center justify-center text-sm font-bold flex-shrink-0 select-none">
+                  {initials}
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p className="text-sm font-semibold text-gray-800 truncate leading-tight">{userInfo.name}</p>
+                  <p className="text-xs text-gray-400 truncate mt-0.5">{userInfo.email}</p>
+                </div>
+                <button
+                  onClick={() => setEditingProfile(true)}
+                  className="text-gray-300 hover:text-green-600 transition-colors flex-shrink-0"
+                  title="Edit profile"
+                >
+                  <MdEdit size={15} />
+                </button>
+              </div>
+              <span className="mt-2.5 inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-green-50 text-green-700 capitalize border border-green-100">
+                {role}
+              </span>
+            </>
+          )}
         </div>
 
         {/* Nav */}

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+﻿import { useEffect, useRef, useState } from 'react';
 import { toast } from 'sonner';
 import {
   MdSearch, MdEdit, MdDelete, MdClose, MdAdd, MdMenuBook,
@@ -165,17 +165,17 @@ function BookFormModal({ book, categories, authors, publishers, onClose, onSucce
           </div>
 
           <SelectField label="Author" name="authorName" value={fields.authorName} onChange={handleChange} options={authors.map(a => a.name)} required />
-          <SelectField label="Publisher" name="publisherName" value={fields.publisherName} onChange={handleChange} options={publishers.map(p => p.name)} />
+          <SelectField label="Publisher" name="publisherName" value={fields.publisherName} onChange={handleChange} options={publishers.map(p => p.name)} required />
           <SelectField label="Category" name="category" value={fields.category} onChange={handleChange} options={categories.map(c => c.name)} required />
-          <InputField label="Price (Tk)" name="price" value={fields.price} onChange={handleChange} type="number" required />
-          <InputField label="Date of Arrival" name="dateOfArrival" value={fields.dateOfArrival} onChange={handleChange} type="datetime-local" disabled={isEdit} />
-          <InputField label="Available Copies" name="availableCopies" value={fields.availableCopies} onChange={handleChange} type="number" />
-          <InputField label="Number of Pages" name="numberOfPages" value={fields.numberOfPages} onChange={handleChange} type="number" />
+          <InputField label="Price (BDT)" name="price" value={fields.price} onChange={handleChange} type="number" required />
+          <InputField label="Date of Arrival" name="dateOfArrival" value={fields.dateOfArrival} onChange={handleChange} type="datetime-local" required={!isEdit} disabled={isEdit} />
+          <InputField label="Available Copies" name="availableCopies" value={fields.availableCopies} onChange={handleChange} type="number" required />
+          <InputField label="Number of Pages" name="numberOfPages" value={fields.numberOfPages} onChange={handleChange} type="number" required />
 
           <div className="sm:col-span-2 flex flex-col gap-1">
-            <label className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Description</label>
+            <label className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Description <span className="text-red-400">*</span></label>
             <textarea
-              name="description" value={fields.description ?? ''} onChange={handleChange} rows={3}
+              name="description" value={fields.description ?? ''} onChange={handleChange} required rows={3}
               className="border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-green-400 focus:ring-1 focus:ring-green-200 transition resize-none"
             />
           </div>

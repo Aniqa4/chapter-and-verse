@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+﻿import { useContext, useEffect, useState } from 'react';
 import { MdDeleteOutline } from 'react-icons/md';
 import { HiMinus, HiPlus } from 'react-icons/hi';
 import { BsCart3 } from 'react-icons/bs';
@@ -74,7 +74,7 @@ function Cart() {
                     <h3 className="font-semibold text-gray-800 text-sm leading-tight mb-1 line-clamp-2">
                       {item.bookName}
                     </h3>
-                    <p className="text-green-700 font-bold text-base mt-1">{item.price} Tk</p>
+                    <p className="text-green-700 font-bold text-base mt-1">{item.price} BDT</p>
 
                     <div className="flex items-center justify-between mt-4">
                       <div className="flex items-center border border-gray-200 rounded-lg overflow-hidden">
@@ -97,7 +97,7 @@ function Cart() {
 
                       <div className="flex items-center gap-4">
                         <span className="font-bold text-gray-800">
-                          {(item.price * (item.quantity || 1)).toFixed(0)} Tk
+                          {(item.price * (item.quantity || 1)).toFixed(0)} BDT
                         </span>
                         <button
                           onClick={() => deleteItem(index)}
@@ -127,7 +127,7 @@ function Cart() {
                     <div key={i} className="flex justify-between text-gray-600">
                       <span className="truncate max-w-[60%]">{item.bookName}</span>
                       <span className="font-medium ml-2 flex-shrink-0">
-                        {(item.price * (item.quantity || 1)).toFixed(0)} Tk
+                        {(item.price * (item.quantity || 1)).toFixed(0)} BDT
                       </span>
                     </div>
                   ))}
@@ -137,7 +137,7 @@ function Cart() {
 
                 <div className="flex justify-between text-sm text-gray-600 mb-2">
                   <span>Subtotal</span>
-                  <span className="font-medium">{subtotal.toFixed(0)} Tk</span>
+                  <span className="font-medium">{subtotal.toFixed(0)} BDT</span>
                 </div>
                 <div className="flex justify-between text-sm text-gray-600 mb-4">
                   <span>Shipping</span>
@@ -147,7 +147,7 @@ function Cart() {
                 <div className="border-t border-gray-200 pt-4 mb-6">
                   <div className="flex justify-between font-bold text-gray-800 text-base">
                     <span>Total</span>
-                    <span className="text-red-700">{subtotal.toFixed(0)} Tk</span>
+                    <span className="text-red-700">{subtotal.toFixed(0)} BDT</span>
                   </div>
                 </div>
 

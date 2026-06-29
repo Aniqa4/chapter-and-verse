@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+﻿import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 import { MdSearch, MdShoppingBag, MdPending, MdLocalShipping, MdCheckCircle } from 'react-icons/md';
 import axiosInstance from '../../api/axiosInstance';
@@ -148,7 +148,7 @@ function ManageOrders() {
                     <p className="text-sm text-gray-400 mt-1">Guest order</p>
                   )}
                 </div>
-                <p className="text-lg font-bold text-red-600">{order.totalAmount} Tk</p>
+                <p className="text-lg font-bold text-red-600">{order.totalAmount} BDT</p>
               </div>
 
               {/* Books */}
@@ -156,7 +156,7 @@ function ManageOrders() {
                 {order.books.map((b, i) => (
                   <div key={i} className="flex justify-between text-sm text-gray-600">
                     <span className="truncate max-w-[60%]">{b.bookName}</span>
-                    <span className="text-gray-400 ml-2 flex-shrink-0">×{b.quantity} · {b.price} Tk</span>
+                    <span className="text-gray-400 ml-2 flex-shrink-0">×{b.quantity} · {b.price} BDT</span>
                   </div>
                 ))}
               </div>

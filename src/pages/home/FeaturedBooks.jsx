@@ -1,58 +1,58 @@
-﻿import Title from '../../Components/Title';
-import BookLayout from '../../Components/BookLayout';
-import BookGridSkeleton from '../../Components/BookGridSkeleton';
 import { Link } from 'react-router-dom';
+import { MdArrowForward, MdStar } from 'react-icons/md';
 import { useQuery } from '@tanstack/react-query';
+import BookLayout from '../../components/BookLayout';
+import BookGridSkeleton from '../../components/BookGridSkeleton';
 import axiosInstance from '../../api/axiosInstance';
 
-function FeaturedBooks() {
+function SectionHeader({ icon: Icon, title, to }) {
+  return (
+    <div className="flex items-end justify-between mb-6">
+      <div>
+        <div className="flex items-center gap-2 mb-1">
+          <Icon size={18} className="text-green-600" />
+          <h2 className="text-lg md:text-xl font-bold text-gray-800">{title}</h2>
+        </div>
+        <div className="h-0.5 w-10 bg-green-600 rounded-full" />
+      </div>
+      <Link
+        to={to}
+        className="flex items-center gap-1 text-sm text-green-600 hover:text-green-800 font-medium transition-colors"
+      >
+        See all <MdArrowForward size={15} />
+      </Link>
+    </div>
+  );
+}
 
-  const { isLoading, isError, data } = useQuery({
+function FeaturedBooks() {
+  const { isLoading, isError, data: books } = useQuery({
     queryKey: ['featuredBooks'],
-    queryFn: async () => {
-      const res = await axiosInstance.get('/featured-books');
-      return res.data;
-    }
+    queryFn: async () => (await axiosInstance.get('/featured-books')).data,
   });
 
-  if (isLoading) {
-    return (
-      <div className="container mx-auto">
-        <Title title="Featured books" />
-        <BookGridSkeleton count={10} />
-      </div>
-    );
-  }
-
-  if (isError) {
-    return <div className="text-center py-10 text-red-500">
-      Failed to load featured books.
-    </div>;
-  }
-
-  const books = data;
-
   return (
-    <div className="container mx-auto">
-      <Title title="Featured books" />
-
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-5 justify-center mx-5 md:mx-0">
-        {books?.map((x) => (
-          <BookLayout
-            key={x?._id}
-            product_id={x._id}
-            bookImage={x.bookImage}
-            bookName={x.bookName}
-            price={x.price}
-            route={`/categories/${x?.category}/${x.bookName}`}
-          />
-        ))}
-      </div>
-
-      <p className="text-center mt-5 underline text-blue-400">
-        <Link to="books">See More</Link>
-      </p>
-    </div>
+    <section className="container mx-auto px-4 md:px-0 py-10">
+      <SectionHeader icon={MdStar} title="Featured Books" to="/books" />
+      {isLoading ? (
+        <BookGridSkeleton count={10} />
+      ) : isError ? (
+        <p className="text-center py-10 text-red-400 text-sm">Failed to load featured books.</p>
+      ) : (
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          {books?.map(x => (
+            <BookLayout
+              key={x._id}
+              product_id={x._id}
+              bookImage={x.bookImage}
+              bookName={x.bookName}
+              price={x.price}
+              route={`/categories/${x?.category}/${x.bookName}`}
+            />
+          ))}
+        </div>
+      )}
+    </section>
   );
 }
 

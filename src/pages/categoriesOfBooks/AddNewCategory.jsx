@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { toast } from 'sonner';
-import { MdSearch, MdEdit, MdDelete, MdClose, MdCategory } from 'react-icons/md';
+import { MdSearch, MdEdit, MdDelete, MdClose, MdCategory, MdUpload } from 'react-icons/md';
 import axiosInstance from '../../api/axiosInstance';
 
-const EMPTY_FORM = { name: '', image: '', description: '' };
+const EMPTY_FORM = { name: '', description: '' };
 
 function Field({ label, name, value, onChange, required, textarea }) {
   const cls = 'w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-green-400 focus:ring-1 focus:ring-green-200 transition bg-white';
@@ -20,8 +20,67 @@ function Field({ label, name, value, onChange, required, textarea }) {
   );
 }
 
+function ImageUploader({ existingUrl, onFileChange }) {
+  const [preview, setPreview] = useState(null);
+  const inputRef = useRef(null);
+
+  const applyFile = file => {
+    if (!file) return;
+    setPreview(URL.createObjectURL(file));
+    onFileChange(file);
+  };
+
+  const clear = e => {
+    e.stopPropagation();
+    setPreview(null);
+    onFileChange(null);
+    if (inputRef.current) inputRef.current.value = '';
+  };
+
+  const onDrop = e => {
+    e.preventDefault();
+    applyFile(e.dataTransfer.files[0]);
+  };
+
+  const displayed = preview || existingUrl;
+
+  return (
+    <div className="flex flex-col gap-1">
+      <label className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Image</label>
+      <div
+        onClick={() => inputRef.current?.click()}
+        onDragOver={e => e.preventDefault()}
+        onDrop={onDrop}
+        className="relative border-2 border-dashed border-gray-200 rounded-xl overflow-hidden cursor-pointer hover:border-green-400 transition-colors"
+        style={{ aspectRatio: '1/1' }}
+      >
+        {displayed ? (
+          <>
+            <img src={displayed} alt="" className="w-full h-full object-cover" />
+            <button
+              type="button"
+              onClick={clear}
+              className="absolute top-2 right-2 bg-black/60 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs hover:bg-black/80"
+            >×</button>
+            {preview && (
+              <span className="absolute bottom-2 left-2 text-[10px] bg-green-600 text-white px-2 py-0.5 rounded-full font-medium">New</span>
+            )}
+          </>
+        ) : (
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-1 text-gray-300">
+            <MdUpload size={28} />
+            <span className="text-xs">Click or drag to upload</span>
+          </div>
+        )}
+        <input ref={inputRef} type="file" accept="image/*" className="hidden" onChange={e => applyFile(e.target.files[0])} />
+      </div>
+    </div>
+  );
+}
+
 function EditModal({ category, onClose, onSave }) {
-  const [form, setForm] = useState({ name: category.name || '', image: category.image || '', description: category.description || '' });
+  const [form, setForm] = useState({ name: category.name || '', description: category.description || '' });
+  const [imageFile, setImageFile] = useState(null);
   const [saving, setSaving] = useState(false);
 
   const handleChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }));
@@ -29,11 +88,16 @@ function EditModal({ category, onClose, onSave }) {
   const handleSubmit = e => {
     e.preventDefault();
     setSaving(true);
-    axiosInstance.put(`/update-category/${category._id}`, form)
+    const fd = new FormData();
+    fd.append('name', form.name);
+    fd.append('description', form.description);
+    if (imageFile) fd.append('image', imageFile);
+
+    axiosInstance.put(`/update-category/${category._id}`, fd)
       .then(res => {
         if (res.data.success || res.data.acknowledged) {
           toast.success('Category updated!');
-          onSave({ ...category, ...form });
+          onSave({ ...category, ...form, ...(imageFile ? { image: URL.createObjectURL(imageFile) } : {}) });
           onClose();
         }
       })
@@ -49,8 +113,8 @@ function EditModal({ category, onClose, onSave }) {
           <button onClick={onClose} className="text-gray-400 hover:text-gray-600"><MdClose size={20} /></button>
         </div>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <ImageUploader existingUrl={category.image} onFileChange={setImageFile} />
           <Field label="Category Name" name="name" value={form.name} onChange={handleChange} required />
-          <Field label="Image URL" name="image" value={form.image} onChange={handleChange} />
           <Field label="Description" name="description" value={form.description} onChange={handleChange} textarea />
           <div className="flex gap-3 pt-2">
             <button type="button" onClick={onClose} className="flex-1 py-2.5 border border-gray-200 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 transition">
@@ -70,6 +134,7 @@ function AddNewCategory() {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [form, setForm] = useState(EMPTY_FORM);
+  const [imageFile, setImageFile] = useState(null);
   const [adding, setAdding] = useState(false);
   const [search, setSearch] = useState('');
   const [editing, setEditing] = useState(null);
@@ -86,12 +151,18 @@ function AddNewCategory() {
   const handleAdd = e => {
     e.preventDefault();
     setAdding(true);
-    axiosInstance.post('/add-categories', form)
+    const fd = new FormData();
+    fd.append('name', form.name);
+    fd.append('description', form.description);
+    if (imageFile) fd.append('image', imageFile);
+
+    axiosInstance.post('/add-categories', fd)
       .then(res => {
         if (res.data.acknowledged || res.data.success) {
           toast.success('Category added!');
           axiosInstance.get('/categories').then(r => setCategories(r.data));
           setForm(EMPTY_FORM);
+          setImageFile(null);
         }
       })
       .catch(() => toast.error('Failed to add category'))
@@ -136,9 +207,9 @@ function AddNewCategory() {
               <h2 className="text-sm font-bold text-gray-700">Add New Category</h2>
             </div>
             <form onSubmit={handleAdd} className="flex flex-col gap-4">
+              <ImageUploader existingUrl={null} onFileChange={setImageFile} />
               <Field label="Category Name" name="name" value={form.name} onChange={handleChange} required />
-              <Field label="Image URL" name="image" value={form.image} onChange={handleChange} />
-              <Field label="Description" name="description" value={form.description} onChange={handleChange} textarea />
+              <Field label="Description" name="description" value={form.description} onChange={handleChange} required textarea />
               <button
                 type="submit"
                 disabled={adding}
@@ -182,7 +253,6 @@ function AddNewCategory() {
               <div className="divide-y divide-gray-50 max-h-[calc(100vh-14rem)] overflow-y-auto">
                 {filtered.map(c => (
                   <div key={c._id} className="px-5 py-3.5 flex items-center gap-3 hover:bg-gray-50/50 transition-colors">
-                    {/* Category thumbnail */}
                     <div className="w-10 h-10 rounded-lg overflow-hidden bg-gray-100 flex-shrink-0 border border-gray-100">
                       {c.image
                         ? <img src={c.image} alt={c.name} className="w-full h-full object-cover" />
@@ -198,18 +268,10 @@ function AddNewCategory() {
                       )}
                     </div>
                     <div className="flex gap-1.5 flex-shrink-0">
-                      <button
-                        onClick={() => setEditing(c)}
-                        className="p-1.5 rounded-lg text-gray-400 hover:text-blue-600 hover:bg-blue-50 transition-colors"
-                        title="Edit"
-                      >
+                      <button onClick={() => setEditing(c)} className="p-1.5 rounded-lg text-gray-400 hover:text-blue-600 hover:bg-blue-50 transition-colors" title="Edit">
                         <MdEdit size={16} />
                       </button>
-                      <button
-                        onClick={() => handleDelete(c._id, c.name)}
-                        className="p-1.5 rounded-lg text-gray-400 hover:text-red-500 hover:bg-red-50 transition-colors"
-                        title="Delete"
-                      >
+                      <button onClick={() => handleDelete(c._id, c.name)} className="p-1.5 rounded-lg text-gray-400 hover:text-red-500 hover:bg-red-50 transition-colors" title="Delete">
                         <MdDelete size={16} />
                       </button>
                     </div>

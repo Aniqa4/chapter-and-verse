@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+﻿import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MdLocalShipping, MdPayment, MdCheckCircle } from 'react-icons/md';
 import { AuthContext } from '../../authProvider/AuthProvider';
@@ -222,7 +222,7 @@ function Checkout() {
                         <p className="text-xs font-medium text-gray-700 line-clamp-2 leading-tight">{item.bookName}</p>
                         <p className="text-xs text-gray-400 mt-1">Qty: {item.quantity || 1}</p>
                         <p className="text-xs font-bold text-gray-800 mt-0.5">
-                          {(Number(item.price) * (item.quantity || 1)).toFixed(0)} Tk
+                          {(Number(item.price) * (item.quantity || 1)).toFixed(0)} BDT
                         </p>
                       </div>
                     </div>
@@ -234,7 +234,7 @@ function Checkout() {
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between text-gray-600">
                     <span>Subtotal ({cartItems.length} item{cartItems.length !== 1 ? 's' : ''})</span>
-                    <span className="font-medium">{subtotal.toFixed(0)} Tk</span>
+                    <span className="font-medium">{subtotal.toFixed(0)} BDT</span>
                   </div>
                   <div className="flex justify-between text-gray-600">
                     <span>Shipping</span>
@@ -245,7 +245,7 @@ function Checkout() {
                 <div className="border-t border-gray-200 pt-4 mt-4 mb-6">
                   <div className="flex justify-between font-bold text-gray-800 text-base">
                     <span>Total</span>
-                    <span className="text-red-700">{subtotal.toFixed(0)} Tk</span>
+                    <span className="text-red-700">{subtotal.toFixed(0)} BDT</span>
                   </div>
                 </div>
 

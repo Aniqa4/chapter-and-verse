@@ -13,7 +13,7 @@ function Field({ label, name, value, onChange, type = 'text', required, textarea
         {label} {required && <span className="text-red-400">*</span>}
       </label>
       {textarea
-        ? <textarea name={name} value={value} onChange={onChange} rows={3} className={`${cls} resize-none`} />
+        ? <textarea name={name} value={value} onChange={onChange} required={required} rows={3} className={`${cls} resize-none`} />
         : <input type={type} name={name} value={value} onChange={onChange} required={required} className={cls} />
       }
     </div>
@@ -52,7 +52,7 @@ function EditModal({ author, onClose, onSave }) {
           <Field label="Name" name="name" value={form.name} onChange={handleChange} required />
           <Field label="Email" name="email" value={form.email} onChange={handleChange} type="email" />
           <Field label="Phone" name="phone" value={form.phone} onChange={handleChange} />
-          <Field label="Description" name="description" value={form.description} onChange={handleChange} textarea />
+          <Field label="Description" name="description" value={form.description} onChange={handleChange} required textarea />
           <div className="flex gap-3 pt-2">
             <button type="button" onClick={onClose} className="flex-1 py-2.5 border border-gray-200 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 transition">
               Cancel
@@ -141,7 +141,7 @@ function AddAuthors() {
               <Field label="Author Name" name="name" value={form.name} onChange={handleChange} required />
               <Field label="Email" name="email" value={form.email} onChange={handleChange} type="email" />
               <Field label="Phone" name="phone" value={form.phone} onChange={handleChange} />
-              <Field label="Description" name="description" value={form.description} onChange={handleChange} textarea />
+              <Field label="Description" name="description" value={form.description} onChange={handleChange} required textarea />
               <button
                 type="submit"
                 disabled={adding}

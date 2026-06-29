@@ -1,8 +1,8 @@
-import { Link } from 'react-router-dom';
+﻿import { Link } from 'react-router-dom';
 import { MdArrowForward, MdTrendingUp } from 'react-icons/md';
 import { useQuery } from '@tanstack/react-query';
-import BookLayout from '../../components/BookLayout';
-import BookGridSkeleton from '../../components/BookGridSkeleton';
+import BookLayout from '../Components/BookLayout';
+import BookGridSkeleton from '../Components/BookGridSkeleton';
 import axiosInstance from '../../api/axiosInstance';
 
 function SectionHeader({ icon: Icon, title, to, accent }) {

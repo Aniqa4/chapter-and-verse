@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
+﻿import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Title from '../../Components/Title';
 import BookLayout from '../../Components/BookLayout';
 import BookGridSkeleton from '../../Components/BookGridSkeleton';
-import BookFilterBar, { applyBookFilters } from '../../components/BookFilterBar';
+import BookFilterBar, { applyBookFilters } from '../../Components/BookFilterBar';
 import axiosInstance from '../../api/axiosInstance';
 
 function BooksByCategory() {

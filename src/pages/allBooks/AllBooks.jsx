@@ -1,9 +1,9 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import Title from '../../Components/Title';
 import BookLayout from '../../Components/BookLayout';
 import BookGridSkeleton from '../../Components/BookGridSkeleton';
 import Books from '../../Hooks/Books';
-import BookFilterBar, { applyBookFilters } from '../../components/BookFilterBar';
+import BookFilterBar, { applyBookFilters } from '../../Components/BookFilterBar';
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 
 const ITEMS_PER_PAGE = 15;

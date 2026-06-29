@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
-import { MdSearch, MdShield, MdShieldOff } from 'react-icons/md';
+import { MdSearch, MdAdminPanelSettings, MdOutlineAdminPanelSettings } from 'react-icons/md';
 import axiosInstance from '../../api/axiosInstance';
 
 function Avatar({ name }) {
@@ -132,7 +132,7 @@ function ManageUsers() {
                           onClick={() => removeAdmin(u._id)}
                           className="inline-flex items-center gap-1.5 text-xs font-medium text-red-500 hover:text-red-700 border border-red-100 hover:border-red-300 px-3 py-1.5 rounded-lg transition-colors bg-red-50 hover:bg-red-100"
                         >
-                          <MdShieldOff size={13} />
+                          <MdOutlineAdminPanelSettings size={13} />
                           Remove Admin
                         </button>
                       ) : (
@@ -140,7 +140,7 @@ function ManageUsers() {
                           onClick={() => makeAdmin(u._id)}
                           className="inline-flex items-center gap-1.5 text-xs font-medium text-blue-600 hover:text-blue-800 border border-blue-100 hover:border-blue-300 px-3 py-1.5 rounded-lg transition-colors bg-blue-50 hover:bg-blue-100"
                         >
-                          <MdShield size={13} />
+                          <MdAdminPanelSettings size={13} />
                           Make Admin
                         </button>
                       )}
